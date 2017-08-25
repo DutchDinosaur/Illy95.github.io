@@ -1,0 +1,46 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Roboto Slab', serif;
+	background: url("https://DutchDinosaur.github.io/Background.jpg") center bottom;
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+.nav {
+	margin:0;
+	padding:0;
+	background-color: grey;
+	list-style: none;
+	text-align: left;
+}
+li {
+	display: inline-block;
+}
+a {
+	text-decoration: none;
+	color: white;
+	padding: 10px 0 20px 50px;
+}
+a:hover {
+	text-decoration: none;
+	color: #c1c1c1;
+	padding: 10px 0 20px 50px;
+}
+h1 {
+	color: white;
+	margin:0;
+	padding: 10px 0 20px 25px;
+}
+img {
+	margin:0;
+	padding:0;
+	vertical-align: middle;
+}
+.Media {
+	width: 50%;
+	text-align: center;
+	margin: 0 auto;
+	position: relative;
+	top: 300px;
+}
