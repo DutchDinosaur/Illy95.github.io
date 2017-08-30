@@ -42,6 +42,12 @@ img {
 }
 .top {
 	background: url(Background.jpg) center top;
-	background-size: 2560px 1080px;
+	background-size: cover;
 	height:100vh;
+}
+.bottom {
+	height:100vh;
+}
+.black {
+	color: black;
 }
