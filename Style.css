@@ -2,11 +2,7 @@ body {
 	margin: 0;
 	padding: 0;
 	font-family: 'Roboto Slab', serif;
-	background: url("https://DutchDinosaur.github.io/Background.jpg") center bottom;
-	background-size: cover;
-	background-attachment: fixed;
 }
-
 .nav {
 	margin:0;
 	padding:0;
@@ -38,9 +34,14 @@ img {
 	vertical-align: middle;
 }
 .Media {
-	width: 50%;
+	width: 80%;
 	text-align: center;
 	margin: 0 auto;
 	position: relative;
-	top: 300px;
+	top: 250px;
+}
+.top {
+	background: url(Background.jpg) center top;
+	background-size: 2560px 1080px;
+	height:100vh;
 }
