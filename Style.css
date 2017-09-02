@@ -6,7 +6,7 @@ body {
 .nav {
 	margin:0;
 	padding:0;
-	background-color: grey;
+	background-color: rgba(0, 0, 0, 0.6);
 	list-style: none;
 	text-align: left;
 }
@@ -33,6 +33,19 @@ img {
 	padding:0;
 	vertical-align: middle;
 }
+h3 {
+	margin:0;
+	padding: 30px 30px 30px 105px;
+	font-size: 250%;
+	font-family: 'Raleway', sans-serif;
+	color: white;
+}
+sub > sub > a{
+	color:black;
+}
+sub > sub > a:hover{
+	color:black;
+}
 .Media {
 	width: 80%;
 	text-align: center;
@@ -44,10 +57,31 @@ img {
 	background: url(Background.jpg) center top;
 	background-size: cover;
 	height:100vh;
+	margin:0;
+	padding:0;
 }
 .bottom {
 	height:100vh;
+	margin:0;
+	padding:0;
+	background-color: #719fad;
 }
 .black {
 	color: black;
+}
+.profile {
+	max-width: 1400px;
+	margin:0;
+	padding:0;
+	margin: auto;
+}
+.profileContent {
+	
+}
+.bot {
+	margin:0;
+	padding:0;
+    width: 100%;
+	background-color: white;
+	text-align: middle;
 }
