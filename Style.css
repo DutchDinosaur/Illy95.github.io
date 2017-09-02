@@ -10,6 +10,16 @@ body {
 	list-style: none;
 	text-align: left;
 }
+.profileContent p {
+	color:white;
+	margin:0;
+	text-align: center;
+}
+h4 {
+	color:white;
+	text-align: center;
+	margin: 20px 0 0 0;
+}
 li {
 	display: inline-block;
 }
@@ -61,7 +71,7 @@ sub > sub > a:hover{
 	padding:0;
 }
 .bottom {
-	height:100vh;
+	min-height:100vh;
 	margin:0;
 	padding:0;
 	background-color: #719fad;
@@ -74,9 +84,12 @@ sub > sub > a:hover{
 	margin:0;
 	padding:0;
 	margin: auto;
+	overflow: hidden
+	background-color: white;
 }
 .profileContent {
-	
+	width: 30%;
+	float: left;
 }
 .bot {
 	margin:0;
@@ -84,4 +97,21 @@ sub > sub > a:hover{
     width: 100%;
 	background-color: white;
 	text-align: middle;
+}
+.profileContent2 {
+	width: 75%
+	float: right;
+	background-color: blue;
+}
+.text {
+	float: right;
+	width: 60%;
+	padding: 45px;
+}
+.text p {
+	padding: 0 0 0 30px;
+	color:white;
+}
+.text h1 {
+	padding: 60px 0 0 25px;
 }
