@@ -69,7 +69,7 @@ sub > sub > a:hover{
 	top: 250px;
 }
 .top {
-	background: url(Background2.jpg) center top;
+	background: url(Background.jpg) center top;
 	background-size: cover;
 	height:100vh;
 	margin:0;
@@ -119,9 +119,4 @@ sub > sub > a:hover{
 }
 .text h1 {
 	padding: 60px 0 0 25px;
-}
-.game {
-	background-color:#719fad;
-	padding-bottom:100px; 
-	padding-top:100px;
 }
