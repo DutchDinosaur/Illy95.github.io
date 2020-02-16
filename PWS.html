@@ -7,7 +7,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Raleway|Roboto+Slab" rel="stylesheet">
 		<!--✦_;*- I draw stuff -*;_✦-->
 
-		<script src="PWS/TemplateData/UnityProgress.js"></script>  
+		<script src="PWS/Build/UnityProgress.js"></script>  
 		<script src="PWS/Build/UnityLoader.js"></script>
 		<script>
 			var gameInstance = UnityLoader.instantiate("gameContainer", "PWS/Build/Game.json", {onProgress: UnityProgress});
@@ -31,7 +31,7 @@
 
 		<div class="webgl-content">
 			<div id="gameContainer" style="width: 900px; height: 600px"></div>
-				<img src="fullscreen.png" style=" bottom: -60px; right: 10px;" onclick="gameInstance.SetFullscreen(1)"></div>
+				<img src="fullscreen.png" onclick="gameInstance.SetFullscreen(1)"></div>
 			</div>
 		</div>
 
