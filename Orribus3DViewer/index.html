@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | Orribu's 3D viewer</title>
+  </head>
+  <body style="text-align: center">
+    <canvas id="unity-canvas" style="width: 960px; height: 600px; background: #373C3F"></canvas>
+    <script src="Build/Orribus3DViewer.loader.js"></script>
+    <script>
+      createUnityInstance(document.querySelector("#unity-canvas"), {
+        dataUrl: "Build/Orribus3DViewer.data.unityweb",
+        frameworkUrl: "Build/Orribus3DViewer.framework.js.unityweb",
+        codeUrl: "Build/Orribus3DViewer.wasm.unityweb",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "DefaultCompany",
+        productName: "Orribu's 3D viewer",
+        productVersion: "0.1",
+      });
+    </script>
+  </body>
+</html>
