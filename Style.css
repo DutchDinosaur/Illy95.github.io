@@ -8,6 +8,10 @@ body {
 li {
 	display: inline-block;
 }
+ul {
+	margin:0px;
+	padding:0px
+}
 
 #Lemon {
 	background-image: url('UITextures/LemonSpin.png');
@@ -17,6 +21,102 @@ li {
 	bottom:70px;
 	width:393px; 
 	height:291px;
+}
+
+#About1 {
+	background-image: url('UITextures/LemonSpin.png');
+	background-size: 100% 100%;
+	position:absolute;
+	left:20%;
+	top:70px;
+	width:800px; 
+	height:548px;
+}
+
+#Works {
+	background-color: #2e2e33;
+	position:absolute;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:54px;
+}
+
+#WorksTop {
+	background-image: url('UITextures/WorksTop.png');
+	background-size: contain;
+	position:fixed; 
+	top:0px; 
+	width:100%; 
+	height:108px;
+}
+
+#WorksBottom {
+	background-image: url('UITextures/WorksBottom.png');
+	background-size: contain;
+	position:fixed; 
+	bottom:54px; 
+	width:100%; 
+	height:18px;
+}
+
+#WorksLeft {
+	background-image: url('UITextures/WorksLeft.png');
+	background-size: contain;
+	position:fixed; 
+	left:0px; 
+	height:100%; 
+	width:42px;
+}
+
+#WorksRight {
+	background-image: url('UITextures/WorksRight.png');
+	background-size: contain;
+	position:fixed; 
+	right:0px; 
+	top:363px;
+	height:100%; 
+	width:318px;
+}
+
+#WorksTopLeft {
+	background-image: url('UITextures/WorksTopLeft.png');
+	background-size: 100% 100%;
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:396px; 
+	height:108px;
+}
+
+#WorksTopRight {
+	background-image: url('UITextures/WorksTopRight.png');
+	background-size: 100% 100%;
+	position:absolute;
+	top:0px;
+	right:0px;
+	width:318px; 
+	height:363px;
+}
+
+#WorksLeftTools {
+	background-image: url('UITextures/WorksLeftTools.png');
+	background-size: 100% 100%;
+	position:absolute;
+	top:69px;
+	left:0px;
+	width:33px; 
+	height:456px;
+}
+
+#WorksBottomRight {
+	background-image: url('UITextures/WorksBottomRight.png');
+	background-size: 100% 100%;
+	position:absolute;
+	bottom:0px;
+	right:0px;
+	width:318px; 
+	height:330px;
 }
 
 #bottomBar{
@@ -73,18 +173,6 @@ li {
 }
 
 #bottomBarWorks {
-	background-image: url('UITextures/bottomBarWorks.png');
-	background-size: 100% 100%;
-	position:fixed; 
-	bottom:0px;
-	left:330px;
-	height:54px; 
-	width:198px;
-}
-#bottomBarWorks:active {
-	background-image: url('UITextures/bottomBarWorksHover.png');
-}
-#bottomBarWorksSelected {
 	background-image: url('UITextures/bottomBarWorksHover.png');
 	background-size: 100% 100%;
 	position:fixed; 
@@ -95,14 +183,11 @@ li {
 }
 
 #bottomBarLemon {
-	background-image: url('UITextures/bottomBarLemon.png');
+	background-image: url('UITextures/bottomBarLemonHover.png');
 	background-size: 100% 100%;
 	position:fixed; 
 	bottom:0px;
 	left:528px;
 	height:54px; 
 	width:198px;
-}
-#bottomBarLemon:active {
-	background-image: url('UITextures/bottomBarLemonHover.png');
 }

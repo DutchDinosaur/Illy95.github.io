@@ -10,63 +10,102 @@
 
 	<body>
 
+		
+
+		
+
+		
+
+		<div id="Works">
+			<div id="WorksBottom"></div>
+			<div id="WorksLeft"></div>
+			<div id="WorksRight"></div>
+			<div id="WorksTop"></div>
+			<div id="WorksTopLeft"></div>
+			<div id="WorksLeftTools"></div>
+			<div id="WorksBottomRight"></div>
+			<div id="WorksTopRight"></div>
+		</div>
+
+
 		<div id="Lemon"><img src="Gifs/SPIN.gif" style="width:390px; height:252px; margin-top:33px;"></div>
 
-		<div id="bottomBar"></div>
 
-		<ul>
-			<li><a href="javascript:void(0);" id="bottomBarLeft"></a></li>
-			<li><a href="index.html" id="bottomBarAboutSelected"></a></li>
-			<li><a href="Works.html" id="bottomBarWorks"></a></li>
-			<li><a href="javascript:void(0);" id="bottomBarLemon"></a></li>
+		<ul id="bottomBar">
+			<li><a id="bottomBarLeft"></a></li>
+			<li><a id="bottomBarAboutSelected"></a></li>
+			<li><a onclick="ShowWorks();" id="bottomBarWorks"></a></li>
+			<li><a onclick="ShowLemon();" id="bottomBarLemon"></a></li>
 		</ul>
-
 		<div id="bottomBarRight"></div>
 
+
 		<script>
-			// Make the DIV element draggable:
 			dragElement(document.getElementById("Lemon"));
+			dragElement(document.getElementById("About1"));
 
 			function dragElement(elmnt) {
 				var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 				if (document.getElementById(elmnt.id + "header")) {
-				// if present, the header is where you move the DIV from:
 				document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
 				} else {
-				// otherwise, move the DIV from anywhere inside the DIV:
 				elmnt.onmousedown = dragMouseDown;
 				}
 
 				function dragMouseDown(e) {
 					e = e || window.event;
 					e.preventDefault();
-					// get the mouse cursor position at startup:
 					pos3 = e.clientX;
 					pos4 = e.clientY;
 					document.onmouseup = closeDragElement;
-					// call a function whenever the cursor moves:
 					document.onmousemove = elementDrag;
 				}
 
 				function elementDrag(e) {
 					e = e || window.event;
 					e.preventDefault();
-					// calculate the new cursor position:
 					pos1 = pos3 - e.clientX;
 					pos2 = pos4 - e.clientY;
 					pos3 = e.clientX;
 					pos4 = e.clientY;
-					// set the element's new position:
 					elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
 					elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
 				}
 
 				function closeDragElement() {
-					// stop moving when mouse button is released:
 					document.onmouseup = null;
 					document.onmousemove = null;
+				}   
+			}
+
+			function ShowLemon() {
+				var window = document.getElementById("Lemon");
+				var button = document.getElementById("bottomBarLemon");
+
+				if (window.style.display === "none") {
+					window.style.display = "block";
+					button.style.backgroundImage = "url('UITextures/bottomBarLemonHover.png')";
+				}
+				else {
+					window.style.display = "none";
+					button.style.backgroundImage = "url('UITextures/bottomBarLemon.png')";
 				}
 			}
+
+			function ShowWorks() {
+				var window = document.getElementById("Works");
+				var button = document.getElementById("bottomBarWorks");
+
+				if (window.style.display === "none") {
+					window.style.display = "block";
+					button.style.backgroundImage = "url('UITextures/bottomBarWorksHover.png')";
+				}
+				else {
+					window.style.display = "none";
+					button.style.backgroundImage = "url('UITextures/bottomBarWorks.png')";
+				}
+			}
+
 		</script>
 
 	</body>
