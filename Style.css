@@ -3,6 +3,7 @@ body {
 	image-rendering: pixelated;
 	margin:0px;
 	padding:0px;
+	font-family: 'CodersCrux', Fallback, sans-serif;
 }
 li {
 	display: inline-block;
@@ -20,7 +21,7 @@ li {
 
 #bottomBar{
 	background-image: url('UITextures/bottomBar.png');
-	background-size: 100% 100%;
+	background-size: contain;
 	position:fixed; 
 	bottom:0px; 
 	width:100%; 
