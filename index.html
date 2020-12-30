@@ -5,16 +5,11 @@
 		<link rel="icon" type="image/vnd.microsoft.icon" href="icon.ico">
 		<link rel="stylesheet" type="text/css" href="Style.css">
 	</head>
-	
-
 
 	<body>
 
-		
+		<div id="About1"><img src="Images/Portrait.jpg" style="width:512px; height:512px; margin-top:33px;"></div>
 
-		
-
-		
 
 		<div id="Works">
 			<div id="WorksBottom"></div>
@@ -30,83 +25,23 @@
 
 		<div id="Lemon"><img src="Gifs/SPIN.gif" style="width:390px; height:252px; margin-top:33px;"></div>
 
-
 		<ul id="bottomBar">
-			<li><a id="bottomBarLeft"></a></li>
-			<li><a id="bottomBarAboutSelected"></a></li>
-			<li><a onclick="ShowWorks();" id="bottomBarWorks"></a></li>
-			<li><a onclick="ShowLemon();" id="bottomBarLemon"></a></li>
+			<li><a onclick="ToggleElement(0);" id="bottomBarLeft"></a></li>
+			<li><a onclick="ToggleElement(3);" id="bottomBarAbout"></a></li>
+			<li><a onclick="ToggleElement(2);" id="bottomBarWorks"></a></li>
+			<li><a onclick="ToggleElement(1);" id="bottomBarLemon"></a></li>
 		</ul>
+
 		<div id="bottomBarRight"></div>
 
+		<div id="StartMenu">
+			<a href="" id="StartMenuShutDown"></a>
+		</div>
 
-		<script>
-			dragElement(document.getElementById("Lemon"));
-			dragElement(document.getElementById("About1"));
+		<div id="StartScreen">
+			<image src="UITextures/mush.gif" Style="position:fixed; top:45%; left:50%; width:108px; height:132px;">
+		</div>
 
-			function dragElement(elmnt) {
-				var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-				if (document.getElementById(elmnt.id + "header")) {
-				document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-				} else {
-				elmnt.onmousedown = dragMouseDown;
-				}
-
-				function dragMouseDown(e) {
-					e = e || window.event;
-					e.preventDefault();
-					pos3 = e.clientX;
-					pos4 = e.clientY;
-					document.onmouseup = closeDragElement;
-					document.onmousemove = elementDrag;
-				}
-
-				function elementDrag(e) {
-					e = e || window.event;
-					e.preventDefault();
-					pos1 = pos3 - e.clientX;
-					pos2 = pos4 - e.clientY;
-					pos3 = e.clientX;
-					pos4 = e.clientY;
-					elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-					elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-				}
-
-				function closeDragElement() {
-					document.onmouseup = null;
-					document.onmousemove = null;
-				}   
-			}
-
-			function ShowLemon() {
-				var window = document.getElementById("Lemon");
-				var button = document.getElementById("bottomBarLemon");
-
-				if (window.style.display === "none") {
-					window.style.display = "block";
-					button.style.backgroundImage = "url('UITextures/bottomBarLemonHover.png')";
-				}
-				else {
-					window.style.display = "none";
-					button.style.backgroundImage = "url('UITextures/bottomBarLemon.png')";
-				}
-			}
-
-			function ShowWorks() {
-				var window = document.getElementById("Works");
-				var button = document.getElementById("bottomBarWorks");
-
-				if (window.style.display === "none") {
-					window.style.display = "block";
-					button.style.backgroundImage = "url('UITextures/bottomBarWorksHover.png')";
-				}
-				else {
-					window.style.display = "none";
-					button.style.backgroundImage = "url('UITextures/bottomBarWorks.png')";
-				}
-			}
-
-		</script>
-
+		<script src="script.js"></script>
 	</body>
 </html>
