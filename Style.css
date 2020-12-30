@@ -52,10 +52,10 @@ ul {
 	position:fixed;
 	background-size:100% 100%;
 	background-color: #ffffff;
-	right:calc(318px + 10vh);
-	left:calc(42px + 10vh);
-	bottom:calc(72px + 10vh);
-	top:calc(108px + 10vh);
+	right:calc(318px + 10%);
+	left:calc(42px + 10%);
+	bottom:calc(72px + 10%);
+	top:calc(108px + 10%);
 }
 
 
