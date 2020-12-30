@@ -18,7 +18,7 @@ p {
 
 @font-face {
     font-family: "CodersCrux";
-    src: url(("CodersCrux.ttf") format("TrueType");
+    src: url("CodersCrux.ttf") format("TrueType");
 }
 
 .icon {
