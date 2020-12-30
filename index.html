@@ -14,22 +14,33 @@
 			<a onclick="ToggleElement(1);"><img src="UITextures/IconLemon.png" class="icon" style="top:240px;"></a>
 		</div>
 
-		<div id="About1"><img src="Images/Portrait.jpg" style="width:512px; height:512px; margin-top:33px;"></div>
-
-
-		<div id="Works">
-			<div id="WorksBottom"></div>
-			<div id="WorksLeft"></div>
-			<div id="WorksRight"></div>
-			<div id="WorksTop"></div>
-			<div id="WorksTopLeft"></div>
-			<div id="WorksLeftTools"></div>
-			<div id="WorksBottomRight"></div>
-			<div id="WorksTopRight"></div>
+		<div id="About1">
+			<img src="Images/Portrait.jpg" style="width:512px; height:512px; margin-top:33px;">
+			<a onclick="ToggleElement(3);" class="CloseWindow"></a>
 		</div>
 
 
-		<div id="Lemon"><img src="Gifs/SPIN.gif" style="width:390px; height:252px; margin-top:33px;"></div>
+		<div id="Works">
+			<div class="WorksBottom"></div>
+			<div class="WorksLeft"></div>
+			<div class="WorksRight"></div>
+			<div class="WorksTop"></div>
+			<div class="WorksTopLeft"></div>
+			<div class="WorksLeftTools"></div>
+			<div class="WorksBottomRight"></div>
+			<div class="WorksTopRight"></div>
+			<a onclick="ToggleElement(2);" class="CloseWindow"></a>
+
+			<div id="WorksContent">
+				
+			</div>
+		</div>
+
+
+		<div id="Lemon">
+			<img src="Gifs/SPIN.gif" style="width:390px; height:252px; margin-top:33px;">
+			<a onclick="ToggleElement(1);" class="CloseWindow"></a>
+		</div>
 
 		<ul id="bottomBar">
 			<li><a onclick="ToggleElement(0);" id="bottomBarLeft"></a></li>
@@ -38,10 +49,10 @@
 			<li><a onclick="ToggleElement(1);" id="bottomBarLemon"></a></li>
 		</ul>
 
-		<div id="bottomBarRight"></div>
+		<div class="bottomBarRight"></div>
 
 		<div id="StartMenu">
-			<a href="" Style="background-image: url('UITextures/StartMenuShutDown.png'); background-size:100% 100%; position:fixed; bottom:42px; left:27px; height:54px; width:228px;"></a>
+			<a href="" Style="background-image: url('UITextures/StartMenuShutDown.png'); bottom:3px;" class="StartMenuItems"></a>
 		</div>
 
 		<div id="StartScreen">

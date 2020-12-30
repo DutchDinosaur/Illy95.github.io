@@ -15,7 +15,7 @@ ul {
 
 .icon {
 	background-size: 100% 100%;
-	position:absolute;
+	position:fixed;
 	width:126px; 
 	height:120px;
 	user-select: none;
@@ -24,10 +24,46 @@ ul {
 	background-color: #98dae8;
 }
 
+.CloseWindow {
+	background-size: 100% 100%;
+	position:absolute;
+	top:6px;
+	right:15px;
+	width:21px; 
+	height:21px;
+}
+.CloseWindow:hover {
+	background-image: url('UITextures/CloseWindowHover.png');
+}
+
+.StartMenuItems {
+	background-size:100% 100%; 
+	position:absolute; 
+	left:21px; 
+	height:54px; 
+	width:228px;
+}
+.StartMenuItems:hover {
+	background-color: #98dae8;
+}
+
+#WorksContent {
+	overflow: auto;
+	position:fixed;
+	background-size:100% 100%;
+	background-color: #ffffff;
+	right:calc(318px + 10vh);
+	left:calc(42px + 10vh);
+	bottom:calc(72px + 10vh);
+	top:calc(108px + 10vh);
+}
+
+
+
 #Lemon {
 	background-image: url('UITextures/LemonSpin.png');
 	background-size: 100% 100%;
-	position:absolute;
+	position:fixed;
 	right:12%;
 	bottom:70px;
 	width:393px; 
@@ -37,23 +73,25 @@ ul {
 #About1 {
 	background-image: url('UITextures/LemonSpin.png');
 	background-size: 100% 100%;
-	position:absolute;
+	position:fixed;
 	left:20%;
 	top:70px;
 	width:800px; 
 	height:548px;
 }
 
+
+
 #Works {
 	background-color: #2e2e33;
-	position:absolute;
+	position:fixed;
 	top:0px;
 	left:0px;
 	right:0px;
 	bottom:54px;
 }
 
-#WorksTop {
+.WorksTop {
 	background-image: url('UITextures/WorksTop.png');
 	background-size: contain;
 	position:fixed; 
@@ -62,7 +100,7 @@ ul {
 	height:108px;
 }
 
-#WorksBottom {
+.WorksBottom {
 	background-image: url('UITextures/WorksBottom.png');
 	background-size: contain;
 	position:fixed; 
@@ -71,7 +109,7 @@ ul {
 	height:18px;
 }
 
-#WorksLeft {
+.WorksLeft {
 	background-image: url('UITextures/WorksLeft.png');
 	background-size: contain;
 	position:fixed; 
@@ -80,7 +118,7 @@ ul {
 	width:42px;
 }
 
-#WorksRight {
+.WorksRight {
 	background-image: url('UITextures/WorksRight.png');
 	background-size: contain;
 	position:fixed; 
@@ -90,40 +128,40 @@ ul {
 	width:318px;
 }
 
-#WorksTopLeft {
+.WorksTopLeft {
 	background-image: url('UITextures/WorksTopLeft.png');
 	background-size: 100% 100%;
-	position:absolute;
+	position:fixed;
 	top:0px;
 	left:0px;
 	width:396px; 
 	height:108px;
 }
 
-#WorksTopRight {
+.WorksTopRight {
 	background-image: url('UITextures/WorksTopRight.png');
 	background-size: 100% 100%;
-	position:absolute;
+	position:fixed;
 	top:0px;
 	right:0px;
 	width:318px; 
 	height:363px;
 }
 
-#WorksLeftTools {
+.WorksLeftTools {
 	background-image: url('UITextures/WorksLeftTools.png');
 	background-size: 100% 100%;
-	position:absolute;
+	position:fixed;
 	top:69px;
 	left:0px;
 	width:33px; 
 	height:456px;
 }
 
-#WorksBottomRight {
+.WorksBottomRight {
 	background-image: url('UITextures/WorksBottomRight.png');
 	background-size: 100% 100%;
-	position:absolute;
+	position:fixed;
 	bottom:0px;
 	right:0px;
 	width:318px; 
@@ -138,7 +176,7 @@ ul {
 	width:100%; 
 	height:54px;
 }
-#bottomBarRight{
+.bottomBarRight{
 	background-image: url('UITextures/bottomBarRight.gif');
 	background-size: 100% 100%;
 	position:fixed; 
