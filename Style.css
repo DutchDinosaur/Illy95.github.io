@@ -3,7 +3,7 @@ body {
 	image-rendering: pixelated;
 	margin:0px;
 	padding:0px;
-	font-family: 'CodersCrux', Fallback, sans-serif;
+	font-family: 'CodersCrux';
 }
 li {
 	display: inline-block;
@@ -11,6 +11,14 @@ li {
 ul {
 	margin:0px;
 	padding:0px
+}
+p {
+	font-family: 'CodersCrux';
+}
+
+@font-face {
+    font-family: "CodersCrux";
+    src: url(("CodersCrux.ttf") format("TrueType");
 }
 
 .icon {
@@ -71,13 +79,13 @@ ul {
 }
 
 #About1 {
-	background-image: url('UITextures/LemonSpin.png');
+	background-image: url('UITextures/AboutBio.png');
 	background-size: 100% 100%;
 	position:fixed;
 	left:20%;
 	top:70px;
-	width:800px; 
-	height:548px;
+	width:798px; 
+	height:495px;
 }
 
 
