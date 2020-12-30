@@ -1,15 +1,18 @@
 
-let HideElements = ["StartMenu", "Lemon", "Works", "About1"];
+let HideElements = ["StartMenu", "Lemon", "Works", "About1","About2"];
 let HideButtons = ["bottomBarLeft", "bottomBarLemon", "bottomBarWorks" , "bottomBarAbout"];
 var buttonsUrl = "url('UITextures/";
 
 
 dragElement(document.getElementById("Lemon"));
 dragElement(document.getElementById("About1"));
+dragElement(document.getElementById("About2"));
 
 for (var i = 0; i < 4; i++) {
-	ToggleElement(i);
+	DisableElementWindow(i);
+	DisableElementButton(i);
 }
+DisableElementWindow(4);
 
 document.getElementById("icons").style.display = "none"; 
 document.getElementById("icons2").style.display = "none"; 
@@ -58,16 +61,37 @@ function dragElement(elmnt) {
 	}   
 }
 
-function ToggleElement(index) {
+function EnableElementWindow(index) {
 	var window = document.getElementById(HideElements[index]);
-	var button = document.getElementById(HideButtons[index]);
+	window.style.display = "block";
+}
 
-	if (window.style.display == "none") {
-		window.style.display = "block";
-		button.style.backgroundImage = buttonsUrl + HideButtons[index] + "Hover.png";
-	}
-	else {
-		window.style.display = "none";
-		button.style.backgroundImage = buttonsUrl + HideButtons[index] + ".png";
-	}
+function EnableElementButton(index) {
+	var button = document.getElementById(HideButtons[index]);
+	button.style.backgroundImage = buttonsUrl + HideButtons[index] + "Hover.png";
+}
+
+function DisableElementWindow(index) {
+	var window = document.getElementById(HideElements[index]);
+	window.style.display = "none";
+}
+
+function DisableElementButton(index) {
+	var button = document.getElementById(HideButtons[index]);
+	button.style.backgroundImage = buttonsUrl + HideButtons[index] + ".png";
+}
+
+function ToggleElementWindow(index) {
+	var window = document.getElementById(HideElements[index]);
+
+	if (window.style.display == "none") window.style.display = "block";
+	else window.style.display = "none";
+}
+
+function ToggleElementButton(index) {
+	var button = document.getElementById(HideButtons[index]);
+	var window = document.getElementById(HideElements[index]);
+
+	if (window.style.display == "none") button.style.backgroundImage = buttonsUrl + HideButtons[index] + ".png";
+	else button.style.backgroundImage = buttonsUrl + HideButtons[index] + "Hover.png";
 }

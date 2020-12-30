@@ -3,22 +3,40 @@ body {
 	image-rendering: pixelated;
 	margin:0px;
 	padding:0px;
-	font-family: 'CodersCrux';
+	font-family: "Coder's Crux";
+	font-size: 48px;
+	color:white;
 }
 li {
 	display: inline-block;
 }
 ul {
+	line-height: 39px;
+
 	margin:0px;
 	padding:0px
 }
-p {
-	font-family: 'CodersCrux';
-}
 
 @font-face {
-    font-family: "CodersCrux";
-    src: url("CodersCrux.ttf") format("TrueType");
+    font-family: "Coder's Crux";
+    src: url("Coder's Crux.ttf") format("TrueType"),
+		 local("Coder's Crux") format("TrueType");
+}
+
+p {
+	line-height: 36px;
+}
+
+li {
+	line-height: 36px;
+}
+
+.BackText {
+	position: absolute;
+	padding-top:3px;
+	color:#663931;
+	user-select: none;
+	z-index: -1;
 }
 
 .icon {
@@ -66,8 +84,6 @@ p {
 	top:calc(108px + 10%);
 }
 
-
-
 #Lemon {
 	background-image: url('UITextures/LemonSpin.png');
 	background-size: 100% 100%;
@@ -88,7 +104,15 @@ p {
 	height:495px;
 }
 
-
+#About2 {
+	background-image: url('UITextures/AboutSkills.png');
+	background-size: 100% 100%;
+	position:fixed;
+	left:27%;
+	bottom:70px;
+	width:525px; 
+	height:405px;
+}
 
 #Works {
 	background-color: #2e2e33;

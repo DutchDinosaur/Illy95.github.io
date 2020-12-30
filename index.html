@@ -8,21 +8,61 @@
 
 	<body>
 		<div id="icons2">
-			<a onclick="ToggleElement(3);"><img src="UITextures/IconAbout.png" class="icon"></a>
-			<a onclick="ToggleElement(2);"><img src="UITextures/IconWorks.png" class="icon" style="top:120px;"></a>
+			<a onclick="EnableElementWindow(3); EnableElementWindow(4); EnableElementButton(3);"><img src="UITextures/IconAbout.png" class="icon"></a>
+			<a onclick="EnableElementWindow(2); EnableElementButton(2);"><img src="UITextures/IconWorks.png" class="icon" style="top:120px;"></a>
 		</div><div id="icons">
-			<a onclick="ToggleElement(1);"><img src="UITextures/IconLemon.png" class="icon" style="top:240px;"></a>
+			<a onclick="EnableElementWindow(1); EnableElementButton(1);"><img src="UITextures/IconLemon.png" class="icon" style="top:240px;"></a>
 		</div>
 
 		<div id="About1">
 			<img src="Images/Portrait.jpg" style="width:255px; height:255px; position:absolute;  top:48px; left:12px;">
 
-			<p>Im a technical artist. i can do anything between drawing traditional and programming games. My skills include: traditional art, digital art (2D and 3D), Gamedevelopment in unity and webdevelopment</p>
+			<div class="BackText" style="position:absolute; left:285px; right:9px;">
 
+				<p>Im a technical artist. <br/>
+				i can do anything between drawing traditional and programming games. </p> 
 
-			<a onclick="ToggleElement(3);" class="CloseWindow"></a>
+			</div>
+			<div style="position:absolute; left:285px; right:9px;">
+
+				<p>Im a technical artist. <br/>
+				i can do anything between drawing traditional and programming games. </p> 
+
+			</div>
+
+			<a onclick="DisableElementWindow(3); DisableElementButton(3);" class="CloseWindow"></a>
 		</div>
 
+		<div id="About2">
+			
+			<div class="BackText" style="position:absolute; left:9px; right:9px; top:42px;">
+
+				<ul> My skills include:
+					<li> - 3D moddeling (model, uv, texture, rig)</li>
+					<li> - Programming (C# , Javascript)</li>
+					<li> - Gamedevelopment in unity</li>
+					<li> - Concept art (characters)</li>
+					<li> - Pixel art</li>
+					<li> - Webdevelopment</li>
+				</ul>
+	
+			</div>
+			<div style="position:absolute; left:9px; right:9px; top:42px;">
+
+				<ul> My skills include:
+					<li> - 3D moddeling (model, uv, texture, rig)</li>
+					<li> - Programming (C# , Javascript)</li>
+					<li> - Gamedevelopment in unity</li>
+					<li> - Concept art (characters)</li>
+					<li> - Pixel art</li>
+					<li> - Webdevelopment</li>
+				</ul>
+
+			</div>
+
+
+			<a onclick="DisableElementWindow(4);" class="CloseWindow"></a>
+		</div>
 
 		<div id="Works">
 			<div class="WorksBottom"></div>
@@ -33,7 +73,7 @@
 			<div class="WorksLeftTools"></div>
 			<div class="WorksBottomRight"></div>
 			<div class="WorksTopRight"></div>
-			<a onclick="ToggleElement(2);" class="CloseWindow"></a>
+			<a onclick="DisableElementWindow(2); DisableElementButton(2);" class="CloseWindow"></a>
 
 			<div id="WorksContent">
 				
@@ -43,14 +83,14 @@
 
 		<div id="Lemon">
 			<img src="Gifs/SPIN.gif" style="width:390px; height:252px; margin-top:33px;">
-			<a onclick="ToggleElement(1);" class="CloseWindow"></a>
+			<a onclick="DisableElementWindow(1); DisableElementButton(1);" class="CloseWindow"></a>
 		</div>
 
 		<ul id="bottomBar">
-			<li><a onclick="ToggleElement(0);" id="bottomBarLeft"></a></li>
-			<li><a onclick="ToggleElement(3);" id="bottomBarAbout"></a></li>
-			<li><a onclick="ToggleElement(2);" id="bottomBarWorks"></a></li>
-			<li><a onclick="ToggleElement(1);" id="bottomBarLemon"></a></li>
+			<li><a onclick="ToggleElementWindow(0); ToggleElementButton(0);" id="bottomBarLeft"></a></li>
+			<li><a onclick="ToggleElementWindow(3); ToggleElementWindow(4); ToggleElementButton(3);" id="bottomBarAbout"></a></li>
+			<li><a onclick="ToggleElementWindow(2); ToggleElementButton(2);" id="bottomBarWorks"></a></li>
+			<li><a onclick="ToggleElementWindow(1); ToggleElementButton(1);" id="bottomBarLemon"></a></li>
 		</ul>
 
 		<div class="bottomBarRight"></div>
