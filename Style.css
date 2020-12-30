@@ -13,6 +13,17 @@ ul {
 	padding:0px
 }
 
+.icon {
+	background-size: 100% 100%;
+	position:absolute;
+	width:126px; 
+	height:120px;
+	user-select: none;
+}
+.icon:hover {
+	background-color: #98dae8;
+}
+
 #Lemon {
 	background-image: url('UITextures/LemonSpin.png');
 	background-size: 100% 100%;
@@ -128,13 +139,13 @@ ul {
 	height:54px;
 }
 #bottomBarRight{
-	background-image: url('UITextures/bottomBarRight.png');
+	background-image: url('UITextures/bottomBarRight.gif');
 	background-size: 100% 100%;
 	position:fixed; 
 	bottom:0px; 
 	right:0px; 
 	height:54px; 
-	width:141px
+	width:183px
 }
 
 #bottomBarLeft {
@@ -185,16 +196,6 @@ ul {
 	left:6px;
 	height:450px; 
 	width:252px;
-}
-
-#StartMenuShutDown {
-	background-image: url('UITextures/StartMenuShutDown.png');
-	background-size: 100% 100%;
-	position:fixed; 
-	bottom:42px;
-	left:27px;
-	height:54px; 
-	width:228px;
 }
 
 #StartScreen {

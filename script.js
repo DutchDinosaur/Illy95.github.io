@@ -11,8 +11,12 @@ for (var i = 0; i < 4; i++) {
 	ToggleElement(i);
 }
 
+document.getElementById("icons").style.display = "none"; 
+document.getElementById("icons2").style.display = "none"; 
 
 setTimeout(function(){ document.getElementById("StartScreen").style.display = "none"; }, 1300);
+setTimeout(function(){ document.getElementById("icons").style.display = "block"; }, 1380);
+setTimeout(function(){ document.getElementById("icons2").style.display = "block"; }, 1450);
 
 function dragElement(elmnt) {
 	var x = 0, y = 0, x2 = 0, y2 = 0;
