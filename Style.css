@@ -3,7 +3,7 @@ body {
 	image-rendering: pixelated;
 	margin:0px;
 	padding:0px;
-	font-family: "lilliput steps";
+	font-family: "Coder's Crux";
 	font-size: 48px;
 	color:white;
 }
@@ -18,9 +18,10 @@ ul {
 }
 
 @font-face {
-    font-family: "lilliput steps";
-    src: local("lilliput steps") 
-	url("https://dutchdinosaur.github.io/lilliput steps.ttf") format("TrueType");
+    font-family: "Coder's Crux";
+    src: url("Coder's Crux.ttf") format("TrueType"),
+		url("Coder's Crux.woff") format('woff'),
+		local("Coder's Crux") format("TrueType");
 }
 
 p {
