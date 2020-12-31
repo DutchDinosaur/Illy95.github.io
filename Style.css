@@ -20,7 +20,8 @@ ul {
 @font-face {
     font-family: "Coder's Crux";
     src: url("https://dutchdinosaur.github.io/Coder\'s\ Crux.ttf") format("TrueType"),
-		 local("Coder's Crux") format("TrueType");
+		url("https://dutchdinosaur.github.io/Coder\'s\ Crux.woff") format('woff'),
+		local("Coder's Crux") format("TrueType");
 }
 
 p {
