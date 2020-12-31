@@ -309,7 +309,7 @@ li {
 	background-color: #98dae8;
 }
 
-#StartScreen {
+.StartScreen {
 	background-size: 100% 100%;
 	top:0px;
 	left:0px;

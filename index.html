@@ -8,7 +8,7 @@
 
 	<body>
 		<div id="icons">
-			<a onclick="EnableElementWindow(3); EnableElementWindow(4); EnableElementWindow(6); EnableElementButton(3);"><img src="UITextures/IconAbout.png" class="icon"></a>
+			<a onclick="EnableElementWindow(3); EnableElementWindow(4); EnableElementButton(3);"><img src="UITextures/IconAbout.png" class="icon"></a>
 			<a onclick="EnableElementWindow(2); EnableElementButton(2);"><img src="UITextures/IconWorks.png" class="icon" style="top:120px;"></a>
 			<a onclick="EnableElementWindow(1); EnableElementButton(1);"><img src="UITextures/IconLemon.png" class="icon" style="top:240px;"></a>
 		</div><div id="icons2">
@@ -48,7 +48,7 @@
 			Netherlands
 			</p>
 
-			<a onclick="EnableElementWindow(5);" style="background-image: url('UITextures/ButtonContact.png'); left:399px; bottom:45px;" class="StartMenuItems">
+			<a onclick="EnableElementWindow(5); DisableElementWindow(3); DisableElementButton(3); DisableElementWindow(4);" style="background-image: url('UITextures/ButtonContact.png'); left:399px; bottom:45px;" class="StartMenuItems">
 			<a onclick="DisableElementWindow(3); DisableElementButton(3);" class="CloseWindow"></a>
 		</div>
 
@@ -117,12 +117,11 @@
 
 		<ul id="bottomBar">
 			<li><a onclick="ToggleElementWindow(0); ToggleElementButton(0);" id="bottomBarLeft"></a></li>
-			<li><a onclick="ToggleElementWindow(3); ToggleElementWindow(4); ToggleElementWindow(6); ToggleElementButton(3);" id="bottomBarAbout"></a></li>
+			<li><a onclick="ToggleElementWindow(3); ToggleElementWindow(4); ToggleElementButton(3);" id="bottomBarAbout"></a></li>
 			<li><a onclick="ToggleElementWindow(2); ToggleElementButton(2);" id="bottomBarWorks"></a></li>
 			<li><a onclick="ToggleElementWindow(1); ToggleElementButton(1);" id="bottomBarLemon"></a></li>
+			<div class="bottomBarRight"></div>
 		</ul>
-
-		<div class="bottomBarRight"></div>
 
 		<div id="StartMenu">
 			<a href="" Style="background-image: url('UITextures/StartMenuShutDown.png'); bottom:3px;" class="StartMenuItems"></a>
@@ -141,7 +140,7 @@
 			<a style="bottom:9px; left:207px;" onclick="DisableElementWindow(5);" class="ButtonOK" ></a>
 		</div>
 
-		<div id="StartScreen">
+		<div id="StartScreen" class="StartScreen">
 			<image src="UITextures/mush.gif" Style="position:fixed; top:45%; left:45%; width:108px; height:132px; user-select: none;">
 		</div>
 

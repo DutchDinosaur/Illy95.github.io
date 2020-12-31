@@ -1,5 +1,5 @@
 
-let HideElements = ["StartMenu", "Lemon", "Works", "About1","About2", "ContactPopup", "LinkWindow"];
+let HideElements = ["StartMenu", "Lemon", "Works", "About1","About2", "ContactPopup", "LinkWindow", "bottomBar"];
 let HideButtons = ["bottomBarLeft", "bottomBarLemon", "bottomBarWorks" , "bottomBarAbout"];
 var buttonsUrl = "url('UITextures/";
 
@@ -16,6 +16,7 @@ for (var i = 0; i < 4; i++) {
 DisableElementWindow(4);
 DisableElementWindow(5);
 DisableElementWindow(6);
+DisableElementWindow(7);
 
 document.getElementById("icons").style.display = "none"; 
 document.getElementById("icons2").style.display = "none"; 
@@ -26,7 +27,8 @@ setTimeout(function(){ document.getElementById("StartScreen").style.display = "n
 setTimeout(function(){ document.getElementById("icons").style.display = "block"; }, 1380);
 setTimeout(function(){ document.getElementById("icons2").style.display = "block"; }, 1450);
 
-setTimeout(function(){  EnableElementWindow(4); }, 1740);
+setTimeout(function(){  EnableElementWindow(7); }, 1490);
+setTimeout(function(){  EnableElementWindow(4); }, 1830);
 setTimeout(function(){ EnableElementWindow(3); EnableElementButton(3); }, 1870);
 
 function dragElement(elmnt) {
