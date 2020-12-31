@@ -1,5 +1,5 @@
 
-let HideElements = ["StartMenu", "Lemon", "Works", "About1","About2"];
+let HideElements = ["StartMenu", "Lemon", "Works", "About1","About2", "ContactPopup"];
 let HideButtons = ["bottomBarLeft", "bottomBarLemon", "bottomBarWorks" , "bottomBarAbout"];
 var buttonsUrl = "url('UITextures/";
 
@@ -13,9 +13,14 @@ for (var i = 0; i < 4; i++) {
 	DisableElementButton(i);
 }
 DisableElementWindow(4);
+DisableElementWindow(5);
 
 document.getElementById("icons").style.display = "none"; 
 document.getElementById("icons2").style.display = "none"; 
+
+EnableElementWindow(3); 
+EnableElementWindow(4); 
+EnableElementButton(3);
 
 setTimeout(function(){ document.getElementById("StartScreen").style.display = "none"; }, 1300);
 setTimeout(function(){ document.getElementById("icons").style.display = "block"; }, 1380);

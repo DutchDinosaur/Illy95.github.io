@@ -29,6 +29,7 @@ p {
 
 li {
 	line-height: 36px;
+	font-size:32px;
 }
 
 .BackText {
@@ -98,8 +99,8 @@ li {
 	background-image: url('UITextures/AboutBio.png');
 	background-size: 100% 100%;
 	position:fixed;
-	left:20%;
-	top:70px;
+	left:9%;
+	top:44px;
 	width:798px; 
 	height:495px;
 }
@@ -108,10 +109,10 @@ li {
 	background-image: url('UITextures/AboutSkills.png');
 	background-size: 100% 100%;
 	position:fixed;
-	left:27%;
-	bottom:70px;
+	right:12%;
+	bottom:60px;
 	width:525px; 
-	height:405px;
+	height:339px;
 }
 
 #Works {
@@ -276,6 +277,27 @@ li {
 	left:6px;
 	height:450px; 
 	width:252px;
+}
+
+#ContactPopup {
+	background-image: url('UITextures/ContactPopup.png');
+	background-size: 100% 100%;
+	position:fixed; 
+	bottom:calc(50% - 98px);
+	left:calc(50% - 240px);
+	height:186px; 
+	width:480px;
+}
+
+.ButtonOK {
+	background-image: url('UITextures/ButtonOK.png');
+	background-size: 100% 100%;
+	position:absolute;
+	height:36px; 
+	width:57px;
+}
+.ButtonOK:hover {
+	background-color: #98dae8;
 }
 
 #StartScreen {
