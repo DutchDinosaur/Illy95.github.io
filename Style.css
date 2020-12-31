@@ -3,7 +3,7 @@ body {
 	image-rendering: pixelated;
 	margin:0px;
 	padding:0px;
-	font-family: "Coder's Crux";
+	font-family: "CodersCrux";
 	font-size: 48px;
 	color:white;
 }
@@ -18,10 +18,8 @@ ul {
 }
 
 @font-face {
-    font-family: "Coder's Crux";
-    src: url("Coder's Crux.ttf") format("TrueType"),
-		url("Coder's Crux.woff") format('woff'),
-		local("Coder's Crux") format("TrueType");
+    font-family: "CodersCrux";
+    src: url("CodersCrux.woff") format('woff');
 }
 
 p {
