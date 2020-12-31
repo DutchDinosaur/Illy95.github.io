@@ -40,8 +40,8 @@ li {
 }
 
 .icon {
+	display: inline-block;
 	background-size: 100% 100%;
-	position:fixed;
 	width:126px; 
 	height:120px;
 	user-select: none;
@@ -112,6 +112,16 @@ li {
 	bottom:60px;
 	width:525px; 
 	height:339px;
+}
+
+#About3 {
+	background-image: url('UITextures/AboutLinks.png');
+	background-size: 100% 100%;
+	position:fixed;
+	left:3%;
+	bottom:120px;
+	width:615px; 
+	height:186px;
 }
 
 #Works {

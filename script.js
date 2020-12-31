@@ -1,5 +1,5 @@
 
-let HideElements = ["StartMenu", "Lemon", "Works", "About1","About2", "ContactPopup"];
+let HideElements = ["StartMenu", "Lemon", "Works", "About1","About2", "ContactPopup", "About3"];
 let HideButtons = ["bottomBarLeft", "bottomBarLemon", "bottomBarWorks" , "bottomBarAbout"];
 var buttonsUrl = "url('UITextures/";
 
@@ -7,6 +7,7 @@ var buttonsUrl = "url('UITextures/";
 dragElement(document.getElementById("Lemon"));
 dragElement(document.getElementById("About1"));
 dragElement(document.getElementById("About2"));
+dragElement(document.getElementById("About3"));
 
 for (var i = 0; i < 4; i++) {
 	DisableElementWindow(i);
@@ -14,17 +15,19 @@ for (var i = 0; i < 4; i++) {
 }
 DisableElementWindow(4);
 DisableElementWindow(5);
+DisableElementWindow(6);
 
 document.getElementById("icons").style.display = "none"; 
 document.getElementById("icons2").style.display = "none"; 
 
-EnableElementWindow(3); 
-EnableElementWindow(4); 
-EnableElementButton(3);
+
 
 setTimeout(function(){ document.getElementById("StartScreen").style.display = "none"; }, 1300);
 setTimeout(function(){ document.getElementById("icons").style.display = "block"; }, 1380);
 setTimeout(function(){ document.getElementById("icons2").style.display = "block"; }, 1450);
+
+setTimeout(function(){ EnableElementWindow(3); EnableElementWindow(4); EnableElementButton(3); }, 1800);
+setTimeout(function(){ EnableElementWindow(6); }, 1870);
 
 function dragElement(elmnt) {
 	var x = 0, y = 0, x2 = 0, y2 = 0;
