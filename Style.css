@@ -17,6 +17,10 @@ ul {
 	padding:0px
 }
 
+iframe[seamless] {
+    border: none;
+}
+
 @font-face {
     font-family: "CodersCrux";
     src: url("CodersCrux.woff") format('woff');
