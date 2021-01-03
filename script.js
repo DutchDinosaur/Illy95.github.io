@@ -1,6 +1,7 @@
 
-let HideElements = ["StartMenu", "Lemon", "Works", "About1","About2", "ContactPopup", "LinkWindow", "bottomBar", "WebGLWindow"];
+let HideElements = ["StartMenu", "Lemon", "Works", "About1","About2", "ContactPopup", "LinkWindow", "bottomBar", "WebGLWindow","ProjectInfoWindow"];
 let HideButtons = ["bottomBarLeft", "bottomBarLemon", "bottomBarWorks" , "bottomBarAbout","" ,"" ,"" ,"" , "bottomBarWebGL"];
+let WebGLPages = ["TreeIsland", "3AM"];
 var buttonsUrl = "url('UITextures/";
 
 
@@ -9,6 +10,7 @@ dragElement(document.getElementById("About1"));
 dragElement(document.getElementById("About2"));
 dragElement(document.getElementById("LinkWindow"));
 dragElement(document.getElementById("WebGLWindow"));
+dragElement(document.getElementById("ProjectInfoWindow"));
 
 for (var i = 0; i < 4; i++) {
 	DisableElementWindow(i);
@@ -19,6 +21,7 @@ DisableElementWindow(5);
 DisableElementWindow(6);
 DisableElementWindow(7);
 DisableElementWindow(8);
+DisableElementWindow(9);
 
 document.getElementById("icons").style.display = "none"; 
 document.getElementById("icons2").style.display = "none"; 
@@ -71,6 +74,12 @@ function dragElement(elmnt) {
 		document.onmouseup = null;
 		document.onmousemove = null;
 	}   
+}
+
+function SwitchWebglApp(index) {
+	document.getElementById("WebGLFrame").src = WebGLPages[index] + ".html";
+	document.getElementById("WebGLBackTitle").textContent = WebGLPages[index];
+	document.getElementById("WebGLTitle").textContent = WebGLPages[index];
 }
 
 function EnableElementWindow(index) {

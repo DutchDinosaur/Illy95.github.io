@@ -67,6 +67,18 @@ li {
 	background-image: url('UITextures/CloseWindowHover.png');
 }
 
+.Minimize {
+	background-size: 100% 100%;
+	position:absolute;
+	top:6px;
+	right:60px;
+	width:21px; 
+	height:21px;
+}
+.Minimize:hover {
+	background-image: url('UITextures/MinimizeWindowHover.png');
+}
+
 .StartMenuItems {
 	background-size:100% 100%; 
 	position:absolute; 
@@ -83,10 +95,10 @@ li {
 	position:fixed;
 	background-size:100% 100%;
 	background-color: #ffffff;
-	right:calc(318px + 10%);
-	left:calc(42px + 10%);
-	bottom:calc(72px + 10%);
-	top:calc(108px + 10%);
+	right:calc(318px + 5%);
+	left:calc(42px + 5%);
+	bottom:calc(72px + 5%);
+	top:calc(108px + 5%);
 }
 
 #Lemon {
@@ -107,6 +119,23 @@ li {
 	top:calc(50% - 447px);
 	width:861px; 
 	height:894px;
+}
+
+#WebGLFrame {
+	padding-top:33px; 
+	position:absolute; 
+	width:858px; 
+	height:858px;
+}
+
+#ProjectInfoWindow {
+	background-image: url('UITextures/ProjectInfoWindow.png');
+	background-size: 100% 100%;
+	position:fixed;
+	left:calc(20% - 265px);
+	top:calc(65% - 295px);
+	width:531px; 
+	height:591px;
 }
 
 #About1 {
@@ -358,4 +387,16 @@ li {
 
 .Fullscreen:hover {
 	background-color: #98dae8;
+}
+
+.WorkDoodles {
+	background-size: 100% 100%;
+	height:207px; 
+	width:207px;
+	display:inline-block;
+	user-select: none;
+}
+
+.WorkDoodles:hover {
+	background-color:#e3e3e3;
 }
