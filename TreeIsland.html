@@ -6,7 +6,9 @@
 
 		<script src="treeisland/Build/treeisland.loader.js"></script>
 		<script>
-			var Instance = createUnityInstance(document.querySelector("#unity-canvas"), {
+			var fullscreenButton = document.querySelector("#Fullscreen");
+
+			createUnityInstance(document.querySelector("#unity-canvas"), {
 			dataUrl: "treeisland/Build/treeisland.data.unityweb",
 			frameworkUrl: "treeisland/Build/treeisland.framework.js.unityweb",
 			codeUrl: "treeisland/Build/treeisland.wasm.unityweb",
@@ -14,7 +16,11 @@
 			companyName: "DutchDinsaur",
 			productName: "TreeProject",
 			productVersion: "1",
-			});
+			}).then((unityInstance) => {
+				fullscreenButton.onclick = () => {
+					unityInstance.SetFullscreen(1);
+				};
+			};
 		</script>
 	</head>
 
