@@ -1,6 +1,6 @@
 
-let HideElements = ["StartMenu", "Lemon", "Works", "About1","About2", "ContactPopup", "LinkWindow", "bottomBar"];
-let HideButtons = ["bottomBarLeft", "bottomBarLemon", "bottomBarWorks" , "bottomBarAbout"];
+let HideElements = ["StartMenu", "Lemon", "Works", "About1","About2", "ContactPopup", "LinkWindow", "bottomBar", "WebGLWindow"];
+let HideButtons = ["bottomBarLeft", "bottomBarLemon", "bottomBarWorks" , "bottomBarAbout","" ,"" ,"" ,"" , "bottomBarWebGL"];
 var buttonsUrl = "url('UITextures/";
 
 
@@ -8,6 +8,7 @@ dragElement(document.getElementById("Lemon"));
 dragElement(document.getElementById("About1"));
 dragElement(document.getElementById("About2"));
 dragElement(document.getElementById("LinkWindow"));
+dragElement(document.getElementById("WebGLWindow"));
 
 for (var i = 0; i < 4; i++) {
 	DisableElementWindow(i);
@@ -17,6 +18,7 @@ DisableElementWindow(4);
 DisableElementWindow(5);
 DisableElementWindow(6);
 DisableElementWindow(7);
+DisableElementWindow(8);
 
 document.getElementById("icons").style.display = "none"; 
 document.getElementById("icons2").style.display = "none"; 

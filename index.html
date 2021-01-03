@@ -63,32 +63,50 @@
 		</div>
 
 		<div id="About2">
-			
-			<div class="BackText" style="position:absolute; left:9px; right:9px; top:51px;">
+			<div style="overflow-y:scroll; position:absolute; top:33px; height:300px; width:521px;">
+				<div class="BackText" style="position:absolute; left:9px; right:9px; top:9px;">
 
-				<ul> My skills include:
-					<li> - 3D modeling  (model, uv, texture, rig)</li>
-					<li> - Programming (C# , Javascript)</li>
-					<li> - Game Development in unity</li>
-					<li> - Concept art (characters)</li>
-					<li> - Pixel art (and animation)</li>
-					<li> - Web Development</li>
-				</ul>
+					<ul> My skills include:
+						<li> - 3D modeling  (model, uv, texture, rig)</li>
+						<li> - Programming (C# , Javascript)</li>
+						<li> - Game Development in unity</li>
+						<li> - Concept art (characters)</li>
+						<li> - Pixel art (and animation)</li>
+						<li> - Web Development</li>
+					</ul>
 
+					<ul> Softwaire:
+						<li> - Unity</li>
+						<li> - Photoshop</li>
+						<li> - Aseprite</li>
+						<li> - Blender</li>
+						<li> - Cinema 4D</li>
+						<li> - Maya</li>
+					</ul>
+
+				</div>
+				<div style="position:absolute; left:9px; right:9px; top:9px;">
+
+					<ul> My skills include:
+						<li> - 3D modeling  (model, uv, texture, rig)</li>
+						<li> - Programming (C# , Javascript)</li>
+						<li> - Game Development in unity</li>
+						<li> - Concept art (characters)</li>
+						<li> - Pixel art (and animation)</li>
+						<li> - Web Development</li>
+					</ul>
+
+					<ul> Softwaire:
+						<li> - Unity</li>
+						<li> - Photoshop</li>
+						<li> - Aseprite</li>
+						<li> - Blender</li>
+						<li> - Cinema 4D</li>
+						<li> - Maya</li>
+					</ul>
+
+				</div>
 			</div>
-			<div style="position:absolute; left:9px; right:9px; top:51px;">
-
-				<ul> My skills include:
-					<li> - 3D modeling  (model, uv, texture, rig)</li>
-					<li> - Programming (C# , Javascript)</li>
-					<li> - Game Development in unity</li>
-					<li> - Concept art (characters)</li>
-					<li> - Pixel art (and animation)</li>
-					<li> - Web Development</li>
-				</ul>
-
-			</div>
-
 
 			<a onclick="DisableElementWindow(3); DisableElementButton(3); DisableElementWindow(4);" class="CloseWindow"></a>
 		</div>
@@ -115,13 +133,19 @@
 			<a onclick="DisableElementWindow(1); DisableElementButton(1);" class="CloseWindow"></a>
 		</div>
 
-		<iframe src="TreeIsland.html" title="TreeIsland" seamless></iframe>
+
+		<div id="WebGLWindow">
+			<iframe src="TreeIsland.html" title="TreeIsland" seamless scrolling="no" Style="padding-top:33px; position:absolute; width:858px; height:858px;"></iframe>
+
+			<a onclick="DisableElementWindow(8); DisableElementButton(8);" class="CloseWindow"></a>
+		</div>
 
 		<ul id="bottomBar">
 			<li><a onclick="ToggleElementWindow(0); ToggleElementButton(0);" id="bottomBarLeft"></a></li>
 			<li><a onclick="ToggleElementWindow(3); ToggleElementWindow(4); ToggleElementButton(3);" id="bottomBarAbout"></a></li>
 			<li><a onclick="ToggleElementWindow(2); ToggleElementButton(2);" id="bottomBarWorks"></a></li>
 			<li><a onclick="ToggleElementWindow(1); ToggleElementButton(1);" id="bottomBarLemon"></a></li>
+			<li><a onclick="ToggleElementWindow(8); ToggleElementButton(8);" id="bottomBarWebGL"></a></li>
 			<div class="bottomBarRight"></div>
 		</ul>
 

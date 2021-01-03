@@ -17,8 +17,9 @@ ul {
 	padding:0px
 }
 
-iframe[seamless] {
+iframe {
     border: none;
+	overflow:hidden;
 }
 
 @font-face {
@@ -98,6 +99,16 @@ li {
 	height:291px;
 }
 
+#WebGLWindow {
+	background-image: url('UITextures/WebGLWindow.png');
+	background-size: 100% 100%;
+	position:fixed;
+	left:calc(70% - 430px);
+	top:calc(50% - 447px);
+	width:861px; 
+	height:894px;
+}
+
 #About1 {
 	background-image: url('UITextures/AboutBio.png');
 	background-size: 100% 100%;
@@ -116,6 +127,10 @@ li {
 	bottom:60px;
 	width:525px; 
 	height:339px;
+}
+
+#About2 li {
+	display:block;
 }
 
 #LinkWindow {
@@ -282,6 +297,16 @@ li {
 	width:198px;
 }
 
+#bottomBarWebGL {
+	background-image: url('UITextures/bottomBarWebGL.png');
+	background-size: 100% 100%;
+	position:fixed; 
+	bottom:0px;
+	left:726px;
+	height:54px; 
+	width:198px;
+}
+
 #StartMenu {
 	background-image: url('UITextures/StartMenu.png');
 	background-size: 100% 100%;
@@ -321,4 +346,16 @@ li {
     height: 100%;
 	position: fixed;
 	background-color: #849599;
+}
+
+.Fullscreen {
+	position:absolute;
+	bottom:9px; 
+	left:9px; 
+	width:36px; 
+	height:36px;
+}
+
+.Fullscreen:hover {
+	background-color: #98dae8;
 }
