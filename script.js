@@ -1,7 +1,8 @@
 
 let HideElements = ["StartMenu", "Lemon", "Works", "About1","About2", "ContactPopup", "LinkWindow", "bottomBar", "WebGLWindow","ProjectInfoWindow"];
 let HideButtons = ["bottomBarLeft", "bottomBarLemon", "bottomBarWorks" , "bottomBarAbout","" ,"" ,"" ,"" , "bottomBarWebGL"];
-let WebGLPages = ["TreeIsland", "3AM", "GrassCar", "3AMSpiders"];
+let WebGLPages = ["TreeIsland", "3AM", "GrassCar", "3AMSpiders", ""];
+let InfoPages = ["InfoTreeIsland", "Info3AM", "InfoGrassCar", "Info3AMSpiders", ""];
 var buttonsUrl = "url('UITextures/";
 
 
@@ -80,6 +81,10 @@ function SwitchWebglApp(index) {
 	document.getElementById("WebGLFrame").src = WebGLPages[index] + ".html";
 	document.getElementById("WebGLBackTitle").textContent = WebGLPages[index];
 	document.getElementById("WebGLTitle").textContent = WebGLPages[index];
+}
+
+function SwitchInfo(index) {
+	document.getElementById("InfoFrame").src = InfoPages[index] + ".html";
 }
 
 function EnableElementWindow(index) {
