@@ -4,17 +4,29 @@
 		<link rel="icon" type="image/vnd.microsoft.icon" href="icon.ico">
 		<link rel="stylesheet" type="text/css" href="Style.css">
 
-		<script src="3AM/Build/UnityProgress.js"></script>  
-		<script src="3AM/Build/UnityLoader.js"></script>
-		<script>
-			var unityInstance = UnityLoader.instantiate("gameContainer", "3AM/Build/3AM.json", {onProgress: UnityProgress});
-		</script>
+	
 	</head>
 
 	<body>
-		<canvas id="gameContainer" style="width: 860px; height: 860px; background: #797E80"></canvas>
+		<canvas id="unity-canvas" style="width: 860px; height: 860px; background: #797E80"></canvas>
 
-		<img src="UITextures/ButtonFullscreen.png" onclick="gameInstance.SetFullscreen(1);" class="Fullscreen">
+		<img src="UITextures/ButtonFullscreen.png" onclick="window.unityInstance.SetFullscreen(1);" class="Fullscreen">
+	
+		<script src="GrassCar/Build/treeisland.loader.js"></script>
+			<script>
+				var fullscreenButton = document.querySelector("#Fullscreen");
 
+				createUnityInstance(document.querySelector("#unity-canvas"), {
+					dataUrl: "GrassCar/Build/GrassCar.data.unityweb",
+					frameworkUrl: "GrassCar/uild/GrassCar.framework.js.unityweb",
+					codeUrl: "GrassCar/Build/GrassCar.wasm.unityweb",
+					streamingAssetsUrl: "StreamingAssets",
+					companyName: "DutchDinosaur",
+					productName: "GrassCar",
+					productVersion: "1",
+				}).then((unityInstance) => {
+					window.unityInstance = unityInstance;
+				});
+		</script>
 	</body>
 </html>
