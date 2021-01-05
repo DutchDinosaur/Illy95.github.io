@@ -2,7 +2,7 @@
 let HideElements = ["StartMenu", "Lemon", "Works", "About1","About2", "ContactPopup", "LinkWindow", "bottomBar", "WebGLWindow","ProjectInfoWindow"];
 let HideButtons = ["bottomBarLeft", "bottomBarLemon", "bottomBarWorks" , "bottomBarAbout","" ,"" ,"" ,"" , "bottomBarWebGL"];
 let WebGLPages = ["TreeIsland", "3AM", "GrassCar", "3AMSpiders", ""];
-let InfoPages = ["InfoTreeIsland", "Info3AM", "InfoGrassCar", "Info3AMSpiders", ""];
+let InfoPages = ["InfoTreeIsland", "Info3AM", "InfoGrassCar", "Info3AMSpiders", "", "InfoLemon"];
 var buttonsUrl = "url('UITextures/";
 
 

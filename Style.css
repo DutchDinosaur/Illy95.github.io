@@ -7,7 +7,7 @@ body {
 	font-size: 48px;
 	color:white;
 }
-li {
+#bottomBar li {
 	display: inline-block;
 }
 ul {
@@ -15,6 +15,10 @@ ul {
 
 	margin:0px;
 	padding:0px
+}
+
+h1{
+	margin:6px;
 }
 
 iframe {
