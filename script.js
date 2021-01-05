@@ -1,8 +1,8 @@
 
 let HideElements = ["StartMenu", "Lemon", "Works", "About1","About2", "ContactPopup", "LinkWindow", "bottomBar", "WebGLWindow","ProjectInfoWindow"];
 let HideButtons = ["bottomBarLeft", "bottomBarLemon", "bottomBarWorks" , "bottomBarAbout","" ,"" ,"" ,"" , "bottomBarWebGL"];
-let WebGLPages = ["TreeIsland", "3AM", "GrassCar", "3AMSpiders", ""];
-let InfoPages = ["InfoTreeIsland", "Info3AM", "InfoGrassCar", "Info3AMSpiders", "", "InfoLemon"];
+let WebGLPages = ["TreeIsland", "3AM", "GrassCar", "3AMSpiders", "", "Lynn", "Shack", "GeeseAirship","SheepyMonster"];
+let InfoPages = ["InfoTreeIsland", "Info3AM", "InfoGrassCar", "Info3AMSpiders", "", "InfoLemon", "InfoLynn", "InfoShack", "InfoAirship","InfoSheepy"];
 var buttonsUrl = "url('UITextures/";
 
 
@@ -60,15 +60,15 @@ function dragElement(elmnt) {
 		y2 = e.clientY;
 
 
-		if (elmnt.offsetTop - y < 0 || elmnt.offsetTop - y > window.innerHeight - elmnt.offsetHeight) {
+		if (elmnt.offsetTop - y < 0 || elmnt.offsetTop - y > (window.innerHeight* 1.5) - elmnt.offsetHeight) {
 			y = 0;
 		}
-		if (elmnt.offsetLeft - z < 0 || elmnt.offsetLeft - z > window.innerWidth - elmnt.offsetWidth) {
+		if (elmnt.offsetLeft - z < 0 || elmnt.offsetLeft - z > (window.innerWidth * 1.5) - elmnt.offsetWidth) {
 			z = 0;
 		}
 
-		elmnt.style.top = (elmnt.offsetTop - y) + "px";
-		elmnt.style.left = (elmnt.offsetLeft - z) + "px";
+		elmnt.style.top = (elmnt.offsetTop - y* 1.5) + "px";
+		elmnt.style.left = (elmnt.offsetLeft - z* 1.5) + "px";
 	}
 
 	function closeDragElement() {

@@ -6,6 +6,7 @@ body {
 	font-family: "CodersCrux";
 	font-size: 48px;
 	color:white;
+	zoom: .666666; 
 }
 #bottomBar li {
 	display: inline-block;
@@ -119,7 +120,7 @@ li {
 	background-image: url('UITextures/WebGLWindow.png');
 	background-size: 100% 100%;
 	position:fixed;
-	left:calc(70% - 430px);
+	left:calc(60% - 430px);
 	top:calc(50% - 447px);
 	width:861px; 
 	height:894px;
