@@ -60,15 +60,15 @@ function dragElement(elmnt) {
 		y2 = e.clientY;
 
 
-		if (elmnt.offsetTop - y < 0 || elmnt.offsetTop - y > (window.innerHeight* 1.5) - elmnt.offsetHeight) {
+		if (elmnt.offsetTop - y < 0 || elmnt.offsetTop - y > (window.innerHeight) - elmnt.offsetHeight) {
 			y = 0;
 		}
-		if (elmnt.offsetLeft - z < 0 || elmnt.offsetLeft - z > (window.innerWidth * 1.5) - elmnt.offsetWidth) {
+		if (elmnt.offsetLeft - z < 0 || elmnt.offsetLeft - z > (window.innerWidth) - elmnt.offsetWidth) {
 			z = 0;
 		}
 
-		elmnt.style.top = (elmnt.offsetTop - y* 1.5) + "px";
-		elmnt.style.left = (elmnt.offsetLeft - z* 1.5) + "px";
+		elmnt.style.top = (elmnt.offsetTop - y) + "px";
+		elmnt.style.left = (elmnt.offsetLeft - z) + "px";
 	}
 
 	function closeDragElement() {
