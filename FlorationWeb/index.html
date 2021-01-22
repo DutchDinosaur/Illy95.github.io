@@ -10,14 +10,14 @@
 
 		<img src="ButtonFullscreen.png" onclick="window.unityInstance.SetFullscreen(1);" class="Fullscreen">
 	
-		<script src="FlorationWeb/Build/FlorationBuild.loader.js"></script>
+		<script src="Build/FlorationBuild.loader.js"></script>
 			<script>
 				var fullscreenButton = document.querySelector("#Fullscreen");
 
 				createUnityInstance(document.querySelector("#unity-canvas"), {
-				dataUrl: "FlorationWeb/Build/FlorationWeb.data.unityweb",
-				frameworkUrl: "FlorationWeb/Build/FlorationWeb.framework.js.unityweb",
-				codeUrl: "FlorationWeb/Build/FlorationWeb.wasm.unityweb",
+				dataUrl: "Build/FlorationWeb.data.unityweb",
+				frameworkUrl: "Build/FlorationWeb.framework.js.unityweb",
+				codeUrl: "Build/FlorationWeb.wasm.unityweb",
 				streamingAssetsUrl: "StreamingAssets",
 				companyName: "Aypa",
 				productName: "Floration",
