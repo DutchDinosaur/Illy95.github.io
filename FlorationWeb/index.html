@@ -24,11 +24,11 @@
     </div>
     <script>
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/FlorationWeb.loader.js";
+      var loaderUrl = buildUrl + "/FlorationBuild.loader.js";
       var config = {
-        dataUrl: buildUrl + "/FlorationWeb.data",
-        frameworkUrl: buildUrl + "/FlorationWeb.framework.js",
-        codeUrl: buildUrl + "/FlorationWeb.wasm",
+        dataUrl: buildUrl + "/FlorationBuild.data",
+        frameworkUrl: buildUrl + "/FlorationBuild.framework.js",
+        codeUrl: buildUrl + "/FlorationBuild.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Aypa",
         productName: "Floration",
@@ -45,8 +45,8 @@
         container.className = "unity-mobile";
         config.devicePixelRatio = 1;
       } else {
-        canvas.style.width = "1280px";
-        canvas.style.height = "860px";
+        canvas.style.width = "1920px";
+        canvas.style.height = "1080px";
       }
       loadingBar.style.display = "block";
 
