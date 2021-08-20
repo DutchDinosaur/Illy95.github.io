@@ -115,6 +115,16 @@ li {
 	height:291px;
 }
 
+#Commisions {
+	background-image: url('UITextures/Commisions.png');
+	background-size: 100% 100%;
+	position:fixed;
+	left:12%;
+	top:70px;
+	width:927px; 
+	height:678px;
+}
+
 #WebGLWindow {
 	background-image: url('UITextures/WebGLWindow.png');
 	background-size: 100% 100%;
@@ -326,6 +336,16 @@ li {
 	position:fixed; 
 	bottom:0px;
 	left:528px;
+	height:54px; 
+	width:198px;
+}
+
+#bottomBarCommisions {
+	background-image: url('UITextures/bottomBarCommisionsHover.png');
+	background-size: 100% 100%;
+	position:fixed; 
+	bottom:0px;
+	left:132px;
 	height:54px; 
 	width:198px;
 }

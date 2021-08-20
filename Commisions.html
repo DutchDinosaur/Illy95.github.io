@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Lily van Schaik</title>
+		<link rel="icon" type="image/vnd.microsoft.icon" href="icon.ico">
+		<link rel="stylesheet" type="text/css" href="Style.css">
+	</head>
+
+	<body>
+		<div id="icons2">
+			<a href="https://twitter.com/DutchDinosaur" target="_blank"><img src="UITextures/IconTwitter.png" class="icon" style="top:360px;"></a>
+			<a href="https://www.artstation.com/dutchdinosaur" target="_blank"><img src="UITextures/IconArtStation.png" class="icon" style="top:480px;"></a>
+			<a href="https://sketchfab.com/DutchDinosaur" target="_blank"><img src="UITextures/IconSketchFab.png" class="icon" style="top:600px;"></a>
+			<a href="https://www.twitch.tv/dutchdinosaur" target="_blank"><img src="UITextures/IconTwitch.png" class="icon" style="top:720px;"></a>
+		</div>
+
+
+
+
+		<ul id="Commisions">
+			
+			
+			<a onclick="DisableElementWindow(1); DisableElementButton(1);" class="CloseWindow"></a>
+		</ul>
+
+
+
+		<div id="LinkWindow">
+			<div Style="position:absolute; top:48px; left:24px;">
+			<a href="https://twitter.com/DutchDinosaur" target="_blank"><img src="UITextures/IconTwitter.png" class="icon" style="top:360px;"></a>
+			<a href="https://www.artstation.com/dutchdinosaur" target="_blank"><img src="UITextures/IconArtStation.png" class="icon" style="top:480px;"></a>
+			<a href="https://sketchfab.com/DutchDinosaur" target="_blank"><img src="UITextures/IconSketchFab.png" class="icon" style="top:600px;"></a>
+			<a href="https://www.twitch.tv/dutchdinosaur" target="_blank"><img src="UITextures/IconTwitch.png" class="icon" style="top:720px;"></a>
+			</div>
+			<a onclick="DisableElementWindow(2);" class="CloseWindow"></a>
+			<a onclick="DisableElementWindow(2);" class="Minimize"></a>
+		</div>
+
+		<ul id="bottomBar">
+			<li><a onclick="ToggleElementWindow(0); ToggleElementButton(0);" id="bottomBarLeft"></a></li>
+			<li><a onclick="ToggleElementWindow(1); ToggleElementButton(1);" id="bottomBarCommisions"></a></li>
+			<div class="bottomBarRight"></div>
+		</ul>
+
+		<div id="StartMenu">
+			<a href="" Style="background-image: url('UITextures/StartMenuShutDown.png'); bottom:3px;" class="StartMenuItems"></a>
+			<a onclick="EnableElementWindow(2); DisableElementWindow(0); DisableElementButton(0);" Style="background-image: url('UITextures/ButtonSocials.png'); bottom:57px;" class="StartMenuItems"></a>
+			<a href="index.html" Style="background-image: url('UITextures/ButtonMainPage.png'); bottom:111px;" class="StartMenuItems"></a>
+		</div>
+
+		<div id="StartScreen" class="StartScreen">
+			<image src="UITextures/mush.gif" Style="position:fixed; top:45%; left:45%; width:108px; height:132px; user-select: none;">
+		</div>
+
+		<script src="CommsScript.js"></script>
+	</body>
+</html>
