@@ -1,5 +1,5 @@
 
-let HideElements = ["StartMenu","Commisions", "LinkWindow"];
+let HideElements = ["StartMenu","Commisions", "LinkWindow", "ContactPopup"];
 let HideButtons = ["bottomBarLeft","bottomBarCommisions",""];
 var buttonsUrl = "url('UITextures/";
 
@@ -10,6 +10,7 @@ dragElement(document.getElementById("LinkWindow"));
 DisableElementWindow(0);
 DisableElementButton(0);
 DisableElementWindow(2);
+DisableElementWindow(3);
 
 
 
