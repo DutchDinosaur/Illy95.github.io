@@ -1,8 +1,8 @@
 
-let HideElements = ["StartMenu", "Lemon", "Works", "About1","About2", "ContactPopup", "LinkWindow", "bottomBar", "WebGLWindow","ProjectInfoWindow"];
-let HideButtons = ["bottomBarLeft", "bottomBarLemon", "bottomBarWorks" , "bottomBarAbout","" ,"" ,"" ,"" , "bottomBarWebGL"];
-let WebGLPages = ["TreeIsland", "3AM", "GrassCar", "3AMSpiders", "", "Lynn", "Shack", "GeeseAirship","SheepyMonster" ,"CityCorner"];
-let InfoPages = ["InfoTreeIsland", "Info3AM", "InfoGrassCar", "Info3AMSpiders", "", "InfoLemon", "InfoLynn", "InfoShack", "InfoAirship","InfoSheepy","InfoCityCorner"];
+let HideElements = ["StartMenu", "Lemon", "Works", "About1","About2", "ContactPopup", "LinkWindow", "bottomBar", "WebGLWindow","ProjectInfoWindow","Commisions"];
+let HideButtons = ["bottomBarLeft", "bottomBarLemon", "bottomBarWorks" , "bottomBarAbout","" ,"" ,"" ,"" , "bottomBarWebGL","","bottomBarCommisions"];
+let WebGLPages = ["TreeIsland", "3AM", "GrassCar", "3AMSpiders", "", "Lynn", "Shack", "Airship","Sheepy" ,"CityCorner"];
+let InfoPages =  ["TreeIsland", "3AM", "GrassCar", "3AMSpiders", "", "Lemon", "Lynn", "Shack", "Airship","Sheepy","CityCorner"];
 var buttonsUrl = "url('UITextures/";
 
 
@@ -12,6 +12,7 @@ dragElement(document.getElementById("About2"));
 dragElement(document.getElementById("LinkWindow"));
 dragElement(document.getElementById("WebGLWindow"));
 dragElement(document.getElementById("ProjectInfoWindow"));
+dragElement(document.getElementById("Commisions"));
 
 for (var i = 0; i < 4; i++) {
 	DisableElementWindow(i);
@@ -23,6 +24,7 @@ DisableElementWindow(6);
 DisableElementWindow(7);
 DisableElementWindow(8);
 DisableElementWindow(9);
+DisableElementWindow(10);
 
 document.getElementById("icons").style.display = "none"; 
 document.getElementById("icons2").style.display = "none"; 
@@ -78,13 +80,13 @@ function dragElement(elmnt) {
 }
 
 function SwitchWebglApp(index) {
-	document.getElementById("WebGLFrame").src = WebGLPages[index] + ".html";
+	document.getElementById("WebGLFrame").src = "Works/" + WebGLPages[index] + "Work.html";
 	document.getElementById("WebGLBackTitle").textContent = WebGLPages[index];
 	document.getElementById("WebGLTitle").textContent = WebGLPages[index];
 }
 
 function SwitchInfo(index) {
-	document.getElementById("InfoFrame").src = InfoPages[index] + ".html";
+	document.getElementById("InfoFrame").src = "Works/" + InfoPages[index] + "Info.html";
 }
 
 function EnableElementWindow(index) {

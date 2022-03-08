@@ -25,6 +25,7 @@
 			<a href="https://www.artstation.com/dutchdinosaur" target="_blank"><img src="UITextures/IconArtStation.png" class="icon" style="top:480px;"></a>
 			<a href="https://sketchfab.com/DutchDinosaur" target="_blank"><img src="UITextures/IconSketchFab.png" class="icon" style="top:600px;"></a>
 			<a href="https://www.twitch.tv/illydinosaur" target="_blank"><img src="UITextures/IconTwitch.png" class="icon" style="top:720px;"></a>
+			<a href="https://illydinosaur.itch.io/" target="_blank"><img src="UITextures/IconItch.png" class="icon" style="top:720px;"></a>
 		</div>
 
 		<div id="About1">
@@ -90,6 +91,25 @@
 			<a onclick="DisableElementWindow(3); DisableElementButton(3); DisableElementWindow(4);" class="Minimize"></a>
 		</div>
 
+		<div id="Commisions">
+			<img src="Gifs/commspin.gif" style="width:843px; height:353px; margin-top:33px;">
+		    
+			<p style="text-align: center; position:absolute; left: 110px; top:330px;">head or <br/>Bust</p> 
+			<p style="text-align: center; position:absolute; left: 330px; top:330px;">full 3D <br/>character</p> 
+			<p style="text-align: center; position:absolute; left: 90px; top:420px;"><img src="UITextures/blankChar.png" style="width:18px; height:33px;">30 - <img src="UITextures/blankChar.png" style="width:18px; height:33px;">45</p> 
+			<p style="text-align: center; position:absolute; left: 320px; top:420px;"><img src="UITextures/blankChar.png" style="width:18px; height:33px;">60 - <img src="UITextures/blankChar.png" style="width:18px; height:33px;">100</p> 
+			<p style="text-align: center; position:absolute; left:610px; top:330px;">Additional:</p> 
+			<p style="text-align: center; position:absolute; left:610px; top:400px; font-size:32px; ">rigging +<br/> static pose</p> 
+			<p style="text-align: center; position:absolute; left:610px; top:510px; font-size:32px; ">Rig + short<br/> animation</p> 
+			<p style="text-align: center; position:absolute; left:750px; top:400px;">+ <img src="UITextures/blankChar.png" style="width:18px; height:33px;">10</p> 
+			<p style="text-align: center; position:absolute; left:750px; top:520px;">+ <img src="UITextures/blankChar.png" style="width:18px; height:33px;">30</p> 
+
+			<a onclick="EnableElementWindow(5);DisableElementWindow(10); DisableElementButton(10);" style="background-image: url('UITextures/ButtonContact.png'); left:50px; bottom:70px;" class="StartMenuItems">
+			<a onclick="" style="background-image: url('UITextures/ButtonTOS.png'); left:300px; bottom:70px;" class="StartMenuItems">
+			<a onclick="DisableElementWindow(10); DisableElementButton(10);" class="CloseWindow"></a>
+			<a onclick="DisableElementWindow(10); DisableElementButton(10);" class="Minimize"></a>
+		</div>
+
 		<div id="Works">
 			<div class="WorksBottom"></div>
 			<div class="WorksLeft"></div>
@@ -141,19 +161,21 @@
 			<a onclick="DisableElementWindow(9);" class="Minimize"></a>
 		</div>
 
+
 		<ul id="bottomBar">
 			<li><a onclick="ToggleElementWindow(0); ToggleElementButton(0);" id="bottomBarLeft"></a></li>
 			<li><a onclick="ToggleElementWindow(3); ToggleElementWindow(4); ToggleElementButton(3);" id="bottomBarAbout"></a></li>
 			<li><a onclick="ToggleElementWindow(2); ToggleElementButton(2);" id="bottomBarWorks"></a></li>
 			<li><a onclick="ToggleElementWindow(1); ToggleElementButton(1);" id="bottomBarLemon"></a></li>
 			<li><a onclick="ToggleElementWindow(8); DisableElementWindow(9); ToggleElementButton(8);" id="bottomBarWebGL"></a></li>
+			<li><a onclick="ToggleElementWindow(10); ToggleElementButton(10);" id="bottomBarCommisions"></a></li>
 			<div class="bottomBarRight"></div>
 		</ul>
 
 		<div id="StartMenu">
 			<a href="" Style="background-image: url('UITextures/StartMenuShutDown.png'); bottom:3px;" class="StartMenuItems"></a>
 			<a onclick="EnableElementWindow(6); DisableElementWindow(0); DisableElementButton(0);" Style="background-image: url('UITextures/ButtonSocials.png'); bottom:57px;" class="StartMenuItems"></a>
-			<a href="Commissions.html" Style="background-image: url('UITextures/ButtonCommisions.png'); bottom:111px;" class="StartMenuItems"></a>
+			<a onclick="EnableElementWindow(10); EnableElementButton(10); DisableElementWindow(0); DisableElementButton(0);" Style="background-image: url('UITextures/ButtonCommisions.png'); bottom:111px;" class="StartMenuItems"></a>
 		</div>
 
 		<div id="ContactPopup">

@@ -19,6 +19,7 @@ ul {
 
 h1{
 	margin:6px;
+	text-shadow: 0 6px 0 #663931;
 }
 
 iframe {
@@ -40,13 +41,17 @@ li {
     font-size: 32px;
 }
 
-.BackText {
-	position: absolute;
-	padding-top:3px;
-	color:#663931;
-	user-select: none;
-	z-index: -1;
-}
+::-webkit-scrollbar {
+	width: 9px;
+  }
+  
+  ::-webkit-scrollbar-track {
+	background: #98dae8;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+	background: #ffffff;
+  }
 
 .icon {
 	display: inline-block;
@@ -345,7 +350,7 @@ li {
 	background-size: 100% 100%;
 	position:fixed; 
 	bottom:0px;
-	left:132px;
+	left:924px;
 	height:54px; 
 	width:198px;
 }
