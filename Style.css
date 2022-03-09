@@ -43,15 +43,23 @@ li {
 
 ::-webkit-scrollbar {
 	width: 9px;
-  }
+}
   
-  ::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
 	background: #98dae8;
-  }
-  
-  ::-webkit-scrollbar-thumb {
+}
+
+::-webkit-scrollbar-thumb {
 	background: #ffffff;
-  }
+}
+
+#Works ::-webkit-scrollbar-track {
+	background: #849599;
+}
+  
+#Works ::-webkit-scrollbar-thumb {
+	background: #663931;
+}
 
 .icon {
 	display: inline-block;
@@ -335,32 +343,12 @@ li {
 	width:198px;
 }
 
-#bottomBarLemon {
-	background-image: url('UITextures/bottomBarLemonHover.png');
-	background-size: 100% 100%;
-	position:fixed; 
-	bottom:0px;
-	left:528px;
-	height:54px; 
-	width:198px;
-}
-
 #bottomBarCommisions {
 	background-image: url('UITextures/bottomBarCommisionsHover.png');
 	background-size: 100% 100%;
 	position:fixed; 
 	bottom:0px;
-	left:924px;
-	height:54px; 
-	width:198px;
-}
-
-#bottomBarWebGL {
-	background-image: url('UITextures/bottomBarWebGL.png');
-	background-size: 100% 100%;
-	position:fixed; 
-	bottom:0px;
-	left:726px;
+	left:528px;
 	height:54px; 
 	width:198px;
 }

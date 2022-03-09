@@ -24,10 +24,8 @@ DisableElementWindow("ProjectInfoWindow");
 DisableElementWindow("Commisions");
 
 DisableElementButton("bottomBarLeft");
-DisableElementButton("bottomBarLemon");
 DisableElementButton("bottomBarWorks");
 DisableElementButton("bottomBarAbout");
-DisableElementButton("bottomBarWebGL");
 DisableElementButton("bottomBarCommisions");
 
 document.getElementById("icons").style.display = "none"; 
@@ -130,8 +128,8 @@ function ToggleElementButton(HideButton,HideElement) {
 	var button = document.getElementById(HideButton);
 	var window = document.getElementById(HideElement);
 
-	if (window.style.display == "none") button.style.backgroundImage = buttonsUrl + HideButtons[index] + ".png";
-	else button.style.backgroundImage = buttonsUrl + HideButtons[index] + "Hover.png";
+	if (window.style.display == "none") button.style.backgroundImage = buttonsUrl + HideButton + ".png";
+	else button.style.backgroundImage = buttonsUrl + HideButton + "Hover.png";
 }
 
 function getUrlVars() {
