@@ -440,3 +440,34 @@ li {
 .WorkDoodles:hover {
 	background-color:#e3e3e3;
 }
+
+.scalewindow {
+	position:fixed;
+	border-image: url('UITextures/ScalableWindowBright.png');
+	border-image-slice: 12 28 3 3 fill;
+	border-image-width: 36px 84px 9px 9px;
+}
+
+.scalewindowDark {
+	position:fixed;
+	border-image: url('UITextures/ScalableWindowDark.png');
+	border-image-slice: 12 28 3 3 fill;
+	border-image-width: 36px 84px 9px 9px;
+}
+
+.ico {
+	background-size: 100% 100%;
+	position:absolute;
+	top:6px;
+	left:6px;
+	height:21px; 
+	width:18px;
+}
+
+.ico p {
+	font-size: 39;
+	margin: 0px;
+	position:absolute;
+	top:-7px;
+	left:6px;
+}

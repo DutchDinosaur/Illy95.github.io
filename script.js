@@ -1,8 +1,4 @@
 
-let HideElements = ["StartMenu", "Lemon", "Works", "About1","About2", "ContactPopup", "LinkWindow", "bottomBar", "WebGLWindow","ProjectInfoWindow","Commisions"];
-let HideButtons = ["bottomBarLeft", "bottomBarLemon", "bottomBarWorks" , "bottomBarAbout","" ,"" ,"" ,"" , "bottomBarWebGL","","bottomBarCommisions"];
-let WebGLPages = ["TreeIsland", "3AM", "GrassCar", "3AMSpiders", "", "Lynn", "Shack", "Airship","Sheepy" ,"CityCorner"];
-let InfoPages =  ["TreeIsland", "3AM", "GrassCar", "3AMSpiders", "", "Lemon", "Lynn", "Shack", "Airship","Sheepy","CityCorner"];
 var buttonsUrl = "url('UITextures/";
 
 
@@ -14,30 +10,44 @@ dragElement(document.getElementById("WebGLWindow"));
 dragElement(document.getElementById("ProjectInfoWindow"));
 dragElement(document.getElementById("Commisions"));
 
-for (var i = 0; i < 4; i++) {
-	DisableElementWindow(i);
-	DisableElementButton(i);
-}
-DisableElementWindow(4);
-DisableElementWindow(5);
-DisableElementWindow(6);
-DisableElementWindow(7);
-DisableElementWindow(8);
-DisableElementWindow(9);
-DisableElementWindow(10);
+
+DisableElementWindow("StartMenu");
+DisableElementWindow("Lemon");
+DisableElementWindow("Works");
+DisableElementWindow("About1");
+DisableElementWindow("About2");
+DisableElementWindow("ContactPopup");
+DisableElementWindow("LinkWindow");
+DisableElementWindow("bottomBar");
+DisableElementWindow("WebGLWindow");
+DisableElementWindow("ProjectInfoWindow");
+DisableElementWindow("Commisions");
+
+DisableElementButton("bottomBarLeft");
+DisableElementButton("bottomBarLemon");
+DisableElementButton("bottomBarWorks");
+DisableElementButton("bottomBarAbout");
+DisableElementButton("bottomBarWebGL");
+DisableElementButton("bottomBarCommisions");
 
 document.getElementById("icons").style.display = "none"; 
 document.getElementById("icons2").style.display = "none"; 
 
-
-
 setTimeout(function(){ document.getElementById("StartScreen").style.display = "none"; }, 1300);
 setTimeout(function(){ document.getElementById("icons").style.display = "block"; }, 1380);
 setTimeout(function(){ document.getElementById("icons2").style.display = "block"; }, 1450);
+setTimeout(function(){ EnableElementWindow("bottomBar"); }, 1490);
 
-setTimeout(function(){  EnableElementWindow(7); }, 1490);
-setTimeout(function(){  EnableElementWindow(4); }, 1830);
-setTimeout(function(){ EnableElementWindow(3); EnableElementButton(3); }, 1870);
+switch(getUrlVars().load){
+	case "commisions":
+		setTimeout(function(){ EnableElementWindow("Commisions"); EnableElementButton("bottomBarCommisions");}, 1690);
+		break;
+	case "about":
+		setTimeout(function(){ EnableElementWindow("About2"); }, 1830);
+		setTimeout(function(){ EnableElementWindow("About1"); EnableElementButton("bottomBarAbout"); }, 1870);
+		break;
+	default:
+}
 
 function dragElement(elmnt) {
 	var x = 0, y = 0, x2 = 0, y2 = 0;
@@ -79,47 +89,55 @@ function dragElement(elmnt) {
 	}   
 }
 
-function SwitchWebglApp(index) {
-	document.getElementById("WebGLFrame").src = "Works/" + WebGLPages[index] + "Work.html";
-	document.getElementById("WebGLBackTitle").textContent = WebGLPages[index];
-	document.getElementById("WebGLTitle").textContent = WebGLPages[index];
+function SwitchWebglApp(WebGLPage) {
+	document.getElementById("WebGLFrame").src = "Works/" + WebGLPage + "Work.html";
+	document.getElementById("WebGLBackTitle").textContent = WebGLPage;
+	document.getElementById("WebGLTitle").textContent = WebGLPage;
 }
 
-function SwitchInfo(index) {
-	document.getElementById("InfoFrame").src = "Works/" + InfoPages[index] + "Info.html";
+function SwitchInfo(InfoPage) {
+	document.getElementById("InfoFrame").src = "Works/" + InfoPage + "Info.html";
 }
 
-function EnableElementWindow(index) {
-	var window = document.getElementById(HideElements[index]);
+function EnableElementWindow(HideElement) {
+	var window = document.getElementById(HideElement);
 	window.style.display = "block";
 }
 
-function EnableElementButton(index) {
-	var button = document.getElementById(HideButtons[index]);
-	button.style.backgroundImage = buttonsUrl + HideButtons[index] + "Hover.png";
+function EnableElementButton(HideButton) {
+	var button = document.getElementById(HideButton);
+	button.style.backgroundImage = buttonsUrl + HideButton + "Hover.png";
 }
 
-function DisableElementWindow(index) {
-	var window = document.getElementById(HideElements[index]);
+function DisableElementWindow(HideElement) {
+	var window = document.getElementById(HideElement);
 	window.style.display = "none";
 }
 
-function DisableElementButton(index) {
-	var button = document.getElementById(HideButtons[index]);
-	button.style.backgroundImage = buttonsUrl + HideButtons[index] + ".png";
+function DisableElementButton(HideButton) {
+	var button = document.getElementById(HideButton);
+	button.style.backgroundImage = buttonsUrl + HideButton + ".png";
 }
 
-function ToggleElementWindow(index) {
-	var window = document.getElementById(HideElements[index]);
+function ToggleElementWindow(HideElement) {
+	var window = document.getElementById(HideElement);
 
 	if (window.style.display == "none") window.style.display = "block";
 	else window.style.display = "none";
 }
 
-function ToggleElementButton(index) {
-	var button = document.getElementById(HideButtons[index]);
-	var window = document.getElementById(HideElements[index]);
+function ToggleElementButton(HideButton,HideElement) {
+	var button = document.getElementById(HideButton);
+	var window = document.getElementById(HideElement);
 
 	if (window.style.display == "none") button.style.backgroundImage = buttonsUrl + HideButtons[index] + ".png";
 	else button.style.backgroundImage = buttonsUrl + HideButtons[index] + "Hover.png";
+}
+
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
 }
