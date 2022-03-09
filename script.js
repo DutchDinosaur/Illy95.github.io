@@ -1,6 +1,14 @@
 
 var buttonsUrl = "url('UITextures/";
 
+console.log(window.innerHeight);
+
+if(window.innerHeight < 650) {
+	document.body.style.zoom = 75 + "%";
+}
+if(window.innerHeight > 1440) {
+	document.body.style.zoom = 125 + "%";
+}
 
 dragElement(document.getElementById("Lemon"));
 dragElement(document.getElementById("About1"));
@@ -95,10 +103,10 @@ function dragElement(elmnt) {
 		}
 
 
-		if (elmnt.offsetTop - y < 0 || elmnt.offsetTop - y > (window.innerHeight) - elmnt.offsetHeight) {
+		if (elmnt.offsetTop - y < -200 || elmnt.offsetTop - y > (window.innerHeight + 100) - elmnt.offsetHeight) {
 			y = 0;
 		}
-		if (elmnt.offsetLeft - z < 0 || elmnt.offsetLeft - z > (window.innerWidth) - elmnt.offsetWidth) {
+		if (elmnt.offsetLeft - z < -300 || elmnt.offsetLeft - z > (window.innerWidth + 300) - elmnt.offsetWidth) {
 			z = 0;
 		}
 
