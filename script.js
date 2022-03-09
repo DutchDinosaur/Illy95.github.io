@@ -55,8 +55,18 @@ function dragElement(elmnt) {
 	function dragMouseDown(e) {
 		e = e || window.event;
 		e.preventDefault();
-		x2 = e.clientX;
-		y2 = e.clientY;
+
+		if(e.type == 'touchstart' || e.type == 'touchmove' || e.type == 'touchend' || e.type == 'touchcancel'){
+			var evt = (typeof e.originalEvent === 'undefined') ? e : e.originalEvent;
+			var touch = evt.touches[0] || evt.changedTouches[0];
+			x2 = touch.pageX;
+			y2 = touch.pageY;
+		} else{
+			x2 = e.clientX;
+			y2 = e.clientY;
+		}
+
+
 		document.onmouseup = closeDragElement;
 		document.onmousemove = elementDrag;
 
@@ -68,10 +78,21 @@ function dragElement(elmnt) {
 		e = e || window.event;
 		e.preventDefault();
 
-		z = x2 - e.clientX;
-		y = y2 - e.clientY;
-		x2 = e.clientX;
-		y2 = e.clientY;
+		if(e.type == 'touchstart' || e.type == 'touchmove' || e.type == 'touchend' || e.type == 'touchcancel'){
+			var evt = (typeof e.originalEvent === 'undefined') ? e : e.originalEvent;
+			var touch = evt.touches[0] || evt.changedTouches[0];
+			z = x2 - touch.pageX;
+			y = y2 - touch.pageY;
+			x2 = touch.pageX;
+			y2 = touch.pageY;
+
+			console.log(y);
+		} else {
+			z = x2 - e.clientX;
+			y = y2 - e.clientY;
+			x2 = e.clientX;
+			y2 = e.clientY;
+		}
 
 
 		if (elmnt.offsetTop - y < 0 || elmnt.offsetTop - y > (window.innerHeight) - elmnt.offsetHeight) {
