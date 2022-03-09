@@ -50,7 +50,7 @@ switch(getUrlVars().load){
 function dragElement(elmnt) {
 	var x = 0, y = 0, x2 = 0, y2 = 0;
 	elmnt.onmousedown = dragMouseDown;
-	elmnt.touchstart = dragMouseDown;
+	elmnt.ontouchstart = dragMouseDown;
 
 	function dragMouseDown(e) {
 		e = e || window.event;
@@ -60,8 +60,8 @@ function dragElement(elmnt) {
 		document.onmouseup = closeDragElement;
 		document.onmousemove = elementDrag;
 
-		document.touchstart = closeDragElement;
-		document.touchend = elementDrag;
+		document.ontouchend = closeDragElement;
+		document.ontouchmove = elementDrag;
 	}
 
 	function elementDrag(e) {
@@ -89,8 +89,8 @@ function dragElement(elmnt) {
 		document.onmouseup = null;
 		document.onmousemove = null;
 
-		document.touchstart = null;
-		document.touchend = null;
+		document.ontouchstart = null;
+		document.ontouchend = null;
 	}   
 }
 
