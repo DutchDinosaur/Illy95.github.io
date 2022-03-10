@@ -1,7 +1,4 @@
-
 var buttonsUrl = "url('UITextures/";
-
-console.log(window.innerHeight);
 
 if(window.innerHeight < 650) {
 	document.body.style.zoom = 75 + "%";
@@ -16,7 +13,7 @@ dragElement(document.getElementById("About2"));
 dragElement(document.getElementById("LinkWindow"));
 dragElement(document.getElementById("WebGLWindow"));
 dragElement(document.getElementById("ProjectInfoWindow"));
-dragElement(document.getElementById("Commisions"));
+dragElement(document.getElementById("Commisions3D"));
 
 
 DisableElementWindow("StartMenu");
@@ -30,6 +27,7 @@ DisableElementWindow("bottomBar");
 DisableElementWindow("WebGLWindow");
 DisableElementWindow("ProjectInfoWindow");
 DisableElementWindow("Commisions");
+DisableElementWindow("Commisions3D");
 
 DisableElementButton("bottomBarLeft");
 DisableElementButton("bottomBarWorks");
@@ -103,10 +101,10 @@ function dragElement(elmnt) {
 		}
 
 
-		if (elmnt.offsetTop - y < -200 || elmnt.offsetTop - y > (window.innerHeight + 100) - elmnt.offsetHeight) {
+		if (elmnt.offsetTop - y < -200 || elmnt.offsetTop - y > (window.innerHeight + 200) - elmnt.offsetHeight) {
 			y = 0;
 		}
-		if (elmnt.offsetLeft - z < -300 || elmnt.offsetLeft - z > (window.innerWidth + 300) - elmnt.offsetWidth) {
+		if (elmnt.offsetLeft - z < -200 || elmnt.offsetLeft - z > (window.innerWidth + 200) - elmnt.offsetWidth) {
 			z = 0;
 		}
 

@@ -17,7 +17,7 @@ ul {
     padding: 0px
 }
 
-h1{
+h1{	
 	margin:6px;
 	text-shadow: 0 6px 0 #663931;
 }
@@ -43,6 +43,7 @@ li {
 
 ::-webkit-scrollbar {
 	width: 9px;
+	height: 9px;
 }
   
 ::-webkit-scrollbar-track {
@@ -58,6 +59,10 @@ li {
 }
   
 #Works ::-webkit-scrollbar-thumb {
+	background: #663931;
+}
+
+#Commisions ::-webkit-scrollbar-track {
 	background: #663931;
 }
 
@@ -107,7 +112,7 @@ li {
 	background-color: #98dae8;
 }
 
-#WorksContent {
+.WorksContent {
 	overflow: auto;
 	position:fixed;
 	background-size:100% 100%;
@@ -117,6 +122,21 @@ li {
 	bottom:calc(72px + 5%);
 	top:calc(108px + 5%);
 }
+
+.CommisionContent {
+	vertical-align:bottom;
+	overflow: auto;
+	position: fixed;
+	vertical-align: top;
+	background-size:100% 100%;
+	background-color: #1c1818;
+	right:calc(465px + 5%);
+	left:calc(9px + 5%);
+	bottom:calc(63px + 5%);
+	top:calc(81px + 5%);
+	text-shadow: 0 3px 0 #000000;
+}
+
 
 #Lemon {
 	background-image: url('UITextures/LemonSpin.png');
@@ -128,7 +148,7 @@ li {
 	height:291px;
 }
 
-#Commisions {
+#Commisions3D {
 	background-image: url('UITextures/Commisions.png');
 	background-size: 100% 100%;
 	position:fixed;
@@ -197,6 +217,17 @@ li {
 	bottom:120px;
 	width:615px; 
 	height:186px;
+}
+
+#Commisions {
+	position:fixed;
+	border-image: url('UITextures/twitchWindow.png');
+	border-image-slice: 66 155 30 107 fill;
+	border-image-width: 198px 465px 90px 321px;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:54px;
 }
 
 #Works {
@@ -458,4 +489,22 @@ li {
 	position:absolute;
 	top:-7px;
 	left:6px;
+}
+
+.CommisionThumb {
+	background-image: url('UITextures/CommisionThumb.png');
+	margin: 51px;
+	background-size: 100% 100%;
+	display: inline-block;
+	vertical-align: top;
+	height:402px; 
+	width:495px;
+	user-select: none;
+	text-shadow: 0 3px 0 #000000;
+}
+.CommisionThumb:hover {
+	background-image: url('UITextures/CommisionThumbHover.png');
+}
+.CommisionThumb h1 {
+	text-shadow: 0 3px 0 #000000;
 }
