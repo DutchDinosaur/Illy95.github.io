@@ -523,3 +523,15 @@ li {
 	bottom:0; 
 	left:0;
 }
+
+.TOSButtons {
+	background-size: 100% 100%;
+	position:absolute;
+	bottom:-87px;
+	right:0px;
+	width:453px; 
+	height:87px;
+}
+.TOSButtons:hover{
+	background-image:url('UITextures/twitchWindowHover.png') ;
+}
