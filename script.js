@@ -26,7 +26,7 @@ DisableElementWindow("LinkWindow");
 DisableElementWindow("bottomBar");
 DisableElementWindow("WebGLWindow");
 DisableElementWindow("ProjectInfoWindow");
-DisableElementWindow("Commisions");
+DisableElementWindow("Commissions");
 DisableElementWindow("Commisions3D");
 
 DisableElementButton("bottomBarLeft");
@@ -44,13 +44,31 @@ setTimeout(function(){ EnableElementWindow("bottomBar"); }, 1490);
 
 switch(getUrlVars().load){
 	case "commissions":
-		setTimeout(function(){ EnableElementWindow("Commisions"); EnableElementButton("bottomBarCommisions");}, 1690);
+		setTimeout(function(){ EnableElementWindow("Commissions"); EnableElementButton("bottomBarCommisions");}, 1690);
 		break;
 	case "about":
 		setTimeout(function(){ EnableElementWindow("About2"); }, 1830);
 		setTimeout(function(){ EnableElementWindow("About1"); EnableElementButton("bottomBarAbout"); }, 1870);
 		break;
 	default:
+}
+
+if(window.innerWidth / window.innerHeight < 1){
+	var comm = document.getElementById("Commissions");
+	var tos = document.getElementById("commissionTOS");
+	var cont = document.getElementById("CommisionContent");
+
+	comm.style.borderImage = "url('UITextures/twitchWindowSlimm.png')";
+	comm.style.borderImageSlice = "27 27 3 106 fill";
+	comm.style.borderImageWidth = "81px 81px 9px 318px";
+	tos.style.display = "none";
+	cont.style.right = "calc(27px + 5%)";
+} else	{
+	var comm = document.getElementById("Commissions");
+
+	comm.style.borderImage = "url('UITextures/twitchWindow.png')";
+	comm.style.borderImageSlice = "66 155 30 107 fill";
+	comm.style.borderImageWidth = "198px 465px 90px 321px";
 }
 
 function dragElement(elmnt) {

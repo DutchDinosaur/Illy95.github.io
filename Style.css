@@ -62,7 +62,7 @@ li {
 	background: #663931;
 }
 
-#Commisions ::-webkit-scrollbar-track {
+#Commissions ::-webkit-scrollbar-track {
 	background: #663931;
 }
 
@@ -123,7 +123,7 @@ li {
 	top:calc(108px + 5%);
 }
 
-.CommisionContent {
+#CommisionContent {
 	vertical-align:bottom;
 	overflow: auto;
 	position: fixed;
@@ -219,7 +219,7 @@ li {
 	height:186px;
 }
 
-#Commisions {
+#Commissions {
 	position:fixed;
 	border-image: url('UITextures/twitchWindow.png');
 	border-image-slice: 66 155 30 107 fill;
@@ -229,6 +229,7 @@ li {
 	right:0px;
 	bottom:54px;
 }
+
 
 #Works {
 	background-color: #2e2e33;
@@ -507,4 +508,18 @@ li {
 }
 .CommisionThumb h1 {
 	text-shadow: 0 3px 0 #000000;
+}
+
+#commissionTOS {
+	position: absolute; 
+	bottom: 90px; 
+	right: 3px; 
+	left: calc(100% - 456px); 
+	top: 198px;
+}
+#commissionTOS p {
+	margin: 12px; 
+	position:absolute; 
+	bottom:0; 
+	left:0;
 }

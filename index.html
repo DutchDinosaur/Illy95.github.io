@@ -29,7 +29,7 @@
 			<a onclick="EnableElementWindow('Works'); EnableElementButton('bottomBarWorks');"><img src="UITextures/IconWorks.png" class="icon"></a>
 			<a onclick="EnableElementWindow('Lemon'); EnableElementWindow('ProjectInfoWindow'); SwitchInfo('Lemon');"><img src="UITextures/IconLemon.png" class="icon"></a>
 			<a onclick="EnableElementWindow('WebGLWindow'); EnableElementWindow('ProjectInfoWindow'); SwitchWebglApp('TreeIsland'); SwitchInfo('TreeIsland');"><img src="UITextures/IconTreeIsland.png" class="icon"></a>
-			<a onclick="EnableElementWindow('Commisions'); EnableElementButton('bottomBarCommisions');"><img src="UITextures/IconCommision.png" class="icon"></a>
+			<a onclick="EnableElementWindow('Commissions'); EnableElementButton('bottomBarCommisions');"><img src="UITextures/IconCommision.png" class="icon"></a>
 		</div><div id="icons2">
 			<a href="https://twitter.com/illydinosaur" target="_blank"><img src="UITextures/IconTwitter.png" class="icon" style="top:360px;"></a>
 			<a href="https://www.artstation.com/dutchdinosaur" target="_blank"><img src="UITextures/IconArtStation.png" class="icon" style="top:480px;"></a>
@@ -66,8 +66,8 @@
 			</div>
 		</div>
 
-		<div id="Commisions">
-			<div class="CommisionContent">
+		<div id="Commissions">
+			<div id="CommisionContent">
 				<img src="UITextures/CommisionTitle.gif" style="user-select: none; height: 105px; width: 537px;"> 
 				<p style="display: inline;">25 EUR / per hour </p>
 				<div>
@@ -96,12 +96,12 @@
 				</div>
 			</div>
 
-			<div style="position: absolute; bottom: 90px; right: 3px; left: calc(100% - 456px); top: 198px;">
-				<p style="margin: 12px; position:absolute; bottom:0; left:0;">
+			<div id="commissionTOS">
+				<p>
 					
 					<mark style="color: white; background-color: #663931;">RULES: </mark></br>
 					- atleast 50% payment upfront</br>
-					- No Nrypto/NFT</br>
+					- No Crypto/NFT</br>
 					- NSFW at extra cost</br>
 					- I can refuse to take any commision</br>
 					</br>
@@ -111,8 +111,8 @@
 			</div>
 
 
-			<a onclick="DisableElementWindow('Commisions'); DisableElementButton('bottomBarCommisions');" class="CloseWindow"></a>
-			<a onclick="DisableElementWindow('Commisions'); DisableElementButton('bottomBarCommisions');" class="Minimize"></a>
+			<a onclick="DisableElementWindow('Commissions'); DisableElementButton('bottomBarCommisions');" class="CloseWindow"></a>
+			<a onclick="DisableElementWindow('Commissions'); DisableElementButton('bottomBarCommisions');" class="Minimize"></a>
 		</div>
 
 		<div id="About1">
@@ -224,14 +224,14 @@
 			<li><a onclick="ToggleElementWindow('StartMenu'); ToggleElementButton('bottomBarLeft','StartMenu');" id="bottomBarLeft"></a></li>
 			<li><a onclick="ToggleElementWindow('About1'); ToggleElementWindow('About2'); ToggleElementButton('bottomBarAbout','About1');" id="bottomBarAbout"></a></li>
 			<li><a onclick="ToggleElementWindow('Works'); ToggleElementButton('bottomBarWorks','Works');" id="bottomBarWorks"></a></li>
-			<li><a onclick="ToggleElementWindow('Commisions'); ToggleElementButton('bottomBarCommisions','Commisions');" id="bottomBarCommisions"></a></li>
+			<li><a onclick="ToggleElementWindow('Commissions'); ToggleElementButton('bottomBarCommisions','Commissions');" id="bottomBarCommisions"></a></li>
 			<div class="bottomBarRight"></div>
 		</ul>
 
 		<div id="StartMenu">
 			<a href="" Style="background-image: url('UITextures/StartMenuShutDown.png'); bottom:3px;" class="StartMenuItems"></a>
 			<a onclick="EnableElementWindow('LinkWindow'); DisableElementWindow('StartMenu'); DisableElementButton('bottomBarLeft');" Style="background-image: url('UITextures/ButtonSocials.png'); bottom:57px;" class="StartMenuItems"></a>
-			<a onclick="EnableElementWindow('Commisions'); EnableElementButton('bottomBarCommisions'); DisableElementWindow('StartMenu'); DisableElementButton('bottomBarLeft');" Style="background-image: url('UITextures/ButtonCommisions.png'); bottom:111px;" class="StartMenuItems"></a>
+			<a onclick="EnableElementWindow('Commissions'); EnableElementButton('bottomBarCommisions'); DisableElementWindow('StartMenu'); DisableElementButton('bottomBarLeft');" Style="background-image: url('UITextures/ButtonCommisions.png'); bottom:111px;" class="StartMenuItems"></a>
 			<a onclick="EnableElementWindow('Works'); EnableElementButton('bottomBarWorks'); DisableElementWindow('StartMenu'); DisableElementButton('bottomBarLeft');" Style="background-image: url('UITextures/ButtonWorks.png'); bottom:168px;" class="StartMenuItems"></a>
 		</div>
 
