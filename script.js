@@ -43,7 +43,7 @@ setTimeout(function(){ document.getElementById("icons2").style.display = "block"
 setTimeout(function(){ EnableElementWindow("bottomBar"); }, 1490);
 
 switch(getUrlVars().load){
-	case "commisions":
+	case "commissions":
 		setTimeout(function(){ EnableElementWindow("Commisions"); EnableElementButton("bottomBarCommisions");}, 1690);
 		break;
 	case "about":
