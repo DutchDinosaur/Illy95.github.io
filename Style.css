@@ -137,6 +137,15 @@ li {
 	text-shadow: 0 3px 0 #000000;
 }
 
+.CommisionsWindow {
+	background-image: url('UITextures/Commisions.png');
+	background-size: 100% 100%;
+	position:fixed;
+	left:12%;
+	top:70px;
+	width:927px; 
+	height:678px;
+}
 
 #Lemon {
 	background-image: url('UITextures/LemonSpin.png');
@@ -146,16 +155,6 @@ li {
 	top:70px;
 	width:393px; 
 	height:291px;
-}
-
-#Commisions3D {
-	background-image: url('UITextures/Commisions.png');
-	background-size: 100% 100%;
-	position:fixed;
-	left:12%;
-	top:70px;
-	width:927px; 
-	height:678px;
 }
 
 #WebGLWindow {

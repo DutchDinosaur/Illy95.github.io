@@ -75,17 +75,17 @@
 						<img style="width: 260px; height: 422px; position:absolute ; top: 9px;  right:21px;" src="Gifs/walk.gif">
 						<h1 style="padding: 12px;">3D Character models</h1>
 						<p style="padding: 12px;"></br></br>Starting at </br>
-							<img src="UITextures/eur.png" style="width:18px; height:33px;"> 70,-</p>
+						<img src="UITextures/eur.png" style="width:18px; height:33px;"> 70,-</p>
 					</div>
 
-					<div onclick="" style="position: relative;" class="CommisionThumb">
+					<div onclick="EnableElementWindow('CommisionsEmote');" style="position: relative;" class="CommisionThumb">
 						<img style="width: 390px; height: 252px; position:absolute ; top: 70px;  right:0px;" src="Gifs/Lemon.gif">
 						<h1 style="padding: 12px;">3D Props</h1>
 						<p style="padding: 12px;"></br></br></br> </br>Only <img src="UITextures/eur.png" style="width:18px; height:33px;"> 30,- </br>
 							a piece!</p>
 					</div>
 
-					<div onclick="" style="position: relative;" class="CommisionThumb">
+					<div onclick="EnableElementWindow('CommisionsEmote');" style="position: relative;" class="CommisionThumb">
 						<img style="width: 162px; height: 162px; position:absolute ; top: 13px;  right:21px;" src="Gifs/dizzys.gif">
 						<img style="width: 162px; height: 162px; position:absolute ; top: 160px;  right:140px;" src="Gifs/sleepys.gif">
 						<img style="width: 162px; height: 162px; position:absolute ; top: 90px;  right:300px;" src="Gifs/heartss.png">
@@ -93,7 +93,7 @@
 						<p style="padding: 12px;"></br> </br></br></br> </br>Now 3 for: <img src="UITextures/eur.png" style="width:18px; height:33px;"> 40,-</p>
 					</div>
 
-					<div onclick="" style="position: relative;" class="CommisionThumb">
+					<div onclick="EnableElementWindow('CommisionsEmote');" style="position: relative;" class="CommisionThumb">
 						<img style="width: 420px; height: 420px; position:absolute ; top: 9px;  right:9px;" src="Gifs/ribbonCut.gif">
 						<h1 style="padding: 12px;">Custom</h1>
 						<p style="padding: 12px;"></br> </br></br></br> </br> <img src="UITextures/eur.png" style="width:18px; height:33px;"> 25,- an hour!</p>
@@ -185,7 +185,7 @@
 			<a onclick="DisableElementWindow('About1'); DisableElementButton('bottomBarAbout'); DisableElementWindow('About2');" class="Minimize"></a>
 		</div>
 
-		<div id="Commisions3D">
+		<div id="Commisions3D" class="CommisionsWindow">
 			<img src="Gifs/commspin.gif" style="width:843px; height:353px; margin-top:33px;">
 		    
 			<p style="text-align: center; position:absolute; left: 110px; top:330px;">head or <br/>Bust</p> 
@@ -201,6 +201,28 @@
 			<a onclick="EnableElementWindow('ContactPopup'); DisableElementWindow('Commisions3D');" style="background-image: url('UITextures/ButtonContact.png'); left:70px; bottom:70px;" class="StartMenuItems">
 			<a onclick="DisableElementWindow('Commisions3D');" class="CloseWindow"></a>
 			<a onclick="DisableElementWindow('Commisions3D');" class="Minimize"></a>
+		</div>
+
+		<div id="CommisionsEmote" class="CommisionsWindow" style="background-image: url('UITextures/Commisions2.png');">
+
+			<img style="width: 162px; height: 162px; position:absolute ; top: 90px;  left:150px;" src="Gifs/heartss.png">
+			<p style="text-align: center; position:absolute; left: 180px; top:220px;">Single<br/> emote <br/>
+				<img src="UITextures/eur.png" style="width:18px; height:33px;">20</p> 
+
+
+			<img style="width: 162px; height: 162px; position:absolute ; top: 210px;  left:320px;" src="Gifs/dizzys.gif">
+			<p style="text-align: center; position:absolute; left: 330px; top:330px;">Animated<br/> emote <br/>
+				<img src="UITextures/eur.png" style="width:18px; height:33px;">30</p> 
+			
+				<img style="width: 162px; height: 162px; position:absolute; top: 90px;  left:550px;" src="Gifs/nervous.png">
+				<img style="width: 162px; height: 162px; position:absolute; top: 180px;  left:650px;" src="Gifs/unamused.png">
+				<img style="width: 162px; height: 162px; position:absolute; top: 270px;  left:520px;" src="Gifs/wave.png">
+			<p style="text-align: center; position:absolute; left:550px; top:430px;">Multiple<br/> emotes <br/>
+				3 for <img src="UITextures/eur.png" style="width:18px; height:33px;">40</p> 
+
+			<a onclick="EnableElementWindow('ContactPopup'); DisableElementWindow('CommisionsEmote');" style="background-image: url('UITextures/ButtonContact.png'); left:170px; bottom:70px;" class="StartMenuItems">
+			<a onclick="DisableElementWindow('CommisionsEmote');" class="CloseWindow"></a>
+			<a onclick="DisableElementWindow('CommisionsEmote');" class="Minimize"></a>
 		</div>
 
 		<div id="Lemon">

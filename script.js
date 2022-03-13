@@ -14,6 +14,7 @@ dragElement(document.getElementById("LinkWindow"));
 dragElement(document.getElementById("WebGLWindow"));
 dragElement(document.getElementById("ProjectInfoWindow"));
 dragElement(document.getElementById("Commisions3D"));
+dragElement(document.getElementById("CommisionsEmote"));
 
 
 DisableElementWindow("StartMenu");
@@ -28,6 +29,7 @@ DisableElementWindow("WebGLWindow");
 DisableElementWindow("ProjectInfoWindow");
 DisableElementWindow("Commissions");
 DisableElementWindow("Commisions3D");
+DisableElementWindow("CommisionsEmote");
 
 DisableElementButton("bottomBarLeft");
 DisableElementButton("bottomBarWorks");
