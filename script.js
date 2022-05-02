@@ -30,11 +30,13 @@ DisableElementWindow("ProjectInfoWindow");
 DisableElementWindow("Commissions");
 DisableElementWindow("Commisions3D");
 DisableElementWindow("CommisionsEmote");
+DisableElementWindow("Gallery");
 
 DisableElementButton("bottomBarLeft");
 DisableElementButton("bottomBarWorks");
 DisableElementButton("bottomBarAbout");
 DisableElementButton("bottomBarCommisions");
+DisableElementButton("bottomBarGallery");
 
 document.getElementById("icons").style.display = "none"; 
 document.getElementById("icons2").style.display = "none"; 
@@ -51,7 +53,10 @@ switch(getUrlVars().load){
 	case "about":
 		setTimeout(function(){ EnableElementWindow("About2"); }, 1830);
 		setTimeout(function(){ EnableElementWindow("About1"); EnableElementButton("bottomBarAbout"); }, 1870);
-		break;
+        break;
+    case "gallery":
+        setTimeout(function () { EnableElementWindow("Gallery"); EnableElementButton("bottomBarGallery"); }, 1690);
+        break;
 	default:
 }
 
@@ -139,6 +144,55 @@ function dragElement(elmnt) {
 		document.ontouchstart = null;
 		document.ontouchend = null;
 	}   
+}
+
+function SwitchFullscreenApp(app, forceOn) {
+    switch (app) {
+        case 'About':
+            if (document.getElementById("About1").style.display == "none" || forceOn) {
+                disableFullscreenApps();
+                EnableElementWindow("About1");
+                EnableElementWindow("About2");
+                EnableElementButton("bottomBarAbout");
+            } else disableFullscreenApps();
+            break;
+        case 'Works':
+            if (document.getElementById("Works").style.display == "none" || forceOn) {
+                disableFullscreenApps();
+                EnableElementWindow("Works");
+                EnableElementButton("bottomBarWorks");
+            } else disableFullscreenApps();
+            break;
+        case 'Commissions':
+            if (document.getElementById("Commissions").style.display == "none" || forceOn) {
+                disableFullscreenApps();
+                EnableElementWindow("Commissions");
+                EnableElementButton("bottomBarCommisions");
+            } else disableFullscreenApps();
+            break;
+        case 'Gallery':
+            if (document.getElementById("Gallery").style.display == "none" || forceOn) {
+                disableFullscreenApps();
+                EnableElementWindow("Gallery");
+                EnableElementButton("bottomBarGallery");
+            } else disableFullscreenApps();
+
+            break;
+        default:
+            disableFullscreenApps();
+    }
+
+    function disableFullscreenApps() {
+        DisableElementWindow("About1");
+        DisableElementWindow("About2");
+        DisableElementButton("bottomBarAbout");
+        DisableElementWindow("Works");
+        DisableElementButton("bottomBarWorks");
+        DisableElementWindow("Commissions");
+        DisableElementButton("bottomBarCommisions");
+        DisableElementWindow("Gallery");
+        DisableElementButton("bottomBarGallery");
+    }
 }
 
 function SwitchWebglApp(WebGLPage) {

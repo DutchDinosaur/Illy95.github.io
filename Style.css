@@ -8,23 +8,25 @@ body {
     color: white;
     text-shadow: 0 3px 0 #663931;
 }
+
 #bottomBar li {
-	display: inline-block;
+    display: inline-block;
 }
+
 ul {
     line-height: 39px;
     margin: 0px;
     padding: 0px
 }
 
-h1{	
-	margin:6px;
-	text-shadow: 0 6px 0 #663931;
+h1 {
+    margin: 6px;
+    text-shadow: 0 6px 0 #663931;
 }
 
 iframe {
     border: none;
-	overflow:hidden;
+    overflow: hidden;
 }
 
 @font-face {
@@ -42,495 +44,555 @@ li {
 }
 
 ::-webkit-scrollbar {
-	width: 9px;
-	height: 9px;
+    width: 9px;
+    height: 9px;
 }
-  
+
 ::-webkit-scrollbar-track {
-	background: #98dae8;
+    background: #98dae8;
 }
 
 ::-webkit-scrollbar-thumb {
-	background: #ffffff;
+    background: #ffffff;
 }
 
 #Works ::-webkit-scrollbar-track {
-	background: #849599;
+    background: #849599;
 }
-  
+
 #Works ::-webkit-scrollbar-thumb {
-	background: #663931;
+    background: #663931;
 }
 
 #Commissions ::-webkit-scrollbar-track {
-	background: #663931;
+    background: #663931;
 }
 
 .icon {
-	display: inline-block;
-	background-size: 100% 100%;
-	width:126px; 
-	height:120px;
-	user-select: none;
+    display: inline-block;
+    background-size: 100% 100%;
+    width: 126px;
+    height: 120px;
+    user-select: none;
 }
-.icon:hover {
-	background-color: #98dae8;
-}
+
+    .icon:hover {
+        background-color: #98dae8;
+    }
 
 .CloseWindow {
-	background-size: 100% 100%;
-	position:absolute;
-	top:6px;
-	right:15px;
-	width:21px; 
-	height:21px;
+    background-size: 100% 100%;
+    position: absolute;
+    top: 6px;
+    right: 15px;
+    width: 21px;
+    height: 21px;
 }
-.CloseWindow:hover {
-	background-image: url('UITextures/CloseWindowHover.png');
-}
+
+    .CloseWindow:hover {
+        background-image: url('UITextures/CloseWindowHover.png');
+    }
 
 .Minimize {
-	background-size: 100% 100%;
-	position:absolute;
-	top:6px;
-	right:60px;
-	width:21px; 
-	height:21px;
-}
-.Minimize:hover {
-	background-image: url('UITextures/MinimizeWindowHover.png');
+    background-size: 100% 100%;
+    position: absolute;
+    top: 6px;
+    right: 60px;
+    width: 21px;
+    height: 21px;
 }
 
+    .Minimize:hover {
+        background-image: url('UITextures/MinimizeWindowHover.png');
+    }
+
 .StartMenuItems {
-	background-size:100% 100%; 
-	position:absolute; 
-	left:21px; 
-	height:54px; 
-	width:228px;
+    background-size: 100% 100%;
+    position: absolute;
+    left: 21px;
+    height: 54px;
+    width: 228px;
 }
+
 .StartMenuItems:hover {
-	background-color: #98dae8;
+    background-color: #98dae8;
 }
 
 .WorksContent {
-	overflow: auto;
-	position:fixed;
-	background-size:100% 100%;
-	background-color: #ffffff;
-	right:calc(318px + 5%);
-	left:calc(42px + 5%);
-	bottom:calc(72px + 5%);
-	top:calc(108px + 5%);
+    overflow: auto;
+    position: fixed;
+    background-size: 100% 100%;
+    background-color: #ffffff;
+    right: calc(318px + 5%);
+    left: calc(42px + 5%);
+    bottom: calc(72px + 5%);
+    top: calc(108px + 5%);
+}
+
+.GalleryContent {
+    vertical-align: bottom;
+    overflow: auto;
+    position: fixed;
+    vertical-align: top;
+    right: 36px;
+    left: 15px;
+    bottom: 102px;
+    top: 87px;
+    text-shadow: 0 3px 0 #000000;
+}
+.GalleryContent p {
+    text-align: center;
+    margin: 0px;
+    top: -24px;
+}
+
+.galleryPiece {
+    padding: 6px;
+    height: 333px;
+    min-width: 255px;
+    max-width: 555px;
+    background-size: 100% 100%;
+    display: inline-block;
+}
+.galleryPiece:hover {
+    background-color: dimgrey;
 }
 
 #CommisionContent {
-	vertical-align:bottom;
-	overflow: auto;
-	position: fixed;
-	vertical-align: top;
-	background-size:100% 100%;
-	background-color: #1c1818;
-	right:calc(465px + 5%);
-	left:calc(9px + 5%);
-	bottom:calc(63px + 5%);
-	top:calc(81px + 5%);
-	text-shadow: 0 3px 0 #000000;
+    vertical-align: bottom;
+    overflow: auto;
+    position: fixed;
+    vertical-align: top;
+    background-size: 100% 100%;
+    background-color: #1c1818;
+    right: calc(465px + 5%);
+    left: calc(9px + 5%);
+    bottom: calc(63px + 5%);
+    top: calc(81px + 5%);
+    text-shadow: 0 3px 0 #000000;
 }
 
 .CommisionsWindow {
-	background-image: url('UITextures/Commisions.png');
-	background-size: 100% 100%;
-	position:fixed;
-	left:12%;
-	top:70px;
-	width:927px; 
-	height:678px;
+    background-image: url('UITextures/Commisions.png');
+    background-size: 100% 100%;
+    position: fixed;
+    left: 12%;
+    top: 70px;
+    width: 927px;
+    height: 678px;
 }
 
 #Lemon {
-	background-image: url('UITextures/LemonSpin.png');
-	background-size: 100% 100%;
-	position:fixed;
-	left:12%;
-	top:70px;
-	width:393px; 
-	height:291px;
+    background-image: url('UITextures/LemonSpin.png');
+    background-size: 100% 100%;
+    position: fixed;
+    left: 12%;
+    top: 70px;
+    width: 393px;
+    height: 291px;
 }
 
 #WebGLWindow {
-	background-image: url('UITextures/WebGLWindow.png');
-	background-size: 100% 100%;
-	position:fixed;
-	left:calc(60% - 430px);
-	top:calc(50% - 447px);
-	width:861px; 
-	height:894px;
+    background-image: url('UITextures/WebGLWindow.png');
+    background-size: 100% 100%;
+    position: fixed;
+    left: calc(60% - 430px);
+    top: calc(50% - 447px);
+    width: 861px;
+    height: 894px;
 }
 
 #WebGLFrame {
-	padding-top:33px; 
-	position:absolute; 
-	width:858px; 
-	height:858px;
+    padding-top: 33px;
+    position: absolute;
+    width: 858px;
+    height: 858px;
 }
 
 #ProjectInfoWindow {
-	background-image: url('UITextures/ProjectInfoWindow.png');
-	background-size: 100% 100%;
-	position:fixed;
-	left:calc(20% - 265px);
-	top:calc(65% - 295px);
-	width:531px; 
-	height:591px;
+    background-image: url('UITextures/ProjectInfoWindow.png');
+    background-size: 100% 100%;
+    position: fixed;
+    left: calc(20% - 265px);
+    top: calc(65% - 295px);
+    width: 531px;
+    height: 591px;
 }
 
 #About1 {
-	background-image: url('UITextures/AboutBio.png');
-	background-size: 100% 100%;
-	position:fixed;
-	left:9%;
-	top:44px;
-	width:798px; 
-	height:495px;
+    background-image: url('UITextures/AboutBio.png');
+    background-size: 100% 100%;
+    position: fixed;
+    left: 9%;
+    top: 44px;
+    width: 798px;
+    height: 495px;
 }
 
 #About2 {
-	background-image: url('UITextures/AboutSkills.png');
-	background-size: 100% 100%;
-	position:fixed;
-	right:12%;
-	bottom:60px;
-	width:525px; 
-	height:339px;
+    background-image: url('UITextures/AboutSkills.png');
+    background-size: 100% 100%;
+    position: fixed;
+    right: 12%;
+    bottom: 60px;
+    width: 525px;
+    height: 339px;
 }
 
-#About2 li {
-	display:block;
-}
+    #About2 li {
+        display: block;
+    }
 
 #LinkWindow {
-	background-image: url('UITextures/AboutLinks.png');
-	background-size: 100% 100%;
-	position:fixed;
-	left:3%;
-	bottom:120px;
-	width:615px; 
-	height:186px;
+    background-image: url('UITextures/AboutLinks.png');
+    background-size: 100% 100%;
+    position: fixed;
+    left: 3%;
+    bottom: 120px;
+    width: 615px;
+    height: 186px;
 }
 
 #Commissions {
-	position:fixed;
-	border-image: url('UITextures/twitchWindow.png');
-	border-image-slice: 66 155 30 107 fill;
-	border-image-width: 198px 465px 90px 321px;
-	top:0px;
-	left:0px;
-	right:0px;
-	bottom:54px;
+    position: fixed;
+    border-image: url('UITextures/twitchWindow.png');
+    border-image-slice: 35 27 24 157 fill;
+    border-image-width: 105px 81px 72px 471px;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 54px;
+}
+
+#Gallery {
+    position: fixed;
+    border-image: url('UITextures/GalleryWindow.png');
+    border-image-slice: 35 27 22 155 fill;
+    border-image-width: 105px 81px 66px 465px;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 54px;
 }
 
 
 #Works {
-	background-color: #2e2e33;
-	position:fixed;
-	top:0px;
-	left:0px;
-	right:0px;
-	bottom:54px;
+    background-color: #2e2e33;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 54px;
 }
 
 .WorksTop {
-	background-image: url('UITextures/WorksTop.png');
-	background-size: contain;
-	position:fixed; 
-	top:0px; 
-	width:100%; 
-	height:108px;
+    background-image: url('UITextures/WorksTop.png');
+    background-size: contain;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    height: 108px;
 }
 
 .WorksBottom {
-	background-image: url('UITextures/WorksBottom.png');
-	background-size: contain;
-	position:fixed; 
-	bottom:54px; 
-	width:100%; 
-	height:18px;
+    background-image: url('UITextures/WorksBottom.png');
+    background-size: contain;
+    position: fixed;
+    bottom: 54px;
+    width: 100%;
+    height: 18px;
 }
 
 .WorksLeft {
-	background-image: url('UITextures/WorksLeft.png');
-	background-size: contain;
-	position:fixed; 
-	left:0px; 
-	height:100%; 
-	width:42px;
+    background-image: url('UITextures/WorksLeft.png');
+    background-size: contain;
+    position: fixed;
+    left: 0px;
+    height: 100%;
+    width: 42px;
 }
 
 .WorksRight {
-	background-image: url('UITextures/WorksRight.png');
-	background-size: contain;
-	position:fixed; 
-	right:0px; 
-	top:363px;
-	height:100%; 
-	width:318px;
+    background-image: url('UITextures/WorksRight.png');
+    background-size: contain;
+    position: fixed;
+    right: 0px;
+    top: 363px;
+    height: 100%;
+    width: 318px;
 }
 
 .WorksTopLeft {
-	background-image: url('UITextures/WorksTopLeft.png');
-	background-size: 100% 100%;
-	position:fixed;
-	top:0px;
-	left:0px;
-	width:396px; 
-	height:108px;
+    background-image: url('UITextures/WorksTopLeft.png');
+    background-size: 100% 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 396px;
+    height: 108px;
 }
 
 .WorksTopRight {
-	background-image: url('UITextures/WorksTopRight.png');
-	background-size: 100% 100%;
-	position:fixed;
-	top:0px;
-	right:0px;
-	width:318px; 
-	height:363px;
+    background-image: url('UITextures/WorksTopRight.png');
+    background-size: 100% 100%;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    width: 318px;
+    height: 363px;
 }
 
 .WorksLeftTools {
-	background-image: url('UITextures/WorksLeftTools.png');
-	background-size: 100% 100%;
-	position:fixed;
-	top:69px;
-	left:0px;
-	width:33px; 
-	height:456px;
+    background-image: url('UITextures/WorksLeftTools.png');
+    background-size: 100% 100%;
+    position: fixed;
+    top: 69px;
+    left: 0px;
+    width: 33px;
+    height: 456px;
 }
 
 .WorksBottomLeft {
-	background-image: url('UITextures/WorksBottomLeft.png');
-	background-size: 100% 100%;
-	position:fixed;
-	bottom:54px;
-	left:0px;
-	width:66px; 
-	height:15px;
+    background-image: url('UITextures/WorksBottomLeft.png');
+    background-size: 100% 100%;
+    position: fixed;
+    bottom: 54px;
+    left: 0px;
+    width: 66px;
+    height: 15px;
 }
 
 .WorksBottomRight {
-	background-image: url('UITextures/WorksBottomRight.png');
-	background-size: 100% 100%;
-	position:fixed;
-	bottom:54px;
-	right:0px;
-	width:318px; 
-	height:330px;
+    background-image: url('UITextures/WorksBottomRight.png');
+    background-size: 100% 100%;
+    position: fixed;
+    bottom: 54px;
+    right: 0px;
+    width: 318px;
+    height: 330px;
 }
 
-#bottomBar{
-	background-image: url('UITextures/bottomBar.png');
-	background-size: contain;
-	position:fixed; 
-	bottom:0px; 
-	width:100%; 
-	height:54px;
+#bottomBar {
+    background-image: url('UITextures/bottomBar.png');
+    background-size: contain;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    height: 54px;
 }
-.bottomBarRight{
-	background-image: url('UITextures/bottomBarRight.gif');
-	background-size: 100% 100%;
-	position:fixed; 
-	bottom:0px; 
-	right:0px; 
-	height:54px; 
-	width:183px
+
+.bottomBarRight {
+    background-image: url('UITextures/bottomBarRight.gif');
+    background-size: 100% 100%;
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    height: 54px;
+    width: 183px
 }
 
 #bottomBarLeft {
-	background-image: url('UITextures/bottomBarLeft.png');
-	background-size: 100% 100%;
-	position:fixed; 
-	bottom:0px; 
-	left:0px;
-	height:54px; 
-	width:132px;
+    background-image: url('UITextures/bottomBarLeft.png');
+    background-size: 100% 100%;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    height: 54px;
+    width: 132px;
 }
 
 #bottomBarAbout {
-	background-image: url('UITextures/bottomBarAboutHover.png');
-	background-size: 100% 100%;
-	position:fixed; 
-	bottom:0px;
-	left:132px;
-	height:54px; 
-	width:198px;
+    background-image: url('UITextures/bottomBarAboutHover.png');
+    background-size: 100% 100%;
+    position: fixed;
+    bottom: 0px;
+    left: 132px;
+    height: 54px;
+    width: 198px;
 }
 
 #bottomBarWorks {
-	background-image: url('UITextures/bottomBarWorksHover.png');
-	background-size: 100% 100%;
-	position:fixed; 
-	bottom:0px;
-	left:330px;
-	height:54px; 
-	width:198px;
+    background-image: url('UITextures/bottomBarWorksHover.png');
+    background-size: 100% 100%;
+    position: fixed;
+    bottom: 0px;
+    left: 330px;
+    height: 54px;
+    width: 198px;
 }
 
 #bottomBarCommisions {
-	background-image: url('UITextures/bottomBarCommisionsHover.png');
-	background-size: 100% 100%;
-	position:fixed; 
-	bottom:0px;
-	left:528px;
-	height:54px; 
-	width:198px;
+    background-image: url('UITextures/bottomBarCommisionsHover.png');
+    background-size: 100% 100%;
+    position: fixed;
+    bottom: 0px;
+    left: 528px;
+    height: 54px;
+    width: 198px;
+}
+
+#bottomBarGallery {
+    background-image: url('UITextures/bottomBarGalleryHover.png');
+    background-size: 100% 100%;
+    position: fixed;
+    bottom: 0px;
+    left: 726px;
+    height: 54px;
+    width: 198px;
 }
 
 #StartMenu {
-	background-image: url('UITextures/StartMenu.png');
-	background-size: 100% 100%;
-	position:fixed; 
-	bottom:39px;
-	left:6px;
-	height:450px; 
-	width:252px;
+    background-image: url('UITextures/StartMenu.png');
+    background-size: 100% 100%;
+    position: fixed;
+    bottom: 39px;
+    left: 6px;
+    height: 450px;
+    width: 252px;
 }
 
 #ContactPopup {
-	background-image: url('UITextures/ContactPopup.png');
-	background-size: 100% 100%;
-	position:fixed; 
-	bottom:calc(50% - 98px);
-	left:calc(50% - 240px);
-	height:186px; 
-	width:480px;
+    background-image: url('UITextures/ContactPopup.png');
+    background-size: 100% 100%;
+    position: fixed;
+    bottom: calc(50% - 98px);
+    left: calc(50% - 240px);
+    height: 186px;
+    width: 480px;
 }
 
 #ContactPopup2 {
-	background-image: url('UITextures/ContactPopup2.png');
-	background-size: 100% 100%;
-	position:fixed; 
-	bottom:calc(50% - 98px);
-	left:calc(50% - 240px);
-	height:186px; 
-	width:480px;
+    background-image: url('UITextures/ContactPopup2.png');
+    background-size: 100% 100%;
+    position: fixed;
+    bottom: calc(50% - 98px);
+    left: calc(50% - 240px);
+    height: 186px;
+    width: 480px;
 }
 
 
 .ButtonOK {
-	background-image: url('UITextures/ButtonOK.png');
-	background-size: 100% 100%;
-	position:absolute;
-	height:36px; 
-	width:57px;
-}
-.ButtonOK:hover {
-	background-color: #98dae8;
+    background-image: url('UITextures/ButtonOK.png');
+    background-size: 100% 100%;
+    position: absolute;
+    height: 36px;
+    width: 57px;
 }
 
+    .ButtonOK:hover {
+        background-color: #98dae8;
+    }
+
 .StartScreen {
-	background-size: 100% 100%;
-	top:0px;
-	left:0px;
-	width: 100%;
+    background-size: 100% 100%;
+    top: 0px;
+    left: 0px;
+    width: 100%;
     height: 100%;
-	position: fixed;
-	background-color: #849599;
+    position: fixed;
+    background-color: #849599;
 }
 
 .Fullscreen {
-	position:absolute;
-	bottom:9px; 
-	left:9px; 
-	width:36px; 
-	height:36px;
+    position: absolute;
+    bottom: 9px;
+    left: 9px;
+    width: 36px;
+    height: 36px;
 }
 
-.Fullscreen:hover {
-	background-color: #98dae8;
-}
+    .Fullscreen:hover {
+        background-color: #98dae8;
+    }
 
 .WorkDoodles {
-	background-size: 100% 100%;
-	height:207px; 
-	width:207px;
-	display:inline-block;
-	user-select: none;
+    background-size: 100% 100%;
+    height: 207px;
+    width: 207px;
+    display: inline-block;
+    user-select: none;
 }
 
-.WorkDoodles:hover {
-	background-color:#e3e3e3;
-}
+    .WorkDoodles:hover {
+        background-color: #e3e3e3;
+    }
 
 .scalewindow {
-	position:fixed;
-	border-image: url('UITextures/ScalableWindowBright.png');
-	border-image-slice: 12 28 3 3 fill;
-	border-image-width: 36px 84px 9px 9px;
+    position: fixed;
+    border-image: url('UITextures/ScalableWindowBright.png');
+    border-image-slice: 12 28 3 3 fill;
+    border-image-width: 36px 84px 9px 9px;
 }
 
 .scalewindowDark {
-	position:fixed;
-	border-image: url('UITextures/ScalableWindowDark.png');
-	border-image-slice: 12 28 3 3 fill;
-	border-image-width: 36px 84px 9px 9px;
+    position: fixed;
+    border-image: url('UITextures/ScalableWindowDark.png');
+    border-image-slice: 12 28 3 3 fill;
+    border-image-width: 36px 84px 9px 9px;
 }
 
 .ico {
-	background-size: 100% 100%;
-	position:absolute;
-	top:6px;
-	left:6px;
-	height:21px; 
-	width:18px;
+    background-size: 100% 100%;
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    height: 21px;
+    width: 18px;
 }
 
-.ico p {
-	font-size: 39;
-	margin: 0px;
-	position:absolute;
-	top:-7px;
-	left:6px;
-}
+    .ico p {
+        font-size: 39;
+        margin: 0px;
+        position: absolute;
+        top: -7px;
+        left: 6px;
+    }
 
 .CommisionThumb {
-	background-image: url('UITextures/CommisionThumb.png');
-	margin: 51px;
-	background-size: 100% 100%;
-	display: inline-block;
-	vertical-align: top;
-	height:402px; 
-	width:495px;
-	user-select: none;
-	text-shadow: 0 3px 0 #000000;
+    background-image: url('UITextures/CommisionThumb.png');
+    margin: 51px;
+    background-size: 100% 100%;
+    display: inline-block;
+    vertical-align: top;
+    height: 402px;
+    width: 495px;
+    user-select: none;
+    text-shadow: 0 3px 0 #000000;
 }
-.CommisionThumb:hover {
-	background-image: url('UITextures/CommisionThumbHover.png');
-}
-.CommisionThumb h1 {
-	text-shadow: 0 3px 0 #000000;
-}
+
+    .CommisionThumb:hover {
+        background-image: url('UITextures/CommisionThumbHover.png');
+    }
+
+    .CommisionThumb h1 {
+        text-shadow: 0 3px 0 #000000;
+    }
 
 #commissionTOS {
-	position: absolute; 
-	bottom: 90px; 
-	right: 3px; 
-	left: calc(100% - 456px); 
-	top: 198px;
-}
-#commissionTOS p {
-	margin: 12px; 
-	position:absolute; 
-	bottom:0; 
-	left:0;
+    position: absolute;
+    bottom: 90px;
+    right: 3px;
+    left: calc(100% - 456px);
+    top: 198px;
 }
 
+    #commissionTOS p {
+        margin: 12px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+
 .TOSButtons {
-	background-size: 100% 100%;
-	position:absolute;
-	bottom:-87px;
-	right:0px;
-	width:453px; 
-	height:87px;
+    background-size: 100% 100%;
+    position: absolute;
+    bottom: -87px;
+    right: 0px;
+    width: 453px;
+    height: 87px;
 }
-.TOSButtons:hover{
-	background-image:url('UITextures/twitchWindowHover.png') ;
-}
+
+    .TOSButtons:hover {
+        background-image: url('UITextures/twitchWindowHover.png');
+    }
