@@ -150,7 +150,7 @@ li {
     padding: 6px;
     height: 333px;
     min-width: 255px;
-    max-width: 555px;
+    max-width: 655px;
     background-size: 100% 100%;
     display: inline-block;
 }
@@ -416,7 +416,7 @@ li {
     background-size: 100% 100%;
     position: fixed;
     bottom: 0px;
-    left: 330px;
+    left: 528px;
     height: 54px;
     width: 198px;
 }
@@ -426,7 +426,7 @@ li {
     background-size: 100% 100%;
     position: fixed;
     bottom: 0px;
-    left: 528px;
+    left: 330px;
     height: 54px;
     width: 198px;
 }
