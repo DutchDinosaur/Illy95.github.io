@@ -1,9 +1,13 @@
-var Scenery = ["BlissPicnic.gif", "prairie.gif", "SkeleFish.gif"];
+var Scenery = ["BlissPicnic.gif", "prairie.gif", "SkeleFish.gif","transform.gif"];
 var Loaded = false;
 var galleryPiecePopout = document.getElementById("galleryPiecePopout");
 var popoutPiece = document.getElementById("popoutPiece");
 
 loadGallery();
+
+if (getUrlVars().piece != null) {
+    ExpandGalleryPiece(getUrlVars().piece);
+}
 
 function loadGallery() {
     if (Loaded) return;
