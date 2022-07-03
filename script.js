@@ -57,6 +57,9 @@ switch(getUrlVars().load){
     case "gallery":
         setTimeout(function () { EnableElementWindow("Gallery"); EnableElementButton("bottomBarGallery"); }, 1690);
         break;
+    case "interactive":
+        setTimeout(function () { EnableElementWindow("Works"); EnableElementButton("bottombarWorks"); }, 1690);
+        break;
 	default:
 }
 
