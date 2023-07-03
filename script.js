@@ -44,6 +44,7 @@ document.getElementById("icons2").style.display = "none";
 setTimeout(function(){ document.getElementById("StartScreen").style.display = "none"; }, 1300);
 setTimeout(function(){ document.getElementById("icons").style.display = "block"; }, 1380);
 setTimeout(function(){ document.getElementById("icons2").style.display = "block"; }, 1450);
+setTimeout(function(){ document.getElementById("icons3").style.display = "block"; }, 1490);
 setTimeout(function(){ EnableElementWindow("bottomBar"); }, 1490);
 
 switch(getUrlVars().load){
