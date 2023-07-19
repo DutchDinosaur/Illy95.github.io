@@ -50,6 +50,7 @@ setTimeout(function(){ document.getElementById("icons3").style.display = "block"
 setTimeout(function(){ document.getElementById("icons4").style.display = "block"; }, 1930);
 setTimeout(function(){ EnableElementWindow("bottomBar"); }, 1490);
 startTime();
+setTimeout(function(){ setRandomBackground()}, 1500);
 
 switch(getUrlVars().load){
 	case "commissions":
@@ -268,4 +269,13 @@ function startTime() {
 function checkTime(i) {
 	if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
 	return i;
+}
+
+function setRandomBackground() {
+	var urls = ["","","","","BGprefab.png","BGpolyguise.png","BGbrick.png"];
+	setBackGround(urls[Math.floor(Math.random() * 7)]);
+}
+
+function setBackGround(BG) {
+	document.body.style.backgroundImage="url(UITextures/"+BG+")";
 }
