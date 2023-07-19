@@ -391,6 +391,12 @@ li {
     width: 183px
 }
 
+#clock {
+    position: fixed;
+    bottom: 3px;
+    right: 36px;
+}
+
 #bottomBarLeft {
     background-image: url('UITextures/bottomBarLeft.png');
     background-size: 100% 100%;

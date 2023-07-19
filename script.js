@@ -40,12 +40,16 @@ DisableElementButton("bottomBarGallery");
 
 document.getElementById("icons").style.display = "none"; 
 document.getElementById("icons2").style.display = "none"; 
+document.getElementById("icons3").style.display = "none"; 
+document.getElementById("icons4").style.display = "none"; 
 
 setTimeout(function(){ document.getElementById("StartScreen").style.display = "none"; }, 1300);
 setTimeout(function(){ document.getElementById("icons").style.display = "block"; }, 1380);
 setTimeout(function(){ document.getElementById("icons2").style.display = "block"; }, 1450);
 setTimeout(function(){ document.getElementById("icons3").style.display = "block"; }, 1490);
+setTimeout(function(){ document.getElementById("icons4").style.display = "block"; }, 1930);
 setTimeout(function(){ EnableElementWindow("bottomBar"); }, 1490);
+startTime();
 
 switch(getUrlVars().load){
 	case "commissions":
@@ -250,4 +254,18 @@ function getUrlVars() {
         vars[key] = value;
     });
     return vars;
+}
+
+function startTime() {
+	const today = new Date();
+	let h = today.getHours();
+	let m = today.getMinutes();
+	m = checkTime(m);
+	document.getElementById('clock').innerHTML =  h + ":" + m;
+	setTimeout(startTime, 1000);
+}
+
+function checkTime(i) {
+	if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+	return i;
 }

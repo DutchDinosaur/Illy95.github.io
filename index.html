@@ -44,16 +44,15 @@
             <a onclick="SwitchFullscreenApp('Gallery', true);"><img src="UITextures/IconGallery.png" class="icon"></a>
         </div><div id="icons2">
 			<a href="https://twitter.com/illydinosaur" target="_blank"><img src="UITextures/IconTwitter.png" class="icon" style="top:360px;"></a>
-			<a href="https://www.artstation.com/dutchdinosaur" target="_blank"><img src="UITextures/IconArtStation.png" class="icon" style="top:480px;"></a>
-			<a href="https://sketchfab.com/DutchDinosaur" target="_blank"><img src="UITextures/IconSketchFab.png" class="icon" style="top:600px;"></a>
 			<a href="https://www.twitch.tv/illydinosaur" target="_blank"><img src="UITextures/IconTwitch.png" class="icon" style="top:720px;"></a>
 			<a href="https://illydinosaur.itch.io/" target="_blank"><img src="UITextures/IconItch.png" class="icon" style="top:720px;"></a>
-			<a href="https://www.instagram.com/illydinosaur" target="_blank"><img src="UITextures/IconInstagram.png" class="icon" style="top:600px;"></a>
 		</div><div id="icons3">
 			<a href="https://illydinosaur.itch.io/paper-links" target="_blank"><img src="UITextures/IconPaperLinks.png" class="icon" style="top:360px;"></a>
 			<a href="https://illydinosaur.itch.io/getting-a-job-at-draculas" target="_blank"><img src="UITextures/IconRPG.png" class="icon" style="top:360px;"></a>
 			<a href="https://illydinosaur.itch.io/terratower" target="_blank"><img src="UITextures/IconTerraTower.png" class="icon" style="top:360px;"></a>
 			<a href="https://illydinosaur.itch.io/polyguise" target="_blank"><img src="UITextures/IconPolyGuise.png" class="icon" style="top:360px;"></a>
+		</div><div id="icons4">
+			<a href="https://smallcreatorcorner.cafe/" target="_blank"><img src="UITextures/IconCoolBlog.png" class="icon"></a>
 		</div>
 
 		<div id="Works">
@@ -84,7 +83,7 @@
             </div>
 		</div>
 
-		<div id="Commissions">
+		<div id="Commissions" data-nosnippet="true">
 			<div id="CommisionContent">
 				<img src="UITextures/CommisionTitle.gif" style="user-select: none; height: 105px; width: 537px;"> 
 				<p style="display: inline;">25 EUR / per hour </p>
@@ -176,9 +175,9 @@
 		<div id="LinkWindow">
 			<div Style="position:absolute; top:48px; left:24px;">
 			<a href="https://twitter.com/illydinosaur" target="_blank"><img src="UITextures/IconTwitter.png" class="icon" style="top:360px;"></a>
-			<a href="https://illydinosaur.itch.io/" target="_blank"><img src="UITextures/IconItch.png" class="icon" style="top:720px;"></a>
+			<a href="https://www.artstation.com/dutchdinosaur" target="_blank"><img src="UITextures/IconArtStation.png" class="icon" style="top:480px;"></a>
 			<a href="https://www.instagram.com/illydinosaur" target="_blank"><img src="UITextures/IconInstagram.png" class="icon" style="top:600px;"></a>
-			<a href="https://www.twitch.tv/illydinosaur" target="_blank"><img src="UITextures/IconTwitch.png" class="icon" style="top:720px;"></a>
+			<a href="https://sketchfab.com/DutchDinosaur" target="_blank"><img src="UITextures/IconSketchFab.png" class="icon" style="top:600px;"></a>
 			</div>
 			<a onclick="DisableElementWindow('LinkWindow');" class="CloseWindow"></a>
 			<a onclick="DisableElementWindow('LinkWindow');" class="Minimize"></a>
@@ -284,18 +283,19 @@
             <li><a onclick="SwitchFullscreenApp('Commissions', false);" id="bottomBarCommisions"></a></li>
             <li><a onclick="SwitchFullscreenApp('Works', false);" id="bottomBarWorks"></a></li>
             <li><a onclick="SwitchFullscreenApp('Gallery', false);" id="bottomBarGallery"></a></li>
-            <div class="bottomBarRight"></div>
+            <div class="bottomBarRight"><div id="clock"></div> </div>
         </ul>
 
         <div id="StartMenu">
             <a href="" Style="background-image: url('UITextures/StartMenuShutDown.png'); bottom:3px;" class="StartMenuItems"></a>
             <a onclick="EnableElementWindow('LinkWindow'); DisableElementWindow('StartMenu'); DisableElementButton('bottomBarLeft');" Style="background-image: url('UITextures/ButtonSocials.png'); bottom:57px;" class="StartMenuItems"></a>
-            <a onclick="SwitchFullscreenApp('About', true); DisableElementWindow('StartMenu'); DisableElementButton('bottomBarLeft');" Style="background-image: url('UITextures/ButtonCommisions.png'); bottom:111px;" class="StartMenuItems"></a>
+            <a onclick="SwitchFullscreenApp('Commissions', true); DisableElementWindow('StartMenu'); DisableElementButton('bottomBarLeft');" Style="background-image: url('UITextures/ButtonCommisions.png'); bottom:111px;" class="StartMenuItems"></a>
             <a onclick="SwitchFullscreenApp('Works', true); DisableElementWindow('StartMenu'); DisableElementButton('bottomBarLeft');" Style="background-image: url('UITextures/ButtonWorks.png'); bottom:168px;" class="StartMenuItems"></a>
-            <a onclick="SwitchFullscreenApp('Gallery', true); DisableElementWindow('StartMenu'); DisableElementButton('bottomBarLeft');" Style="background-image: url('UITextures/ButtonGallery.png'); bottom:225px;" class="StartMenuItems"></a>
+			<a onclick="SwitchFullscreenApp('Gallery', true); DisableElementWindow('StartMenu'); DisableElementButton('bottomBarLeft');" Style="background-image: url('UITextures/ButtonGallery.png'); bottom:225px;" class="StartMenuItems"></a>
+            <a onclick="SwitchFullscreenApp('About', true); DisableElementWindow('StartMenu'); DisableElementButton('bottomBarLeft');" Style="background-image: url('UITextures/ButtonAbout.png'); bottom:282px;" class="StartMenuItems"></a>
         </div>
 
-		<div id="ContactPopup">
+		<div id="ContactPopup" data-nosnippet="true">
 			<p style="position:absolute; font-size:32px; left:9px;">You can message me on the following:<br/>
 			Email: lilithvschaik@gmail.com<br/>
 			Discord: IllyDinosaur#8348</p>
