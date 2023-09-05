@@ -43,21 +43,21 @@ document.getElementById("icons2").style.display = "none";
 document.getElementById("icons3").style.display = "none"; 
 document.getElementById("icons4").style.display = "none"; 
 
-setTimeout(function(){ document.getElementById("StartScreen").style.display = "none"; }, 1300);
-setTimeout(function(){ document.getElementById("icons").style.display = "block"; }, 1380);
-setTimeout(function(){ document.getElementById("icons2").style.display = "block"; }, 1450);
-setTimeout(function(){ document.getElementById("icons3").style.display = "block"; }, 1490);
-setTimeout(function(){ document.getElementById("icons4").style.display = "block"; }, 1930);
-setTimeout(function(){ EnableElementWindow("bottomBar"); }, 1490);
+setTimeout(function(){ document.getElementById("StartScreen").style.display = "none"; }, 600);
+setTimeout(function(){ document.getElementById("icons").style.display = "block"; }, 680);
+setTimeout(function(){ document.getElementById("icons2").style.display = "block"; }, 750);
+setTimeout(function(){ document.getElementById("icons3").style.display = "block"; }, 790);
+setTimeout(function(){ document.getElementById("icons4").style.display = "block"; }, 930);
+setTimeout(function(){ EnableElementWindow("bottomBar"); }, 890);
 startTime();
-setTimeout(function(){ setRandomBackground()}, 1500);
+setTimeout(function(){ setRandomBackground()}, 1100);
 
 switch(getUrlVars().load){
 	case "commissions":
 		setTimeout(function(){ EnableElementWindow("Commissions"); EnableElementButton("bottomBarCommisions");}, 1690);
 		break;
 	case "about":
-		setTimeout(function(){ EnableElementWindow("About2"); }, 1830);
+		setTimeout(function(){ EnableElementWindow("About2"); }, 1330);
 		setTimeout(function(){ EnableElementWindow("About1"); EnableElementButton("bottomBarAbout"); }, 1870);
         break;
     case "gallery":

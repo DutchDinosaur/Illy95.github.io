@@ -1,10 +1,12 @@
-var Scenery = ["BlissPicnic.gif", "prairie.gif", "SkeleFish.gif"];
-var Animations = ["arisukiTransform.gif", "Ghosties.gif", "Skate.gif","archit.gif"];
+var root = ["monitor.jpg"];
+var Scenery = ["BlissPicnic.gif", "prairie.gif", "SkeleFish.gif", "pride.gif", "metro.gif"];
+var Animations = ["arisukiTransform.gif", "Ghosties.gif", "Skate.gif", "archit.gif", "gears.gif"];
+var characters = ["illy.gif", "jono.gif", "spit.gif", "doc.gif", "doki.gif","bear.gif"];
 
 var galleryPiecePopout = document.getElementById("galleryPiecePopout");
 var popoutPiece = document.getElementById("popoutPiece");
 
-loadGallery(Scenery);
+loadGallery(root);
 
 if (getUrlVars().piece != null) {
     ExpandGalleryPiece(getUrlVars().piece);
@@ -16,15 +18,21 @@ function clearGallery() {
 
 function loadGallery(pieces) {
     clearGallery()
-    if (pieces != Animations) addGalleryFolders("Interactive");
 
-    if (pieces != Scenery) addGalleryFolders("Scenery");
+    if (pieces != root) addGalleryFolders("root");
+
+    if (pieces == root) addGalleryFolders("Scenery");
+
+    if (pieces == root) addGalleryFolders("Animations");
+
+    if (pieces == root) addGalleryFolders("characters");
+
+    if (pieces == root) addGalleryFolders("Interactive");
 
     for (var i = 0; i < pieces.length; i++) {
         loadGalleryPiece(pieces[i]);
     }
 
-    if (pieces != Animations) addGalleryFolders("Animations");
 
 }
 
@@ -63,6 +71,9 @@ function addGalleryFolders(type) {
     folder.addEventListener("click", function () {
 
         switch (type) {
+            case "root":
+                loadGallery(root);
+                break;
             case "Interactive":
                 SwitchFullscreenApp('Works', true);
                 break;
@@ -71,6 +82,9 @@ function addGalleryFolders(type) {
                 break;
             case "Scenery":
                 loadGallery(Scenery);
+                break;
+            case "characters":
+                loadGallery(characters);
                 break;
             default:
         }
