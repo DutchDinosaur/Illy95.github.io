@@ -1,19 +1,54 @@
 var matWorldUniformLocation;
-var worldMatrix;
+var objectMatrix;
 var viewMatrix;
 
 var cameraPosition = [0,1,0];
 var cameraLookat = [0,1,0];
 var cameraUp = [0,1,0];
 
-var Initialize = function () {
-    loadTextResource( 'shaders/vertexShader.glsl', function (vsErr, vsText) {
-    loadTextResource( 'shaders/fragmentShader.glsl', function (fsErr, fsText) {
-    loadJSONResource( 'juce.json', function (modelerr, modelObject) {
-    loadImage( 'spitsDrink.png', function (imgerr, img) {
+var shaders = ['shaders/vertexShader.glsl', 'shaders/fragmentShader.glsl'];
+var shaderTypes = ['vertex', 'fragment'];
+var shaderResources;
+var models = ['juce.json'];
+var modelResources;
+var textures = ['spitsDrink.png'];
+var textureResources;
 
-    runRenderer(vsText,fsText,modelObject,img);
-    }); }); }); });
+var gameObjects;
+
+var resourceCount;
+var drawCalls;
+
+var Initialize = function () {
+    resourceCount = models.length + textures.length + shaders.length;
+    var loadedResources = 0;
+
+    modelResources = new Array(models.length);
+    for (let i = 0; i < models.length; i++) {
+        loadJSONResource( models[i], function (modelerr, modelObject) {
+            modelResources[i] = modelObject;
+            checkCompletion();
+    } ); } 
+
+    shaderResources = new Array(shaders.length);
+    for (let i = 0; i < shaders.length; i++) {
+        loadTextResource( shaders[i], function (shadererr, shader) {
+            shaderResources[i] = shader;
+            checkCompletion();
+    } ); } 
+
+    textureResources = new Array(textures.length);
+    for (let i = 0; i < textures.length; i++) {
+        loadImage( textures[i], function (shadererr, tex) {
+            textureResources[i] = tex;
+            checkCompletion();
+    } ); } 
+
+    checkCompletion = function () {
+        loadedResources++;
+        console.log(loadedResources + "/" + resourceCount + " resources loaded!");
+        if (loadedResources >= resourceCount) runRenderer();
+    }
 }
 
 var compileShader = function (shaderSource,shaderType,gl) {
@@ -25,9 +60,13 @@ var compileShader = function (shaderSource,shaderType,gl) {
     return shader;
 }
 
-var compileShaderProgram = function (gl,shaders) {
+var compileShaderProgram = function (gl,shaderResources) {
+    var compiledShaders = new Array(shaderResources.length);
+    for (let i = 0; i < shaderResources.length; i++) 
+        compiledShaders[i] = compileShader(shaderResources[i], (shaderTypes[i] == "vertex") ? gl.VERTEX_SHADER : gl.FRAGMENT_SHADER ,gl);
+
     var program = gl.createProgram();
-    shaders.forEach(shader => gl.attachShader(program, shader));
+    compiledShaders.forEach(shader => gl.attachShader(program, shader));
     gl.linkProgram(program);
     if (!gl.getProgramParameter(program, gl.LINK_STATUS))
         console.error('shader program linking error:', gl.getProgramInfoLog(program));
@@ -95,9 +134,9 @@ var bindTexture = function(gl,tex) {
 }
 
 var setTransformationMatrecies = function(gl,program, fov, aspect, clipNear, clipFar) {
-    worldMatrix = new Float32Array(16);
-	glMatrix.mat4.identity(worldMatrix);
-	gl.uniformMatrix4fv(gl.getUniformLocation(program, 'mWorld'), gl.FALSE, worldMatrix);
+    objectMatrix = new Float32Array(16);
+	glMatrix.mat4.identity(objectMatrix);
+	gl.uniformMatrix4fv(gl.getUniformLocation(program, 'mObject'), gl.FALSE, objectMatrix);
 
 	viewMatrix = new Float32Array(16);
 	glMatrix.mat4.lookAt(viewMatrix, cameraPosition, cameraLookat, cameraUp);
@@ -113,70 +152,87 @@ var mooveCamera = function (gl, program, position, lookat, up) {
 	gl.uniformMatrix4fv(gl.getUniformLocation(program, 'mView'), gl.FALSE, viewMatrix);
 }
 
-var runRenderer = function (vertexShaderSource,fragmentShaderSource, juceModel,juceTecture) {
+
+var runRenderer = function () {
     var canvas = document.getElementById('webglCanvas');
     var gl = canvas.getContext('webgl');
     if (!gl) gl = canvas.getContext('experimental-webgl');
 
     gl.enable(gl.DEPTH_TEST);
+
     //backface culling
     // gl.enable(gl.CULL_FACE);
     // gl.frontFace(gl.CCW);
 	// gl.cullFace(gl.BACK);
-
-    var program = compileShaderProgram(gl, [
-        compileShader(vertexShaderSource, gl.VERTEX_SHADER,gl),
-        compileShader(fragmentShaderSource, gl.FRAGMENT_SHADER,gl)
-    ]);
-
-    var Vertices = juceModel.meshes[0].vertices;
-    var Indices = [].concat.apply([], juceModel.meshes[0].faces);
-    var TexCoords = juceModel.meshes[0].texturecoords[0];
-    gpuBuffer(gl,program,Vertices,Indices,TexCoords);
-
-    var Texture = bindTexture(gl,juceTecture);
-
+    
+    var program = compileShaderProgram(gl, shaderResources);
     gl.useProgram(program);
-
     setTransformationMatrecies(gl,program, 70, canvas.clientWidth / canvas.clientHeight, 0.01, 10000.0, [0, -.2, -1], [0, .2, 0], [0, 1, 0]);
-
-    var xRotationMatrix = new Float32Array(16);
-    var yRotationMatrix = new Float32Array(16);
-
-    // render loop! :)
-    var identityMatrix = new  Float32Array(16);
-    glMatrix.mat4.identity(identityMatrix);
-    var angle = 0;
-    var height = 0;
+    
+    gameObjects = [
+        new GameObject(modelResources[0],textureResources[0],[0,0,0]),
+        new GameObject(modelResources[0],textureResources[0],[.3,0,-1]),
+        new GameObject(modelResources[0],textureResources[0],[.7,0,0]),
+        new GameObject(null,null,[0,0,0],function() {})
+    ];
+    
     var loop = function () {
-        angle = performance.now() / 1000 / 6 * 2 * Math.PI;
-        glMatrix.mat4.rotate(worldMatrix, identityMatrix, angle, [0,1,0]);
-        //glMatrix.mat4.rotate(xRotationMatrix, identityMatrix, angle / 9, [0.1,0,0]);
-        //glMatrix.mat4.mul(worldMatrix, xRotationMatrix, yRotationMatrix);
-        gl.uniformMatrix4fv(gl.getUniformLocation(program, 'mWorld'), gl.FALSE, worldMatrix);
-        mooveCamera(gl, program, [0, -.2 + height, -1], [0, .2, 0], [0, 1, 0]);
-        height += .001; 
-        //clear screen
+        drawCalls = 0;
+
+        //GAME LOGIC
+        gameObjects.forEach(object => {
+            if (object.update != null) object.update();
+        });
+        
+        mooveCamera(gl, program, [0, -.2, -1], [0, .2, 1], [0, 1, 0]);
+
         gl.clearColor(0, 0, 0, 0.0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-        //bind textures
-        gl.bindTexture(gl.TEXTURE_2D,Texture);
-        gl.activeTexture(gl.TEXTURE0);
 
-        //draw
-        gl.drawElements(gl.TRIANGLES, Indices.length, gl.UNSIGNED_SHORT, 0);
+        gameObjects.forEach(object => {
+            if (object.model == null) return;
+
+            var Vertices = object.model.meshes[0].vertices;
+            var Indices = [].concat.apply([], object.model.meshes[0].faces);
+            var TexCoords = object.model.meshes[0].texturecoords[0];
+            gpuBuffer(gl,program,Vertices,Indices,TexCoords);
+
+            var Texture = bindTexture(gl,object.texture);
+            gl.bindTexture(gl.TEXTURE_2D,Texture);
+            gl.activeTexture(gl.TEXTURE0);
+
+            gl.uniformMatrix4fv(gl.getUniformLocation(program, 'mObject'), gl.FALSE, object.transformMatrix);
+            
+            gl.drawElements(gl.TRIANGLES, Indices.length, gl.UNSIGNED_SHORT, 0);
+            drawCalls++;
+        });
 
         requestAnimationFrame(loop);
     }
     requestAnimationFrame(loop);
 }
 
-class RenderObject {
-    constructor(model,position) {
+class GameObject {
+    constructor(model,texture,position,update) {
         this.model = model
         this.transformMatrix = new Float32Array(16);
-        glMatrix.mat4.translate(this.transformMatrix,position);
+        glMatrix.mat4.identity(this.transformMatrix);
+        glMatrix.mat4.translate(this.transformMatrix,this.transformMatrix,position);
+        this.texture = texture;
+        this.update = update;
+    }
+
+    translate(position) {
+        glMatrix.mat4.translate(this.transformMatrix,this.transformMatrix,position);
+    }
+
+    scale(scale) {
+        glMatrix.mat4.scale(this.transformMatrix,this.transformMatrix,scale);
+    }
+
+    rotate(angle,axis){
+        glMatrix.mat4.rotate(this.transformMatrix,this.transformMatrix,angle,axis);
     }
 }
 

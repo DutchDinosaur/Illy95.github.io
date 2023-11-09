@@ -5,11 +5,11 @@ precision mediump float;
 
     varying vec2 fragTexCoord;
 
-    uniform mat4 mWorld;
+    uniform mat4 mObject;
     uniform mat4 mView;
     uniform mat4 mProj;
 
     void main(){
         fragTexCoord = vertTexCoord;
-        gl_Position = mProj * mView * mWorld * vec4(vertPosition, 1.0);
+        gl_Position = mProj * mView * mObject * vec4(vertPosition, 1.0);
     }
