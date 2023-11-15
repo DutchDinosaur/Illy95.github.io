@@ -9,32 +9,24 @@
         <a href="#" id="hex">[Translate to hex]</a><a href="#" id="string">[Translate to string]</a>
 
         <script type="text/javascript">
-        String.prototype.hexEncode = function(){
-            var hex, i;
-            var result = "";
-            for (i=0; i<this.length; i++) {
-                hex = this.charCodeAt(i).toString(16);
-                result += ("000"+hex).slice(-4);
-            }
-            return result
+
+        function fromHex(hex){
+            return decodeURIComponent(hex.replace(/(..)/g,'%$1'));
         }
 
-        String.prototype.hexDecode = function(){
-            var j;
-            var hexes = this.match(/.{1,4}/g) || [];
-            var back = "";
-            for(j = 0; j<hexes.length; j++) {
-                back += String.fromCharCode(parseInt(hexes[j], 16));
-            }
-            return back;
+        function toHex(str){
+            return Array.from(str).map(c => 
+                c.charCodeAt(0) < 128 ? c.charCodeAt(0).toString(16) : 
+                encodeURIComponent(c).replace(/\%/g,'').toLowerCase()
+            ).join('');
         }
 
         var textField = document.getElementById('text');
         document.getElementById('hex').addEventListener("click", function(event) {
-            textField.value = textField.value.hexEncode();
+            textField.value = toHex(textField.value);
         });
         document.getElementById('string').addEventListener("click", function(event) {
-            textField.value = textField.value.hexDecode();
+            textField.value = fromHex(textField.value);
         })
         </script>
     </body>
