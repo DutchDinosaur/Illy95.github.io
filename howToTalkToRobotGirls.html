@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> hex tanslator </title>
+        <link rel="icon" type="image/vnd.microsoft.icon" href="icon.ico">
+    </head>
+    <body onload="Initialize()">
+        <textarea id="text" name="input" size="200" style="height:200px; text-align: top;">type here</textarea><br>
+        <a href="#" id="hex">[Translate to hex]</a><a href="#" id="string">[Translate to string]</a>
+
+        <script type="text/javascript">
+        String.prototype.hexEncode = function(){
+            var hex, i;
+            var result = "";
+            for (i=0; i<this.length; i++) {
+                hex = this.charCodeAt(i).toString(16);
+                result += ("000"+hex).slice(-4);
+            }
+            return result
+        }
+
+        String.prototype.hexDecode = function(){
+            var j;
+            var hexes = this.match(/.{1,4}/g) || [];
+            var back = "";
+            for(j = 0; j<hexes.length; j++) {
+                back += String.fromCharCode(parseInt(hexes[j], 16));
+            }
+            return back;
+        }
+
+        var textField = document.getElementById('text');
+        document.getElementById('hex').addEventListener("click", function(event) {
+            textField.value = textField.value.hexEncode();
+        });
+        document.getElementById('string').addEventListener("click", function(event) {
+            textField.value = textField.value.hexDecode();
+        })
+        </script>
+    </body>
+</html>

@@ -14,6 +14,7 @@ var modelResources;
 var textures = ['spitsDrink.png'];
 var textureResources;
 
+var renderObjects;
 var gameObjects;
 
 var resourceCount;
@@ -51,16 +52,16 @@ var Initialize = function () {
     }
 }
 
-var compileShader = function (shaderSource,shaderType,gl) {
-    var shader = gl.createShader(shaderType);
-    gl.shaderSource(shader, shaderSource);
-    gl.compileShader(shader);
-    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS))
-        console.error('shader comp error:', gl.getShaderInfoLog(shader));
-    return shader;
-}
-
 var compileShaderProgram = function (gl,shaderResources) {
+    var compileShader = function (shaderSource,shaderType,gl) {
+        var shader = gl.createShader(shaderType);
+        gl.shaderSource(shader, shaderSource);
+        gl.compileShader(shader);
+        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS))
+            console.error('shader comp error:', gl.getShaderInfoLog(shader));
+        return shader;
+    }
+
     var compiledShaders = new Array(shaderResources.length);
     for (let i = 0; i < shaderResources.length; i++) 
         compiledShaders[i] = compileShader(shaderResources[i], (shaderTypes[i] == "vertex") ? gl.VERTEX_SHADER : gl.FRAGMENT_SHADER ,gl);
@@ -79,8 +80,8 @@ var compileShaderProgram = function (gl,shaderResources) {
 }
 
 var gpuBuffer = function (gl,program,Vertices,Indices,TexCoords) {
-    var VertexBufferObject = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, VertexBufferObject);
+    var VBO = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, VBO);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(Vertices), gl.STATIC_DRAW);
 
     var IndexBufferObject = gl.createBuffer();
@@ -91,7 +92,7 @@ var gpuBuffer = function (gl,program,Vertices,Indices,TexCoords) {
     gl.bindBuffer(gl.ARRAY_BUFFER, TexCoordBufferObject);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(TexCoords), gl.STATIC_DRAW);
 
-    gl.bindBuffer(gl.ARRAY_BUFFER, VertexBufferObject);
+    gl.bindBuffer(gl.ARRAY_BUFFER, VBO);
     var positionAttribLocation = gl.getAttribLocation(program, 'vertPosition');
     gl.vertexAttribPointer(
         positionAttribLocation, //location
@@ -169,11 +170,15 @@ var runRenderer = function () {
     gl.useProgram(program);
     setTransformationMatrecies(gl,program, 70, canvas.clientWidth / canvas.clientHeight, 0.01, 10000.0, [0, -.2, -1], [0, .2, 0], [0, 1, 0]);
     
+    renderObjects = [
+        new RenderObject(modelResources[0],textureResources[0])
+    ];
+
     gameObjects = [
-        new GameObject(modelResources[0],textureResources[0],[0,0,0]),
-        new GameObject(modelResources[0],textureResources[0],[.3,0,-1]),
-        new GameObject(modelResources[0],textureResources[0],[.7,0,0]),
-        new GameObject(null,null,[0,0,0],function() {})
+        new GameObject(0,[0,0,0]),
+        new GameObject(0,[.3,0,-1]),
+        new GameObject(0,[.7,0,0]),
+        new GameObject(null,[0,0,0],function() {})
     ];
     
     var loop = function () {
@@ -189,16 +194,16 @@ var runRenderer = function () {
         gl.clearColor(0, 0, 0, 0.0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-
         gameObjects.forEach(object => {
-            if (object.model == null) return;
+            if (object.renderObject == null) return;
 
-            var Vertices = object.model.meshes[0].vertices;
-            var Indices = [].concat.apply([], object.model.meshes[0].faces);
-            var TexCoords = object.model.meshes[0].texturecoords[0];
+            var Vertices = renderObjects[object.renderObject].model.meshes[0].vertices;
+            var Indices = [].concat.apply([], renderObjects[object.renderObject].model.meshes[0].faces);
+            var TexCoords = renderObjects[object.renderObject].model.meshes[0].texturecoords[0];
+
             gpuBuffer(gl,program,Vertices,Indices,TexCoords);
 
-            var Texture = bindTexture(gl,object.texture);
+            var Texture = bindTexture(gl,renderObjects[object.renderObject].texture);
             gl.bindTexture(gl.TEXTURE_2D,Texture);
             gl.activeTexture(gl.TEXTURE0);
 
@@ -213,13 +218,19 @@ var runRenderer = function () {
     requestAnimationFrame(loop);
 }
 
+class RenderObject {
+    constructor(model,texture) {
+        this.model = model;
+        this.texture = texture;
+    }
+}
+
 class GameObject {
-    constructor(model,texture,position,update) {
-        this.model = model
+    constructor(renderObject,position,update) {
+        this.renderObject = renderObject
         this.transformMatrix = new Float32Array(16);
         glMatrix.mat4.identity(this.transformMatrix);
         glMatrix.mat4.translate(this.transformMatrix,this.transformMatrix,position);
-        this.texture = texture;
         this.update = update;
     }
 
