@@ -2,16 +2,16 @@ var matWorldUniformLocation;
 var objectMatrix;
 var viewMatrix;
 
-var cameraPosition = [0,1,0];
-var cameraLookat = [0,1,0];
-var cameraUp = [0,1,0];
+// var cameraPosition = glMatrix.vec3.create();
+// var cameraLookat = glMatrix.vec3.create();
+// var cameraUp = glMatrix.vec3.create();
 
 var shaders = ['shaders/vertexShader.glsl', 'shaders/fragmentShader.glsl'];
 var shaderTypes = ['vertex', 'fragment'];
 var shaderResources;
-var models = ['juce.json'];
+var models = ['juce.json', 'fish.json'];
 var modelResources;
-var textures = ['spitsDrink.png'];
+var textures = ['spitsDrink.png', 'fish.png'];
 var textureResources;
 
 var renderObjects;
@@ -19,6 +19,7 @@ var gameObjects;
 
 var resourceCount;
 var drawCalls;
+let deltaTime;
 
 var VBO;
 var TCBO;
@@ -59,33 +60,6 @@ var Initialize = function () {
         console.log(loadedResources + "/" + resourceCount + " resources loaded!");
         if (loadedResources >= resourceCount) runRenderer();
     }
-}
-
-var compileShaderProgram = function (gl,shaderResources) {
-    var compileShader = function (shaderSource,shaderType,gl) {
-        var shader = gl.createShader(shaderType);
-        gl.shaderSource(shader, shaderSource);
-        gl.compileShader(shader);
-        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS))
-            console.error('shader comp error:', gl.getShaderInfoLog(shader));
-        return shader;
-    }
-
-    var compiledShaders = new Array(shaderResources.length);
-    for (let i = 0; i < shaderResources.length; i++) 
-        compiledShaders[i] = compileShader(shaderResources[i], (shaderTypes[i] == "vertex") ? gl.VERTEX_SHADER : gl.FRAGMENT_SHADER ,gl);
-
-    var program = gl.createProgram();
-    compiledShaders.forEach(shader => gl.attachShader(program, shader));
-    gl.linkProgram(program);
-    if (!gl.getProgramParameter(program, gl.LINK_STATUS))
-        console.error('shader program linking error:', gl.getProgramInfoLog(program));
-
-    gl.validateProgram(program);
-    if (!gl.getProgramParameter(program, gl.VALIDATE_STATUS))
-        console.error('shader program validating error:', gl.getProgramInfoLog(program));
-
-    return program;
 }
 
 var generateVBOs = function (gl,renderObject) {
@@ -134,29 +108,13 @@ var setAttributes = function (gl) {
     gl.enableVertexAttribArray(texCoordsAttribLocation);
 }
 
-var initializeTexture = function(gl,tex) {
-    var Texture = gl.createTexture();
-    gl.bindTexture(gl.TEXTURE_2D, Texture);
-    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
-    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);
-    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
-    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);
-    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-    gl.texImage2D(
-		gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA,
-		gl.UNSIGNED_BYTE,
-		tex
-	);
-    return Texture;
-}
-
 var setTransformationMatrecies = function(gl,program, fov, aspect, clipNear, clipFar) {
     objectMatrix = new Float32Array(16);
 	glMatrix.mat4.identity(objectMatrix);
 	gl.uniformMatrix4fv(gl.getUniformLocation(program, 'mObject'), gl.FALSE, objectMatrix);
 
 	viewMatrix = new Float32Array(16);
-	glMatrix.mat4.lookAt(viewMatrix, cameraPosition, cameraLookat, cameraUp);
+	glMatrix.mat4.lookAt(viewMatrix, [0,0,0], [0,0,1], [0,1,0]);
 	gl.uniformMatrix4fv(gl.getUniformLocation(program, 'mView'), gl.FALSE, viewMatrix);
 
 	var projMatrix = new Float32Array(16);
@@ -164,11 +122,10 @@ var setTransformationMatrecies = function(gl,program, fov, aspect, clipNear, cli
 	gl.uniformMatrix4fv(gl.getUniformLocation(program, 'mProj'), gl.FALSE, projMatrix);
 }
 
-var mooveCamera = function (gl, position, lookat, up) {
-	glMatrix.mat4.lookAt(viewMatrix, position, lookat, up);
-	gl.uniformMatrix4fv(cameraUniformLocation, gl.FALSE, viewMatrix);
-}
-
+// var mooveCamera = function (gl, position, lookat, up) {
+// 	glMatrix.mat4.lookAt(viewMatrix, position, lookat, up);
+// 	gl.uniformMatrix4fv(cameraUniformLocation, gl.FALSE, viewMatrix);
+// }
 
 var runRenderer = function () {
     var canvas = document.getElementById('webglCanvas');
@@ -187,7 +144,8 @@ var runRenderer = function () {
     setTransformationMatrecies(gl,program, 70, canvas.clientWidth / canvas.clientHeight, 0.01, 10000.0);
     
     renderObjects = [
-        new RenderObject(modelResources[0],initializeTexture(gl,textureResources[0]),program)
+        new RenderObject(modelResources[0],initializeTexture(gl,textureResources[0]),program, "drink"),
+        new RenderObject(modelResources[1],initializeTexture(gl,textureResources[1]),program, "fish")
     ];
 
     positionAttribLocation = gl.getAttribLocation(program, 'vertPosition');
@@ -195,25 +153,31 @@ var runRenderer = function () {
     objectUniformLocation = gl.getUniformLocation(program, 'mObject');
     cameraUniformLocation = gl.getUniformLocation(program, 'mView');
 
-    generateVBOs(gl,renderObjects[0]);
+    generateVBOs(gl,renderObjects[1]);
 
     //KEEP THEESE SORTED
     gameObjects = [
-        new GameObject(0,[0,0,0]),
-        new GameObject(0,[.3,0,-1]),
-        new GameObject(0,[.7,0,0]),
+        new GameObject(1,[0,0,0]),
+        new GameObject(1,[.3,0,-1]),
+        new GameObject(1,[.7,0,0]),
         new GameObject(null,[0,0,0],function() {})
     ];
     
-    var loop = function () {
+
+    let then = 0;
+    var loop = function (now) {
         drawCalls = 0;
+        now *= 0.001;
+        deltaTime = now - then;
+        then = now;
 
         //GAME LOGIC
         gameObjects.forEach(object => {
             if (object.update != null) object.update();
         });
         
-        mooveCamera(gl, [0, -.2, -1], [0, .2, 1], [0, 1, 0]);
+        flightCamMovement(gl);
+        //mooveCamera(gl, cameraPosition, cameraLookat, cameraUp);
 
         gl.clearColor(0, 0, 0, 0.0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
@@ -240,39 +204,5 @@ var runRenderer = function () {
     requestAnimationFrame(loop);
 }
 
-class RenderObject {
-    constructor(model,texture,program) {
-        this.model = model;
-        this.texture = texture;
-        this.program = program;
-
-        this.vertCount = 0;
-        this.indexCount = 0;
-    }
-}
-
-class GameObject {
-    constructor(renderObject,position,update) {
-        this.renderObject = renderObject
-        this.transformMatrix = new Float32Array(16);
-        glMatrix.mat4.identity(this.transformMatrix);
-        glMatrix.mat4.translate(this.transformMatrix,this.transformMatrix,position);
-        this.update = update;
-        this.active = true;
-    }
-
-    translate(position) {
-        glMatrix.mat4.translate(this.transformMatrix,this.transformMatrix,position);
-    }
-
-    scale(scale) {
-        glMatrix.mat4.scale(this.transformMatrix,this.transformMatrix,scale);
-    }
-
-    rotate(angle,axis){
-        glMatrix.mat4.rotate(this.transformMatrix,this.transformMatrix,angle,axis);
-    }
-}
-
 //test with: python3 -m http.server @ http://localhost:8000/blog/webglTest.html
-//generate json models .\\assimp2json.exe 'source.fbx' 'destination.json'
+//generate json models E:\Program Files\assimp2json-2.0-win32\Release .\\assimp2json.exe 'source.fbx' 'destination.json'  
