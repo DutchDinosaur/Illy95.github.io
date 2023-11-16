@@ -12,13 +12,10 @@ var flightCamMovement = function(gl){
         if (mouseDown != lastMouseValue) {
             mouseStartPos = mousePosition;
         }
-
         var mouseDelta = [0,0];
         glMatrix.vec2.sub(mouseDelta,mousePosition, mouseLastPos);
         glMatrix.vec2.mul(mouseDelta,mouseDelta,[.01,.01]);
-        
         glMatrix.vec2.add(angles,angles, mouseDelta);
-
         glMatrix.vec3.rotateY(cameraForward,cameraForward,[0,0,0],-mouseDelta[0])
 
     }
@@ -26,23 +23,14 @@ var flightCamMovement = function(gl){
     mouseLastPos = mousePosition;
 
     if (!glMatrix.vec3.exactEquals(glMatrix.vec3.create(),movementVector) || mouseDown){
-         
-        console.log(glMatrix.vec3.angle([0,0,1],[cameraForward[0],0,cameraForward[2]]));
-
         glMatrix.vec3.rotateY(movementVector,movementVector,[0,0,0],-angles[0]);
-
         glMatrix.vec3.add(camPos,camPos,glMatrix.vec3.scale(movementVector,movementVector,.1));
         glMatrix.vec3.zero(movementVector);
-
         var lookat = glMatrix.vec3.create();
         glMatrix.vec3.add(lookat,camPos,cameraForward);
-
         glMatrix.mat4.lookAt(viewMatrix, camPos, lookat, [0,1,0]);
         
     }
-    
-
-
     gl.uniformMatrix4fv(cameraUniformLocation, gl.FALSE, viewMatrix);
 }
 

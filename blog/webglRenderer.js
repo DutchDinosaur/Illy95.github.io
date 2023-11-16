@@ -63,12 +63,14 @@ var Initialize = function () {
 }
 
 var generateVBOs = function (gl,renderObject) {
-    var Vertices = renderObject.model.meshes[0].vertices;
-    var TexCoords = renderObject.model.meshes[0].texturecoords[0];
-    var Indices = [].concat.apply([], renderObject.model.meshes[0].faces);
-
-    renderObject.indexCount = Indices.length;
-    renderObject.vertCount = Vertices.length;
+    for (let i = 0; i < renderObject.length; i++) {
+        var Vertices = renderObject[i].model.meshes[0].vertices;
+        var TexCoords = renderObject[i].model.meshes[0].texturecoords[0];
+        var Indices = [].concat.apply([], renderObject[i].model.meshes[0].faces);
+        
+        renderObject[i].indexCount = Indices.length;
+        renderObject[i].vertCount = Vertices.length;
+    }
 
     VBO = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, VBO);
@@ -122,11 +124,6 @@ var setTransformationMatrecies = function(gl,program, fov, aspect, clipNear, cli
 	gl.uniformMatrix4fv(gl.getUniformLocation(program, 'mProj'), gl.FALSE, projMatrix);
 }
 
-// var mooveCamera = function (gl, position, lookat, up) {
-// 	glMatrix.mat4.lookAt(viewMatrix, position, lookat, up);
-// 	gl.uniformMatrix4fv(cameraUniformLocation, gl.FALSE, viewMatrix);
-// }
-
 var runRenderer = function () {
     var canvas = document.getElementById('webglCanvas');
     var gl = canvas.getContext('webgl');
@@ -135,9 +132,9 @@ var runRenderer = function () {
     gl.enable(gl.DEPTH_TEST);
 
     //backface culling
-    // gl.enable(gl.CULL_FACE);
-    // gl.frontFace(gl.CCW);
-	// gl.cullFace(gl.BACK);
+    gl.enable(gl.CULL_FACE);
+    gl.frontFace(gl.CCW);
+	gl.cullFace(gl.BACK);
     
     var program = compileShaderProgram(gl, shaderResources);
     gl.useProgram(program);
@@ -153,13 +150,13 @@ var runRenderer = function () {
     objectUniformLocation = gl.getUniformLocation(program, 'mObject');
     cameraUniformLocation = gl.getUniformLocation(program, 'mView');
 
-    generateVBOs(gl,renderObjects[1]);
+    generateVBOs(gl,renderObjects);
 
     //KEEP THEESE SORTED
     gameObjects = [
         new GameObject(1,[0,0,0]),
         new GameObject(1,[.3,0,-1]),
-        new GameObject(1,[.7,0,0]),
+        new GameObject(0,[.7,0,0]),
         new GameObject(null,[0,0,0],function() {})
     ];
     
@@ -193,9 +190,7 @@ var runRenderer = function () {
                 lastRenderObject = object.renderObject;
             }
 
-            //object transforms
             gl.uniformMatrix4fv(objectUniformLocation, gl.FALSE, object.transformMatrix);
-            
             gl.drawElements(gl.TRIANGLES, renderObjects[object.renderObject].indexCount, gl.UNSIGNED_SHORT, 0);
             drawCalls++;
         });
