@@ -27,6 +27,7 @@ var IBO;
 var positionAttribLocation;
 var texCoordsAttribLocation;
 var objectUniformLocation;
+var cameraUniformLocation;
 
 var Initialize = function () {
     resourceCount = models.length + textures.length + shaders.length;
@@ -87,7 +88,7 @@ var compileShaderProgram = function (gl,shaderResources) {
     return program;
 }
 
-var generateVBOs = function (gl,program,renderObject) {
+var generateVBOs = function (gl,renderObject) {
     var Vertices = renderObject.model.meshes[0].vertices;
     var TexCoords = renderObject.model.meshes[0].texturecoords[0];
     var Indices = [].concat.apply([], renderObject.model.meshes[0].faces);
@@ -106,9 +107,7 @@ var generateVBOs = function (gl,program,renderObject) {
     TCBO = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, TCBO);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(TexCoords), gl.STATIC_DRAW);
-}
 
-var setAttributes = function (gl) {
     gl.bindBuffer(gl.ARRAY_BUFFER, VBO);
     gl.vertexAttribPointer(
         positionAttribLocation, //location
@@ -118,7 +117,6 @@ var setAttributes = function (gl) {
         3 * Float32Array.BYTES_PER_ELEMENT, //size
         0 //offset
     );
-    gl.enableVertexAttribArray(positionAttribLocation);
 
     gl.bindBuffer(gl.ARRAY_BUFFER, TCBO);
     gl.vertexAttribPointer(
@@ -129,6 +127,10 @@ var setAttributes = function (gl) {
         2 * Float32Array.BYTES_PER_ELEMENT, //size
         0 //offset
     );
+}
+
+var setAttributes = function (gl) {
+    gl.enableVertexAttribArray(positionAttribLocation);
     gl.enableVertexAttribArray(texCoordsAttribLocation);
 }
 
@@ -162,9 +164,9 @@ var setTransformationMatrecies = function(gl,program, fov, aspect, clipNear, cli
 	gl.uniformMatrix4fv(gl.getUniformLocation(program, 'mProj'), gl.FALSE, projMatrix);
 }
 
-var mooveCamera = function (gl, program, position, lookat, up) {
+var mooveCamera = function (gl, position, lookat, up) {
 	glMatrix.mat4.lookAt(viewMatrix, position, lookat, up);
-	gl.uniformMatrix4fv(gl.getUniformLocation(program, 'mView'), gl.FALSE, viewMatrix);
+	gl.uniformMatrix4fv(cameraUniformLocation, gl.FALSE, viewMatrix);
 }
 
 
@@ -182,7 +184,7 @@ var runRenderer = function () {
     
     var program = compileShaderProgram(gl, shaderResources);
     gl.useProgram(program);
-    setTransformationMatrecies(gl,program, 70, canvas.clientWidth / canvas.clientHeight, 0.01, 10000.0, [0, -.2, -1], [0, .2, 0], [0, 1, 0]);
+    setTransformationMatrecies(gl,program, 70, canvas.clientWidth / canvas.clientHeight, 0.01, 10000.0);
     
     renderObjects = [
         new RenderObject(modelResources[0],initializeTexture(gl,textureResources[0]),program)
@@ -191,7 +193,9 @@ var runRenderer = function () {
     positionAttribLocation = gl.getAttribLocation(program, 'vertPosition');
     texCoordsAttribLocation = gl.getAttribLocation(program, 'vertTexCoord');
     objectUniformLocation = gl.getUniformLocation(program, 'mObject');
-    generateVBOs(gl,program,renderObjects[0]);
+    cameraUniformLocation = gl.getUniformLocation(program, 'mView');
+
+    generateVBOs(gl,renderObjects[0]);
 
     //KEEP THEESE SORTED
     gameObjects = [
@@ -209,19 +213,20 @@ var runRenderer = function () {
             if (object.update != null) object.update();
         });
         
-        mooveCamera(gl, program, [0, -.2, -1], [0, .2, 1], [0, 1, 0]);
+        mooveCamera(gl, [0, -.2, -1], [0, .2, 1], [0, 1, 0]);
 
         gl.clearColor(0, 0, 0, 0.0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
         var lastRenderObject = null;
         gameObjects.forEach(object => {
-            if (object.renderObject == null) return;
+            if (object.renderObject == null || object.active == false) return;
             if (object.renderObject != lastRenderObject) {
-                gl.bindTexture(gl.TEXTURE_2D,renderObjects[object.renderObject].texture);
-                gl.activeTexture(gl.TEXTURE0);
+                //gl.bindTexture(gl.TEXTURE_2D,renderObjects[object.renderObject].texture);
+                //gl.activeTexture(gl.TEXTURE0);
                 setAttributes(gl);
                 //gl.useProgram(object.program);
+                lastRenderObject = object.renderObject;
             }
 
             //object transforms
@@ -230,7 +235,6 @@ var runRenderer = function () {
             gl.drawElements(gl.TRIANGLES, renderObjects[object.renderObject].indexCount, gl.UNSIGNED_SHORT, 0);
             drawCalls++;
         });
-
         requestAnimationFrame(loop);
     }
     requestAnimationFrame(loop);
@@ -254,6 +258,7 @@ class GameObject {
         glMatrix.mat4.identity(this.transformMatrix);
         glMatrix.mat4.translate(this.transformMatrix,this.transformMatrix,position);
         this.update = update;
+        this.active = true;
     }
 
     translate(position) {
