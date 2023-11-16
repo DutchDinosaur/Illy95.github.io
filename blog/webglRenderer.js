@@ -20,6 +20,14 @@ var gameObjects;
 var resourceCount;
 var drawCalls;
 
+var VBO;
+var TCBO;
+var IBO;
+
+var positionAttribLocation;
+var texCoordsAttribLocation;
+var objectUniformLocation;
+
 var Initialize = function () {
     resourceCount = models.length + textures.length + shaders.length;
     var loadedResources = 0;
@@ -79,21 +87,29 @@ var compileShaderProgram = function (gl,shaderResources) {
     return program;
 }
 
-var gpuBuffer = function (gl,program,Vertices,Indices,TexCoords) {
-    var VBO = gl.createBuffer();
+var generateVBOs = function (gl,program,renderObject) {
+    var Vertices = renderObject.model.meshes[0].vertices;
+    var TexCoords = renderObject.model.meshes[0].texturecoords[0];
+    var Indices = [].concat.apply([], renderObject.model.meshes[0].faces);
+
+    renderObject.indexCount = Indices.length;
+    renderObject.vertCount = Vertices.length;
+
+    VBO = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, VBO);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(Vertices), gl.STATIC_DRAW);
 
-    var IndexBufferObject = gl.createBuffer();
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, IndexBufferObject);
+    IBO = gl.createBuffer();
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, IBO);
     gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(Indices), gl.STATIC_DRAW);
 
-    var TexCoordBufferObject = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, TexCoordBufferObject);
+    TCBO = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, TCBO);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(TexCoords), gl.STATIC_DRAW);
+}
 
+var setAttributes = function (gl) {
     gl.bindBuffer(gl.ARRAY_BUFFER, VBO);
-    var positionAttribLocation = gl.getAttribLocation(program, 'vertPosition');
     gl.vertexAttribPointer(
         positionAttribLocation, //location
         3, //number
@@ -104,8 +120,7 @@ var gpuBuffer = function (gl,program,Vertices,Indices,TexCoords) {
     );
     gl.enableVertexAttribArray(positionAttribLocation);
 
-    gl.bindBuffer(gl.ARRAY_BUFFER, TexCoordBufferObject);
-    var texCoordsAttribLocation = gl.getAttribLocation(program, 'vertTexCoord');
+    gl.bindBuffer(gl.ARRAY_BUFFER, TCBO);
     gl.vertexAttribPointer(
         texCoordsAttribLocation, //location
         2, //number
@@ -117,7 +132,7 @@ var gpuBuffer = function (gl,program,Vertices,Indices,TexCoords) {
     gl.enableVertexAttribArray(texCoordsAttribLocation);
 }
 
-var bindTexture = function(gl,tex) {
+var initializeTexture = function(gl,tex) {
     var Texture = gl.createTexture();
     gl.bindTexture(gl.TEXTURE_2D, Texture);
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
@@ -130,7 +145,6 @@ var bindTexture = function(gl,tex) {
 		gl.UNSIGNED_BYTE,
 		tex
 	);
-    gl.bindTexture(gl.TEXTURE_2D, null);
     return Texture;
 }
 
@@ -171,9 +185,15 @@ var runRenderer = function () {
     setTransformationMatrecies(gl,program, 70, canvas.clientWidth / canvas.clientHeight, 0.01, 10000.0, [0, -.2, -1], [0, .2, 0], [0, 1, 0]);
     
     renderObjects = [
-        new RenderObject(modelResources[0],textureResources[0])
+        new RenderObject(modelResources[0],initializeTexture(gl,textureResources[0]),program)
     ];
 
+    positionAttribLocation = gl.getAttribLocation(program, 'vertPosition');
+    texCoordsAttribLocation = gl.getAttribLocation(program, 'vertTexCoord');
+    objectUniformLocation = gl.getUniformLocation(program, 'mObject');
+    generateVBOs(gl,program,renderObjects[0]);
+
+    //KEEP THEESE SORTED
     gameObjects = [
         new GameObject(0,[0,0,0]),
         new GameObject(0,[.3,0,-1]),
@@ -194,22 +214,20 @@ var runRenderer = function () {
         gl.clearColor(0, 0, 0, 0.0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
+        var lastRenderObject = null;
         gameObjects.forEach(object => {
             if (object.renderObject == null) return;
+            if (object.renderObject != lastRenderObject) {
+                gl.bindTexture(gl.TEXTURE_2D,renderObjects[object.renderObject].texture);
+                gl.activeTexture(gl.TEXTURE0);
+                setAttributes(gl);
+                //gl.useProgram(object.program);
+            }
 
-            var Vertices = renderObjects[object.renderObject].model.meshes[0].vertices;
-            var Indices = [].concat.apply([], renderObjects[object.renderObject].model.meshes[0].faces);
-            var TexCoords = renderObjects[object.renderObject].model.meshes[0].texturecoords[0];
-
-            gpuBuffer(gl,program,Vertices,Indices,TexCoords);
-
-            var Texture = bindTexture(gl,renderObjects[object.renderObject].texture);
-            gl.bindTexture(gl.TEXTURE_2D,Texture);
-            gl.activeTexture(gl.TEXTURE0);
-
-            gl.uniformMatrix4fv(gl.getUniformLocation(program, 'mObject'), gl.FALSE, object.transformMatrix);
+            //object transforms
+            gl.uniformMatrix4fv(objectUniformLocation, gl.FALSE, object.transformMatrix);
             
-            gl.drawElements(gl.TRIANGLES, Indices.length, gl.UNSIGNED_SHORT, 0);
+            gl.drawElements(gl.TRIANGLES, renderObjects[object.renderObject].indexCount, gl.UNSIGNED_SHORT, 0);
             drawCalls++;
         });
 
@@ -219,9 +237,13 @@ var runRenderer = function () {
 }
 
 class RenderObject {
-    constructor(model,texture) {
+    constructor(model,texture,program) {
         this.model = model;
         this.texture = texture;
+        this.program = program;
+
+        this.vertCount = 0;
+        this.indexCount = 0;
     }
 }
 
