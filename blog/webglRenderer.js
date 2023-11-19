@@ -63,9 +63,24 @@ var Initialize = function () {
 }
 
 var generateVBOs = function (gl,renderObject) {
+
     for (let i = 0; i < renderObject.length; i++) {
         var Vertices = renderObject[i].model.meshes[0].vertices;
         var TexCoords = renderObject[i].model.meshes[0].texturecoords[0];
+
+        var vbo = new Float32Array(Vertices.length + TexCoords.length);
+        var vboIndex = 0;
+        var TCIndex = 0;
+        for (let v = 0; v < Vertices.length; v += 3) {
+            vbo[vboIndex] = Vertices[v];
+            vbo[vboIndex+1] = Vertices[v+1];
+            vbo[vboIndex+2] = Vertices[v+2];
+            vbo[vboIndex+3] = TexCoords[TCIndex];
+            vbo[vboIndex+4] = TexCoords[TCIndex+1];
+            TCIndex += 2;
+            vboIndex += 5;
+        }
+
         var Indices = [].concat.apply([], renderObject[i].model.meshes[0].faces);
         
         renderObject[i].indexCount = Indices.length;
@@ -74,34 +89,28 @@ var generateVBOs = function (gl,renderObject) {
 
     VBO = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, VBO);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(Vertices), gl.STATIC_DRAW);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vbo), gl.STATIC_DRAW);
 
     IBO = gl.createBuffer();
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, IBO);
     gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(Indices), gl.STATIC_DRAW);
 
-    TCBO = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, TCBO);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(TexCoords), gl.STATIC_DRAW);
-
-    gl.bindBuffer(gl.ARRAY_BUFFER, VBO);
     gl.vertexAttribPointer(
         positionAttribLocation, //location
         3, //number
         gl.FLOAT, // type
         gl.FALSE, //normalized
-        3 * Float32Array.BYTES_PER_ELEMENT, //size
+        5 * Float32Array.BYTES_PER_ELEMENT, //size
         0 //offset
     );
 
-    gl.bindBuffer(gl.ARRAY_BUFFER, TCBO);
     gl.vertexAttribPointer(
         texCoordsAttribLocation, //location
         2, //number
         gl.FLOAT, //type
         gl.FALSE, //normalized
-        2 * Float32Array.BYTES_PER_ELEMENT, //size
-        0 //offset
+        5 * Float32Array.BYTES_PER_ELEMENT, //size
+        3 * Float32Array.BYTES_PER_ELEMENT //offset
     );
 }
 
@@ -132,9 +141,9 @@ var runRenderer = function () {
     gl.enable(gl.DEPTH_TEST);
 
     //backface culling
-    gl.enable(gl.CULL_FACE);
-    gl.frontFace(gl.CCW);
-	gl.cullFace(gl.BACK);
+    // gl.enable(gl.CULL_FACE);
+    // gl.frontFace(gl.CCW);
+	// gl.cullFace(gl.BACK);
     
     var program = compileShaderProgram(gl, shaderResources);
     gl.useProgram(program);
