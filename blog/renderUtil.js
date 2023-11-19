@@ -79,6 +79,7 @@ class RenderObject {
 
         this.vertCount = 0;
         this.indexCount = 0;
+        this.vboOffset  = 0;
     }
 }
 
