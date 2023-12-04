@@ -19,7 +19,6 @@ var drawCalls;
 let deltaTime;
 
 var VBO;
-var TCBO;
 var IBO;
 
 var positionAttribLocation;

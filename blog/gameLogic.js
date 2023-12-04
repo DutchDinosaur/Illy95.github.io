@@ -17,7 +17,6 @@ var flightCamMovement = function(gl){
         glMatrix.vec2.mul(mouseDelta,mouseDelta,[.01,.01]);
         glMatrix.vec2.add(angles,angles, mouseDelta);
         glMatrix.vec3.rotateY(cameraForward,cameraForward,[0,0,0],-mouseDelta[0])
-
     }
     lastMouseValue = mouseDown;
     mouseLastPos = mousePosition;
