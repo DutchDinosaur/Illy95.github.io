@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> hex tanslator </title>
+        <link rel="icon" type="image/vnd.microsoft.icon" href="icon.ico">
+    </head>
+    <body onload="Initialize()">
+        <textarea id="text" name="input" size="200" style="height:200px; text-align: top;">type here</textarea><br>
+        <a href="#" id="hex">[Translate to hex]</a><a href="#" id="string">[Translate to string]</a><a href="#" id="morse">[Translate to morse]</a>
+
+        <script type="text/javascript">
+
+        const morseCode = {
+            "A": ".-",
+            "B": "-...",
+            "C": "-.-.",
+            "D": "-..",
+            "E": ".",
+            "F": "..-.",
+            "G": "--.",
+            "H": "....",
+            "I": "..",
+            "J": ".---",
+            "K": "-.-",
+            "L": ".-..",
+            "M": "--",
+            "N": "-.",
+            "O": "---",
+            "P": ".--.",
+            "Q": "--.-",
+            "R": ".-.",
+            "S": "...",
+            "T": "-",
+            "U": "..-",
+            "W": ".--",
+            "X": "-..-",
+            "Y": "-.--",
+            "Z": "--.."
+        }
+        const convertToMorse = (str) => {
+        return str.toUpperCase().split("").map(el => {
+            return morseCode[el] ? morseCode[el] : el;
+        }).join("");
+        };
+
+        function fromHex(hex){
+            return decodeURIComponent(hex.replace(/(..)/g,'%$1'));
+        }
+
+        function toHex(str){
+            return Array.from(str).map(c => 
+                c.charCodeAt(0) < 128 ? c.charCodeAt(0).toString(16) : 
+                encodeURIComponent(c).replace(/\%/g,'').toLowerCase()
+            ).join('');
+        }
+
+        var textField = document.getElementById('text');
+        document.getElementById('hex').addEventListener("click", function(event) {
+            textField.value = toHex(textField.value);
+        });
+        document.getElementById('string').addEventListener("click", function(event) {
+            textField.value = fromHex(textField.value);
+        })
+        document.getElementById('morse').addEventListener("click", function(event) {
+            textField.value = convertToMorse(textField.value);
+        })
+        </script>
+    </body>
+</html>

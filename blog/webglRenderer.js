@@ -2,22 +2,30 @@ var matWorldUniformLocation;
 var objectMatrix;
 var viewMatrix;
 
-var cameraPosition = [0,1,0];
-var cameraLookat = [0,1,0];
-var cameraUp = [0,1,0];
-
 var shaders = ['shaders/vertexShader.glsl', 'shaders/fragmentShader.glsl'];
 var shaderTypes = ['vertex', 'fragment'];
 var shaderResources;
-var models = ['juce.json'];
+var models = ['juce.json', 'fish.json'];
 var modelResources;
-var textures = ['spitsDrink.png'];
+var textures = ['spitsDrink.png', 'fish.png'];
 var textureResources;
 
+var renderObjects;
 var gameObjects;
 
+//diagnostics
 var resourceCount;
 var drawCalls;
+let deltaTime;
+
+var VBO;
+var TCBO;
+var IBO;
+
+var positionAttribLocation;
+var texCoordsAttribLocation;
+var objectUniformLocation;
+var cameraUniformLocation;
 
 var Initialize = function () {
     resourceCount = models.length + textures.length + shaders.length;
@@ -51,86 +59,72 @@ var Initialize = function () {
     }
 }
 
-var compileShader = function (shaderSource,shaderType,gl) {
-    var shader = gl.createShader(shaderType);
-    gl.shaderSource(shader, shaderSource);
-    gl.compileShader(shader);
-    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS))
-        console.error('shader comp error:', gl.getShaderInfoLog(shader));
-    return shader;
-}
+var generateVBOs = function (gl,renderObject) {
 
-var compileShaderProgram = function (gl,shaderResources) {
-    var compiledShaders = new Array(shaderResources.length);
-    for (let i = 0; i < shaderResources.length; i++) 
-        compiledShaders[i] = compileShader(shaderResources[i], (shaderTypes[i] == "vertex") ? gl.VERTEX_SHADER : gl.FRAGMENT_SHADER ,gl);
+    var vbo = [];
+    var ibo = [];
+    var VBOOffset = 0;
+    var indexOffset = 0;
+    for (let o = 0; o < renderObject.length; o++) {
+        var Vertices = renderObject[o].model.meshes[0].vertices;
+        var TexCoords = renderObject[o].model.meshes[0].texturecoords[0];
 
-    var program = gl.createProgram();
-    compiledShaders.forEach(shader => gl.attachShader(program, shader));
-    gl.linkProgram(program);
-    if (!gl.getProgramParameter(program, gl.LINK_STATUS))
-        console.error('shader program linking error:', gl.getProgramInfoLog(program));
+        var objectVBO = new Float32Array(Vertices.length + TexCoords.length);
+        var vboIndex = 0;
+        var TCIndex = 0;
+        for (let v = 0; v < Vertices.length; v += 3) {
+            objectVBO[vboIndex] = Vertices[v];
+            objectVBO[vboIndex+1] = Vertices[v+1];
+            objectVBO[vboIndex+2] = Vertices[v+2];
+            objectVBO[vboIndex+3] = TexCoords[TCIndex];
+            objectVBO[vboIndex+4] = TexCoords[TCIndex+1];
+            TCIndex += 2;
+            vboIndex += 5;
+        }
 
-    gl.validateProgram(program);
-    if (!gl.getProgramParameter(program, gl.VALIDATE_STATUS))
-        console.error('shader program validating error:', gl.getProgramInfoLog(program));
+        var objectIBO = [].concat.apply([], renderObject[o].model.meshes[0].faces);
+        if (indexOffset != 0) for (let i = 0; i < objectIBO.length; i++) objectIBO[i] += indexOffset/3;
 
-    return program;
-}
+        renderObject[o].indexCount = objectIBO.length;
+        renderObject[o].vertCount = Vertices.length;
+        renderObject[o].vboOffset = VBOOffset * Uint16Array.BYTES_PER_ELEMENT;
+        VBOOffset += objectIBO.length;
+        indexOffset += Vertices.length;
 
-var gpuBuffer = function (gl,program,Vertices,Indices,TexCoords) {
-    var VertexBufferObject = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, VertexBufferObject);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(Vertices), gl.STATIC_DRAW);
+        vbo = [].concat.apply(vbo,objectVBO);
+        ibo = [].concat.apply(ibo,objectIBO);
+    }
 
-    var IndexBufferObject = gl.createBuffer();
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, IndexBufferObject);
-    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(Indices), gl.STATIC_DRAW);
+    VBO = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, VBO);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vbo), gl.STATIC_DRAW);
 
-    var TexCoordBufferObject = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, TexCoordBufferObject);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(TexCoords), gl.STATIC_DRAW);
+    IBO = gl.createBuffer();
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, IBO);
+    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(ibo), gl.STATIC_DRAW);
 
-    gl.bindBuffer(gl.ARRAY_BUFFER, VertexBufferObject);
-    var positionAttribLocation = gl.getAttribLocation(program, 'vertPosition');
     gl.vertexAttribPointer(
         positionAttribLocation, //location
         3, //number
         gl.FLOAT, // type
         gl.FALSE, //normalized
-        3 * Float32Array.BYTES_PER_ELEMENT, //size
+        5 * Float32Array.BYTES_PER_ELEMENT, //size
         0 //offset
     );
-    gl.enableVertexAttribArray(positionAttribLocation);
 
-    gl.bindBuffer(gl.ARRAY_BUFFER, TexCoordBufferObject);
-    var texCoordsAttribLocation = gl.getAttribLocation(program, 'vertTexCoord');
     gl.vertexAttribPointer(
         texCoordsAttribLocation, //location
         2, //number
         gl.FLOAT, //type
         gl.FALSE, //normalized
-        2 * Float32Array.BYTES_PER_ELEMENT, //size
-        0 //offset
+        5 * Float32Array.BYTES_PER_ELEMENT, //size
+        3 * Float32Array.BYTES_PER_ELEMENT //offset
     );
-    gl.enableVertexAttribArray(texCoordsAttribLocation);
 }
 
-var bindTexture = function(gl,tex) {
-    var Texture = gl.createTexture();
-    gl.bindTexture(gl.TEXTURE_2D, Texture);
-    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
-    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);
-    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
-    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);
-    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-    gl.texImage2D(
-		gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA,
-		gl.UNSIGNED_BYTE,
-		tex
-	);
-    gl.bindTexture(gl.TEXTURE_2D, null);
-    return Texture;
+var setAttributes = function (gl) {
+    gl.enableVertexAttribArray(positionAttribLocation);
+    gl.enableVertexAttribArray(texCoordsAttribLocation);
 }
 
 var setTransformationMatrecies = function(gl,program, fov, aspect, clipNear, clipFar) {
@@ -139,19 +133,13 @@ var setTransformationMatrecies = function(gl,program, fov, aspect, clipNear, cli
 	gl.uniformMatrix4fv(gl.getUniformLocation(program, 'mObject'), gl.FALSE, objectMatrix);
 
 	viewMatrix = new Float32Array(16);
-	glMatrix.mat4.lookAt(viewMatrix, cameraPosition, cameraLookat, cameraUp);
+	glMatrix.mat4.lookAt(viewMatrix, [0,0,0], [0,0,1], [0,1,0]);
 	gl.uniformMatrix4fv(gl.getUniformLocation(program, 'mView'), gl.FALSE, viewMatrix);
 
 	var projMatrix = new Float32Array(16);
 	glMatrix.mat4.perspective(projMatrix, glMatrix.glMatrix.toRadian(fov), aspect, clipNear, clipFar);
 	gl.uniformMatrix4fv(gl.getUniformLocation(program, 'mProj'), gl.FALSE, projMatrix);
 }
-
-var mooveCamera = function (gl, program, position, lookat, up) {
-	glMatrix.mat4.lookAt(viewMatrix, position, lookat, up);
-	gl.uniformMatrix4fv(gl.getUniformLocation(program, 'mView'), gl.FALSE, viewMatrix);
-}
-
 
 var runRenderer = function () {
     var canvas = document.getElementById('webglCanvas');
@@ -167,74 +155,63 @@ var runRenderer = function () {
     
     var program = compileShaderProgram(gl, shaderResources);
     gl.useProgram(program);
-    setTransformationMatrecies(gl,program, 70, canvas.clientWidth / canvas.clientHeight, 0.01, 10000.0, [0, -.2, -1], [0, .2, 0], [0, 1, 0]);
+
+    positionAttribLocation = gl.getAttribLocation(program, 'vertPosition');
+    texCoordsAttribLocation = gl.getAttribLocation(program, 'vertTexCoord');
+    objectUniformLocation = gl.getUniformLocation(program, 'mObject');
+    cameraUniformLocation = gl.getUniformLocation(program, 'mView');
+    setTransformationMatrecies(gl,program, 70, canvas.clientWidth / canvas.clientHeight, 0.01, 10000.0);
     
-    gameObjects = [
-        new GameObject(modelResources[0],textureResources[0],[0,0,0]),
-        new GameObject(modelResources[0],textureResources[0],[.3,0,-1]),
-        new GameObject(modelResources[0],textureResources[0],[.7,0,0]),
-        new GameObject(null,null,[0,0,0],function() {})
+    renderObjects = [
+        new RenderObject(modelResources[0],initializeTexture(gl,textureResources[0]),program, "drink"),
+        new RenderObject(modelResources[1],initializeTexture(gl,textureResources[1]),program, "fish")
     ];
-    
-    var loop = function () {
+
+    generateVBOs(gl,renderObjects);
+
+    //KEEP THEESE SORTED
+    gameObjects = [
+        new GameObject(1,[0,0,0]),
+        new GameObject(0,[.3,0,-1]),
+        new GameObject(0,[.7,1,0]),
+        new GameObject(null,[0,0,0],function() {})
+    ];
+
+    let then = 0;
+    var loop = function (now) {
         drawCalls = 0;
+        now *= 0.001;
+        deltaTime = now - then;
+        then = now;
 
         //GAME LOGIC
         gameObjects.forEach(object => {
             if (object.update != null) object.update();
         });
         
-        mooveCamera(gl, program, [0, -.2, -1], [0, .2, 1], [0, 1, 0]);
+        flightCamMovement(gl);
 
         gl.clearColor(0, 0, 0, 0.0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-
+        var lastRenderObject = null;
         gameObjects.forEach(object => {
-            if (object.model == null) return;
-
-            var Vertices = object.model.meshes[0].vertices;
-            var Indices = [].concat.apply([], object.model.meshes[0].faces);
-            var TexCoords = object.model.meshes[0].texturecoords[0];
-            gpuBuffer(gl,program,Vertices,Indices,TexCoords);
-
-            var Texture = bindTexture(gl,object.texture);
-            gl.bindTexture(gl.TEXTURE_2D,Texture);
-            gl.activeTexture(gl.TEXTURE0);
-
-            gl.uniformMatrix4fv(gl.getUniformLocation(program, 'mObject'), gl.FALSE, object.transformMatrix);
-            
-            gl.drawElements(gl.TRIANGLES, Indices.length, gl.UNSIGNED_SHORT, 0);
+            if (object.renderObject == null || object.active == false) return;
+            if (object.renderObject != lastRenderObject) {
+                gl.bindTexture(gl.TEXTURE_2D,renderObjects[object.renderObject].texture);
+                gl.activeTexture(gl.TEXTURE0);
+                setAttributes(gl);
+                //gl.useProgram(object.program);
+                lastRenderObject = object.renderObject;
+            }
+            gl.uniformMatrix4fv(objectUniformLocation, gl.FALSE, object.transformMatrix);
+            gl.drawElements(gl.TRIANGLES, renderObjects[object.renderObject].indexCount, gl.UNSIGNED_SHORT, renderObjects[object.renderObject].vboOffset);
             drawCalls++;
         });
-
         requestAnimationFrame(loop);
     }
     requestAnimationFrame(loop);
 }
 
-class GameObject {
-    constructor(model,texture,position,update) {
-        this.model = model
-        this.transformMatrix = new Float32Array(16);
-        glMatrix.mat4.identity(this.transformMatrix);
-        glMatrix.mat4.translate(this.transformMatrix,this.transformMatrix,position);
-        this.texture = texture;
-        this.update = update;
-    }
-
-    translate(position) {
-        glMatrix.mat4.translate(this.transformMatrix,this.transformMatrix,position);
-    }
-
-    scale(scale) {
-        glMatrix.mat4.scale(this.transformMatrix,this.transformMatrix,scale);
-    }
-
-    rotate(angle,axis){
-        glMatrix.mat4.rotate(this.transformMatrix,this.transformMatrix,angle,axis);
-    }
-}
-
 //test with: python3 -m http.server @ http://localhost:8000/blog/webglTest.html
-//generate json models .\\assimp2json.exe 'source.fbx' 'destination.json'
+//generate json models E:\Program Files\assimp2json-2.0-win32\Release .\\assimp2json.exe 'source.fbx' 'destination.json' 
