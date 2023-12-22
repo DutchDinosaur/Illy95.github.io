@@ -120,9 +120,7 @@ var generateVBOs = function (gl,renderObject) {
         5 * Float32Array.BYTES_PER_ELEMENT, //size
         3 * Float32Array.BYTES_PER_ELEMENT //offset
     );
-}
 
-var setAttributes = function (gl) {
     gl.enableVertexAttribArray(positionAttribLocation);
     gl.enableVertexAttribArray(texCoordsAttribLocation);
 }
@@ -175,6 +173,7 @@ var runRenderer = function () {
         new GameObject(0,[.3,0,-1]),
         new GameObject(0,[.7,1,0]),
         new GameObject(null,[0,0,0],function() {})
+        
     ];
 
     let then = 0;
@@ -200,7 +199,6 @@ var runRenderer = function () {
             if (object.renderObject != lastRenderObject) {
                 gl.bindTexture(gl.TEXTURE_2D,renderObjects[object.renderObject].texture);
                 gl.activeTexture(gl.TEXTURE0);
-                setAttributes(gl);
                 //gl.useProgram(object.program);
                 lastRenderObject = object.renderObject;
             }
