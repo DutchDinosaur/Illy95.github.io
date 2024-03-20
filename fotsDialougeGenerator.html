@@ -6,36 +6,38 @@
         <style>
             @font-face { font-family: Whacky_Joe; src: url('Whacky_Joe.ttf'); } 
             body {
-               font-family: Whacky_Joe
+               font-family: Whacky_Joe;
+               color: #382919;
+               background-image: url("UITextures/fotsbg.png");
             }
 
-            input { font-family: Whacky_Joe }
-            textarea { font-family: Whacky_Joe }
+            input { font-family: Whacky_Joe;color: #382919; background-color: #c9d9af; }
+            textarea { font-family: Whacky_Joe;color: #382919; background-color: #c9d9af;}
           </style>
     </head>
     <body >
-        raw json:  <a href="#" id="import">[IMPORT] </a><a href="#" id="update">[UPDATE] </a><br>
+        raw json:  <a href="#!" id="import">[IMPORT] </a><a href="#!" id="update">[UPDATE] </a><br>
         <textarea id="text" name="input" size="400" style="height:200px; text-align: top;">paste here</textarea><br>
-        filename: <input id="filename" value="dialogue.json"><a href="#" id="export"> [EXPORT]</a><br><br>
+        filename: <input id="filename" value="dialogue.json"><a href="#!" id="export"> [EXPORT]</a><br><br>
         
         randomize dialogue: <input type="checkbox" id="randomize"><br>
         skippable dialogue: <input type="checkbox" id="skippable"><br><br>
 
-        Dialogue sections: <a href="#" id="add">[+]</a> <a href="#" id="remove">[-]</a><br><br>
+        Dialogue sections: <a href="#!" id="add">[+]</a> <a href="#!" id="remove">[-]</a><br><br>
 
         <div id="sections"></div>
 
         <br>Dialogue branching: <input type="checkbox" id="branches"><br>
-        Replies: <a href="#" id="repadd">[+]</a> <a href="#" id="repremove">[-]</a><br><br>
+        Replies: <a href="#!" id="repadd">[+]</a> <a href="#!" id="repremove">[-]</a><br><br>
 
-        <div id="sections"></div>
-
+        <div id="branchsections"></div>
         
-
-
         <script type="text/javascript">
             var dialougeObject;
             var sectionCount = 0;
+            var branchCount = 0;
+            var branchSectionCounts = new Array();
+            branchSectionCounts[0] = 0;
 
             var textField = document.getElementById('text');
             var randomizeBox = document.getElementById('randomize');
@@ -45,85 +47,179 @@
 
             function importText(textFile) {
                 removeAllSections();
+                removeAllBranches();
                 dialougeObject = JSON.parse(textField.value);
                 randomizeBox.checked  = dialougeObject.randomString;
                 skippableBox.checked  = dialougeObject.Skippable;
                 branchBox.checked = dialougeObject.Branches;
                 console.log(dialougeObject);
 
+                branchSectionCounts = new Array();
+                branchSectionCounts[0] = 0;
+
                 for (let i = 0; i < (dialougeObject.sections.length); i++) {
                     addSectionInput(dialougeObject.sections[i].name,dialougeObject.sections[i].text,
                     JSON.stringify(dialougeObject.sections[i].dialougePosition),
-                    JSON.stringify(dialougeObject.sections[i].dialougeRotation));
+                    JSON.stringify(dialougeObject.sections[i].dialougeRotation),
+                    dialougeObject.sections[i].dialougeFOVMod,
+                    dialougeObject.sections[i].centerCameraDistance,
+                    "sections",
+                    sectionCount,
+                    (sectionCount + 1));
+                    sectionCount++;
                 }
 
+                for (let i = 0; i < (dialougeObject.replies.length); i++) {
+                    addBranchInput(dialougeObject.replies[i],branchCount);
+                    branchCount++;
+
+                    branchSectionCounts[i] = 0;
+
+                    for (let a = 0; a < (dialougeObject.awnsers[i].sections.length); a++) {
+                        addSectionInput(dialougeObject.awnsers[i].sections[a].name,dialougeObject.awnsers[i].sections[a].text,
+                        JSON.stringify(dialougeObject.awnsers[i].sections[a].dialougePosition),
+                        JSON.stringify(dialougeObject.awnsers[i].sections[a].dialougeRotation),
+                        dialougeObject.awnsers[i].sections[a].dialougeFOVMod,
+                        dialougeObject.awnsers[i].sections[a].centerCameraDistance,
+                        "replies" + (i),
+                        a,
+                        i + "/" + a);
+                        branchSectionCounts[i]++;
+                    }
+                }
             }
 
             function addBlankSection() {
-                addSectionInput("name","dialogue",'{"x":0,"y":0,"z":0}','{"x":0,"y":0,"z":0,"w":0}');
+                addSectionInput("name","dialogue",'{"x":0,"y":0,"z":0}','{"x":0,"y":0,"z":0,"w":0}',1,5,"sections", sectionCount,sectionCount + 1);
+                sectionCount++;
+                return false;
             }
 
-            function addSectionInput(Name, Text, Pos, Rot) {
+            function addBlankResponseSection(Branch, parent, number) {
+                addSectionInput("name","dialogue",'{"x":0,"y":0,"z":0}','{"x":0,"y":0,"z":0,"w":0}',1,5, parent, number,Branch+"/"+number);
+                branchSectionCounts[Branch]++;
+            }
+
+            function addBlankBranch() {
+                branchSectionCounts[branchSectionCounts.length] = 0;
+                addBranchInput("the player's response",branchCount);
+                branchCount++;
+            }
+
+            function addSectionInput(Name, Text, Pos, Rot, FOV, CCD, parent, pagenumber, id) {
                 const div = document.createElement('div');
-                div.id = ('section' + (sectionCount + 1));
-
-                var text = document.createTextNode("NAME: ");
-                div.appendChild(text);
-
+                div.id = ('section' + id);
+                
+                var text = document.createTextNode("_____________________________________________________________(" + pagenumber + ")"); div.appendChild(text);
+                var br = document.createElement('br'); div.appendChild(br);
+                var text = document.createTextNode("NAME: "); div.appendChild(text);
                 var name = document.createElement("input");
                 name.type = "text";
                 name.value = Name;
-                name.id = ('name' + (sectionCount + 1));
+                name.id = ('name' + id); 
                 div.appendChild(name);
 
+                var text = document.createTextNode(" FOV: "); div.appendChild(text);
+                var fov = document.createElement("input");
+                fov.type = "text";
+                fov.value = FOV;
+                fov.id = ('fov' + id);
+                div.appendChild(fov);
 
-                var text = document.createTextNode(" POS: ");
-                div.appendChild(text);
+                var text = document.createTextNode(" CCD: "); div.appendChild(text);
+
+                var ccd = document.createElement("input");
+                ccd.type = "text";
+                ccd.value = CCD;
+                ccd.id = ('ccd' + id);
+                div.appendChild(ccd);
+
+                var br = document.createElement('br'); div.appendChild(br);
+                var text = document.createTextNode("______________________POS: "); div.appendChild(text);
 
                 var pos = document.createElement("input");
                 pos.type = "text";
                 pos.value = Pos;
-                pos.id = ('pos' + (sectionCount + 1));
+                pos.id = ('pos' + id);
                 div.appendChild(pos);
 
-                var text = document.createTextNode(" ROT: ");
-                div.appendChild(text);
+                var text = document.createTextNode(" ROT: "); div.appendChild(text);
 
                 var rot = document.createElement("input");
                 rot.type = "text";
                 rot.value = Rot;
-                rot.id = ('rot' + (sectionCount + 1));
+                rot.id = ('rot' + id);
                 div.appendChild(rot);
 
-
-                var br = document.createElement('br');
-                div.appendChild(br);
-
-                var text = document.createTextNode("TEXT: ");
-                div.appendChild(text);
+                var br = document.createElement('br'); div.appendChild(br);
+                var text = document.createTextNode("TEXT: "); div.appendChild(text);
 
                 var Dialogue = document.createElement("textarea");
                 Dialogue.type = "text";
-                Dialogue.size = 200;
+                Dialogue.style = "height:100px; width:1000px;";
                 Dialogue.value = Text;
-                Dialogue.id = ('text' + (sectionCount + 1));
+                Dialogue.id = ('text' + id);
                 div.appendChild(Dialogue);
 
 
-
                 var br = document.createElement('br');
                 div.appendChild(br);
                 var br = document.createElement('br');
                 div.appendChild(br);
 
-                const sectionsdiv = document.getElementById("sections");
+                const sectionsdiv = document.getElementById(parent);
                 sectionsdiv.appendChild(div);
+            }
 
-                sectionCount++;
+            function addBranchInput(Awnser, branch) {
+                const branchdiv = document.createElement('div');
+                branchdiv.id = ('branch' + (branchCount));
+
+                var text = document.createTextNode("ANSWER: "); branchdiv.appendChild(text);
+
+                var Dialogue = document.createElement("input");
+                Dialogue.type = "text";
+                Dialogue.value = Awnser;
+                Dialogue.id = ('awnser' + (branchCount));
+                branchdiv.appendChild(Dialogue);
+
+                var br = document.createElement('br'); branchdiv.appendChild(br);
+                var text = document.createTextNode("Response sections: "); branchdiv.appendChild(text);
+
+                var plus = document.createElement('a');
+                plus.text = "[+]";
+                plus.href = "#!";
+                plus.addEventListener("click", function (event) { addBlankResponseSection(branch,('replies' + branch),branchSectionCounts[branch]) });
+                branchdiv.appendChild(plus);
+                
+                var minus = document.createElement('a');
+                minus.text = "[-]";
+                minus.href = "#!";
+                minus.addEventListener("click", function (event) { removebranchSection(branch)});
+                branchdiv.appendChild(minus);
+
+                var br = document.createElement('br'); branchdiv.appendChild(br);
+                var br = document.createElement('br'); branchdiv.appendChild(br);
+
+                var div = document.createElement('div');
+                div.id = ('replies' + (branchCount));
+                branchdiv.appendChild(div);
+
+                var br = document.createElement('br'); branchdiv.appendChild(br);
+                var br = document.createElement('br'); branchdiv.appendChild(br);
+
+                var text = document.createTextNode("_______________________________________________________________"); branchdiv.appendChild(text);
+
+                var br = document.createElement('br'); branchdiv.appendChild(br);
+
+                const branchesdiv = document.getElementById("branchsections");
+                branchesdiv.appendChild(branchdiv);
             }
 
             function updateDialouge() {
                 var dialougeSections = new Array();
+                var replies = new Array();
+                var sections = new Array();
 
                 dialougeObject.randomString = randomizeBox.checked;
                 dialougeObject.Skippable = skippableBox.checked;
@@ -133,27 +229,52 @@
 
                     var pos = JSON.parse(document.getElementById("pos" + (i + 1)).value);
                     var rot = JSON.parse(document.getElementById("rot" + (i + 1)).value);
+                    var fov = document.getElementById("fov" + (i + 1)).value;
+                    var ccd = document.getElementById("ccd" + (i + 1)).value;
 
                     dialougeSections.push( {
                         "text" : document.getElementById("text" + (i + 1)).value,
                         "name" : document.getElementById("name" + (i + 1)).value,
-                        "centerCameraDistance" : 5,
-                        "dialougeFOVMod" : 1,
+                        "centerCameraDistance" : ccd,
+                        "dialougeFOVMod" : fov,
                         "dialougePosition" : pos,
                         "dialougeRotation" : rot
-                    } )
-
-                
-                    dialougeSections.push()
+                    } );
                 }
-
                 dialougeObject.sections = dialougeSections;
+
+                for (let i = 0; i < branchCount; i++) {
+                    var reply = document.getElementById("awnser" + (i)).value;
+                    replies.push(reply);
+
+                    var branchSections = new Array();
+                    for (let s = 0; s < branchSectionCounts[i]; s++) {
+                        var pos = JSON.parse(document.getElementById("pos" + (i + "/" + s)).value);
+                        var rot = JSON.parse(document.getElementById("rot" + (i + "/" + s)).value);
+                        var fov = document.getElementById("fov" + (i + "/" + s)).value;
+                        var ccd = document.getElementById("ccd" + (i + "/" + s)).value;
+
+                        branchSections.push( {
+                            "text" : document.getElementById("text" + (i + "/" + s)).value,
+                            "name" : document.getElementById("name" + (i + "/" + s)).value,
+                            "centerCameraDistance" : ccd,
+                            "dialougeFOVMod" : fov,
+                            "dialougePosition" : pos,
+                            "dialougeRotation" : rot
+                        } );
+                    }
+                    sections.push({"sections" : branchSections});
+                }
+                dialougeObject.replies = replies;
+                dialougeObject.awnsers = sections;
+
                 textField.value = JSON.stringify(dialougeObject);
+
+                console.log(dialougeObject);
             }
 
             function removeSectionInput() {
                 document.getElementById('section' + (sectionCount )).remove();
-
                 sectionCount--;
             }
 
@@ -163,14 +284,27 @@
                 sectionCount = 0;
             }
 
+            function removeAllBranches() {
+                const sectionsdiv = document.getElementById("branchsections");
+                sectionsdiv.innerHTML = "";
+                branchSectionCounts = new Array();
+                branchCount = 0;
+            }
+
+            function removeBranchInput() {
+                document.getElementById('branch' + (branchCount)).remove();
+                branchCount--;
+            }
+
+            function removebranchSection(branch) {
+                document.getElementById('section' + (branch) + "/" + (branchSectionCounts[branch] - 1)).remove();
+                branchSectionCounts[branch]--;
+                sectionCount--;
+            }
+
             function createFile(content) {
-                //create a file and put the content, name and type
                 var file = new File(["\ufeff" + content], filename.value, { type: "text/plain:charset=UTF-8" });
-
-                //create a ObjectURL in order to download the created file
                 url = window.URL.createObjectURL(file);
-
-                //create a hidden link and set the href and click it
                 var a = document.createElement("a");
                 a.style = "display: none";
                 a.href = url;
@@ -193,6 +327,12 @@
             });
             document.getElementById('remove').addEventListener("click", function (event) {
                 removeSectionInput();
+            });
+            document.getElementById('repadd').addEventListener("click", function (event) {
+                addBlankBranch();
+            });
+            document.getElementById('repremove').addEventListener("click", function (event) {
+                removeBranchInput();
             });
         </script>
     </body>
