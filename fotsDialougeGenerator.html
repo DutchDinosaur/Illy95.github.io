@@ -17,7 +17,7 @@
     </head>
     <body >
         raw json:  <a href="#!" id="import">[IMPORT] </a><a href="#!" id="update">[UPDATE] </a><br>
-        <textarea id="text" name="input" size="400" style="height:200px; text-align: top;">paste here</textarea><br>
+        <textarea id="text" name="input" size="400" style="height:200px; text-align: top;">{"randomString":false,"Skippable":true,"sections":[{"text":"dialogue","name":"name","centerCameraDistance":"5","dialougeFOVMod":"1","dialougePosition":{"x":0,"y":0,"z":0},"dialougeRotation":{"x":0,"y":0,"z":0,"w":0}}],"Branches":false,"replies":[],"awnsers":[]}</textarea><br>
         filename: <input id="filename" value="dialogue.json"><a href="#!" id="export"> [EXPORT]</a><br><br>
         
         randomize dialogue: <input type="checkbox" id="randomize"><br>
@@ -292,7 +292,7 @@
             }
 
             function removeBranchInput() {
-                document.getElementById('branch' + (branchCount)).remove();
+                document.getElementById('branch' + (branchCount - 1)).remove();
                 branchCount--;
             }
 
