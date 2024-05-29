@@ -5,9 +5,9 @@ var viewMatrix;
 var shaders = ['shaders/vertexShader.glsl', 'shaders/fragmentShader.glsl'];
 var shaderTypes = ['vertex', 'fragment'];
 var shaderResources;
-var models = ['juce.json', 'fish.json', 'pond.json'];
+var models = ['pond.json'];
 var modelResources;
-var textures = ['spitsDrink.png', 'fish.png', 'pondtex.png'];
+var textures = ['pondtex.png'];
 var textureResources;
 
 var renderObjects;
@@ -25,6 +25,11 @@ var positionAttribLocation;
 var texCoordsAttribLocation;
 var objectUniformLocation;
 var cameraUniformLocation;
+
+//KEEP THEESE SORTED
+gameObjects = [
+    new GameObject(0,[0,-1,0])
+];
 
 var Initialize = function () {
     resourceCount = models.length + textures.length + shaders.length;
@@ -130,7 +135,7 @@ var setTransformationMatrecies = function(gl,program, fov, aspect, clipNear, cli
 	gl.uniformMatrix4fv(gl.getUniformLocation(program, 'mObject'), gl.FALSE, objectMatrix);
 
 	viewMatrix = new Float32Array(16);
-	glMatrix.mat4.lookAt(viewMatrix, [0,0,0], [0,0,1], [0,1,0]);
+	glMatrix.mat4.lookAt(viewMatrix, [5,2,3], [0,0,0], [0,1,0]);
 	gl.uniformMatrix4fv(gl.getUniformLocation(program, 'mView'), gl.FALSE, viewMatrix);
 
 	var projMatrix = new Float32Array(16);
@@ -140,7 +145,7 @@ var setTransformationMatrecies = function(gl,program, fov, aspect, clipNear, cli
 
 var runRenderer = function () {
     var canvas = document.getElementById('webglCanvas');
-    var gl = canvas.getContext('webgl');
+    var gl = canvas.getContext('webgl', { antialias: false } );
     if (!gl) gl = canvas.getContext('experimental-webgl');
 
     gl.enable(gl.DEPTH_TEST);
@@ -160,21 +165,10 @@ var runRenderer = function () {
     setTransformationMatrecies(gl,program, 70, canvas.clientWidth / canvas.clientHeight, 0.01, 10000.0);
     
     renderObjects = [
-        new RenderObject(modelResources[0],initializeTexture(gl,textureResources[0]),program, "drink"),
-        new RenderObject(modelResources[1],initializeTexture(gl,textureResources[1]),program, "fish"),
-        new RenderObject(modelResources[2],initializeTexture(gl,textureResources[2]),program, "pond")
+        new RenderObject(modelResources[0],initializeTexture(gl,textureResources[0]),program, "pond")
     ];
 
     generateVBOs(gl,renderObjects);
-
-    //KEEP THEESE SORTED
-    gameObjects = [
-        new GameObject(1,[0,0,0]),
-        new GameObject(0,[.3,0,-1]),
-        new GameObject(0,[.7,1,0]),
-        new GameObject(null,[0,0,0],function() {}),
-        new GameObject(2,[.7,-1,0])
-    ];
 
     let then = 0;
     var loop = function (now) {
