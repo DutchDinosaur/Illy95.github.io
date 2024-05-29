@@ -162,7 +162,7 @@ var runRenderer = function () {
     texCoordsAttribLocation = gl.getAttribLocation(program, 'vertTexCoord');
     objectUniformLocation = gl.getUniformLocation(program, 'mObject');
     cameraUniformLocation = gl.getUniformLocation(program, 'mView');
-    setTransformationMatrecies(gl,program, 70, canvas.clientWidth / canvas.clientHeight, 0.01, 10000.0);
+    setTransformationMatrecies(gl,program, 70, canvas.clientWidth / canvas.clientHeight, 0.1, 1000.0);
     
     renderObjects = [
         new RenderObject(modelResources[0],initializeTexture(gl,textureResources[0]),program, "pond")
