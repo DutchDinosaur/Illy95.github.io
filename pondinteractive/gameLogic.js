@@ -1,14 +1,12 @@
-var gameManager = function(){
-
-}
-
+//mouse input
 var swipeDelta = 0;
-
+var lastTouch;
 var lastMouseValue;
 var mouseStartPos;
 var mouseLastPos;
 var angles = glMatrix.vec2.create();
-var flightCamMovement = function(gl){
+
+var rotateCam = function(gl){
 
     if(mouseDown) {
         if (mouseDown != lastMouseValue) {
@@ -27,7 +25,6 @@ var flightCamMovement = function(gl){
 
         var rotationDelta = mouseDelta[0] + swipeDelta / -100;
         swipeDelta = 0;
-        console.log(rotationDelta);
 
         gameObjects[0].rotate(rotationDelta,[0,1,0]);
         
@@ -39,6 +36,8 @@ var flightCamMovement = function(gl){
         glMatrix.mat4.lookAt(viewMatrix, camPos, lookat, [0,1,0]);
     }
     gl.uniformMatrix4fv(cameraUniformLocation, gl.FALSE, viewMatrix);
+
+    console.log(lastMouseValue);
 }
 
 var camPos = glMatrix.vec3.fromValues(5,2,3);
@@ -50,12 +49,6 @@ var mouseDown = 0;
 
 const handleMovement = (e) => {
     switch (e.key) {
-        // case 'a':
-        //     glMatrix.vec3.add(movementVector,movementVector,[1,0,0]);
-        //     break;
-        // case 'd':
-        //     glMatrix.vec3.add(movementVector,movementVector,[-1,0,0]);
-        //     break;
         case 'w':
             glMatrix.vec3.add(movementVector,movementVector,[-1,0,0]);
             break;
@@ -99,21 +92,14 @@ document.onmousemove = function handleMouseMove(e) {
     mousePosition = glMatrix.vec2.fromValues(e.pageX, e.pageY);
 }
 
-document.body.onmousedown = function() { 
-    ++mouseDown;
-}
-document.body.onmouseup = function() {
-    --mouseDown;
-}
-document.body.ontouchend = function() {
-    --mouseDown;
-}
-
-var lastTouch;
+document.body.onmousedown = function() { mouseDown = 1;}
+document.body.onmouseup = function() { mouseDown = 0;}
+window.addEventListener('mouseup', () => mouseDown = 0);
+document.body.ontouchend = function() { mouseDown = 0;}
 
 document.body.ontouchstart = function touchStart(event) {
     lastTouch = event.touches[0].pageX;
-    ++mouseDown;
+    mouseDown = 1;
 }
 
 document.body.ontouchmove = function touchMove(event) {

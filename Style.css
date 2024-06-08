@@ -204,10 +204,15 @@ li {
 }
 
 #WebGLFrame {
+    pointer-events: none;
     padding-top: 33px;
     position: absolute;
     width: 858px;
     height: 858px;
+}
+
+#InfoFrame {
+    pointer-events: none;
 }
 
 #ProjectInfoWindow {

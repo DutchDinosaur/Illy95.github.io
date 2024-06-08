@@ -17,6 +17,7 @@ var gameObjects;
 var resourceCount;
 var drawCalls;
 let deltaTime;
+let targetFPS = 60;
 
 var VBO;
 var IBO;
@@ -170,6 +171,8 @@ var runRenderer = function () {
 
     generateVBOs(gl,renderObjects);
 
+    gameObjects[0].update = () => {rotateCam(gl)};
+
     let then = 0;
     var loop = function (now) {
         drawCalls = 0;
@@ -182,7 +185,7 @@ var runRenderer = function () {
             if (object.update != null) object.update();
         });
         
-        flightCamMovement(gl);
+        //rotateObject(gl);
 
         gl.clearColor(0, 0, 0, 0.0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
@@ -200,7 +203,10 @@ var runRenderer = function () {
             gl.drawElements(gl.TRIANGLES, renderObjects[object.renderObject].indexCount, gl.UNSIGNED_SHORT, renderObjects[object.renderObject].vboOffset);
             drawCalls++;
         });
-        requestAnimationFrame(loop);
+
+        setTimeout(() => {
+            requestAnimationFrame(loop);
+        }, 1000 / targetFPS);
     }
     requestAnimationFrame(loop);
 }
