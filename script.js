@@ -4,7 +4,7 @@ if (getUrlVars().ver == "1") {
 	var style = 1; 
 	var buttonsUrl = "url('UITextures2/"; 
 	var styleElement = document.getElementById('style');
-	styleElement.setAttribute('href', 'style2.css');
+	styleElement.setAttribute('href', 'Style2.css');
 }
 
 if(window.innerHeight < 650) {
