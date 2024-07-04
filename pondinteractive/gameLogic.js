@@ -6,7 +6,7 @@ var mouseStartPos;
 var mouseLastPos;
 var angles = glMatrix.vec2.create();
 
-var rotateCam = function(gl){
+var rotateCam = function(gl,object){
 
     if(mouseDown) {
         if (mouseDown != lastMouseValue) {
@@ -26,18 +26,28 @@ var rotateCam = function(gl){
         var rotationDelta = mouseDelta[0] + swipeDelta / -100;
         swipeDelta = 0;
 
-        gameObjects[0].rotate(rotationDelta,[0,1,0]);
+        gameObjects[object].rotate(rotationDelta,[0,1,0]);
         
-        // glMatrix.vec3.rotateY(movementVector,movementVector,[0,0,0],-angles[0]);
         glMatrix.vec3.add(camPos,camPos,glMatrix.vec3.scale(movementVector,movementVector,.1));
         glMatrix.vec3.zero(movementVector);
         var lookat = glMatrix.vec3.create();
-        //glMatrix.vec3.add(lookat,camPos,cameraForward);
         glMatrix.mat4.lookAt(viewMatrix, camPos, lookat, [0,1,0]);
     }
     gl.uniformMatrix4fv(cameraUniformLocation, gl.FALSE, viewMatrix);
+}
 
-    console.log(lastMouseValue);
+var playerController = function(robject) {
+
+    //uv is split into 8 floats, make function that positions on a grid based on frame index
+
+    //wasd movement
+    
+    //animate idle walking forwards and backwards
+
+    //flip uv based on direction
+
+    //camera follow and smooth
+
 }
 
 var camPos = glMatrix.vec3.fromValues(5,2,3);

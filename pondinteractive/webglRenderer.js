@@ -5,9 +5,9 @@ var viewMatrix;
 var shaders = ['shaders/vertexShader.glsl', 'shaders/fragmentShader.glsl'];
 var shaderTypes = ['vertex', 'fragment'];
 var shaderResources;
-var models = ['pond.json'];
+var models = ['pond.json','archie.json'];
 var modelResources;
-var textures = ['pondtex.png'];
+var textures = ['pondtex.png', 'archietex.png'];
 var textureResources;
 
 var renderObjects;
@@ -30,6 +30,7 @@ var cameraUniformLocation;
 //KEEP THEESE SORTED
 gameObjects = [
     new GameObject(0,[0,-1,0])
+    ,new GameObject(1,[0,1,0])
 ];
 
 var Initialize = function () {
@@ -167,11 +168,12 @@ var runRenderer = function () {
     
     renderObjects = [
         new RenderObject(modelResources[0],initializeTexture(gl,textureResources[0]),program, "pond")
+        ,new RenderObject(modelResources[1],initializeTexture(gl,textureResources[1]),program, "archie")
     ];
 
     generateVBOs(gl,renderObjects);
 
-    gameObjects[0].update = () => {rotateCam(gl)};
+    gameObjects[0].update = () => {rotateCam(gl,0)};
 
     let then = 0;
     var loop = function (now) {
@@ -185,8 +187,6 @@ var runRenderer = function () {
             if (object.update != null) object.update();
         });
         
-        //rotateObject(gl);
-
         gl.clearColor(0, 0, 0, 0.0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 

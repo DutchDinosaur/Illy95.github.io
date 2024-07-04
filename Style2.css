@@ -1,6 +1,7 @@
 body {
     background-color: #849599;
-    background-size: 192px 192px;
+    background-size: 2544px 1440px;
+    background-repeat:no-repeat;
     image-rendering: pixelated;
     margin: 0px;
     padding: 0px;
@@ -57,6 +58,14 @@ li {
     background: #ffffff;
 }
 
+#About2 ::-webkit-scrollbar-track {
+    background: #697990;
+}
+
+#About2 ::-webkit-scrollbar-thumb {
+    background: #663931;
+}
+
 #Works ::-webkit-scrollbar-track {
     background: #849599;
 }
@@ -84,27 +93,27 @@ li {
 .CloseWindow {
     background-size: 100% 100%;
     position: absolute;
-    top: 6px;
-    right: 15px;
-    width: 21px;
+    top: 0px;
+    right: 12px;
+    width: 30px;
     height: 21px;
 }
 
 .CloseWindow:hover {
-    background-image: url('UITextures/CloseWindowHover.png');
+    background-image: url('UITextures2/CloseWindowHover.png');
 }
 
 .Minimize {
     background-size: 100% 100%;
     position: absolute;
-    top: 6px;
+    top: 0px;
     right: 60px;
-    width: 21px;
+    width: 24px;
     height: 21px;
 }
 
 .Minimize:hover {
-    background-image: url('UITextures/MinimizeWindowHover.png');
+    background-image: url('UITextures2/MinimizeWindowHover.png');
 }
 
 .StartMenuItems {
@@ -174,7 +183,7 @@ li {
 }
 
 .CommisionsWindow {
-    background-image: url('UITextures/Commisions.png');
+    background-image: url('UITextures2/Commisions.png');
     background-size: 100% 100%;
     position: fixed;
     left: 12%;
@@ -184,11 +193,11 @@ li {
 }
 
 #CommisionsEmote {
-    background-image: url('UITextures/Commisions2.png');
+    background-image: url('UITextures2/Commisions2.png');
 }
 
 #Lemon {
-    background-image: url('UITextures/LemonSpin.png');
+    background-image: url('UITextures2/LemonSpin.png');
     background-size: 100% 100%;
     position: fixed;
     left: 12%;
@@ -198,7 +207,7 @@ li {
 }
 
 #WebGLWindow {
-    background-image: url('UITextures/WebGLWindow.png');
+    background-image: url('UITextures2/WebGLWindow.png');
     background-size: 100% 100%;
     position: fixed;
     left: calc(60% - 430px);
@@ -215,7 +224,7 @@ li {
 }
 
 #ProjectInfoWindow {
-    background-image: url('UITextures/ProjectInfoWindow.png');
+    background-image: url('UITextures2/ProjectInfoWindow.png');
     background-size: 100% 100%;
     position: fixed;
     left: calc(20% - 265px);
@@ -225,7 +234,7 @@ li {
 }
 
 #About1 {
-    background-image: url('UITextures/AboutBio.png');
+    background-image: url('UITextures2/AboutBio.png');
     background-size: 100% 100%;
     position: fixed;
     left: 9%;
@@ -235,7 +244,7 @@ li {
 }
 
 #About2 {
-    background-image: url('UITextures/AboutSkills.png');
+    background-image: url('UITextures2/AboutSkills.png');
     background-size: 100% 100%;
     position: fixed;
     right: 12%;
@@ -249,7 +258,7 @@ li {
 }
 
 #LinkWindow {
-    background-image: url('UITextures/AboutLinks.png');
+    background-image: url('UITextures2/AboutLinks.png');
     background-size: 100% 100%;
     position: fixed;
     left: 3%;
@@ -260,7 +269,7 @@ li {
 
 #Commissions {
     position: fixed;
-    border-image: url('UITextures/twitchWindow.png');
+    border-image: url('UITextures2/twitchWindow.png');
     border-image-slice: 35 27 24 157 fill;
     border-image-width: 105px 81px 72px 471px;
     top: 0px;
@@ -271,9 +280,9 @@ li {
 
 #Gallery {
     position: fixed;
-    border-image: url('UITextures/GalleryWindow.png');
-    border-image-slice: 35 27 22 155 fill;
-    border-image-width: 105px 81px 66px 465px;
+    border-image: url('UITextures2/GalleryWindow.png');
+    border-image-slice: 34 28 23 153 fill;
+    border-image-width: 102px 84px 69px 459px;
     top: 0px;
     left: 0px;
     right: 0px;
@@ -291,7 +300,7 @@ li {
 }
 
 .WorksTop {
-    background-image: url('UITextures/WorksTop.png');
+    background-image: url('UITextures2/WorksTop.png');
     background-size: contain;
     position: fixed;
     top: 0px;
@@ -300,7 +309,7 @@ li {
 }
 
 .WorksBottom {
-    background-image: url('UITextures/WorksBottom.png');
+    background-image: url('UITextures2/WorksBottom.png');
     background-size: contain;
     position: fixed;
     bottom: 54px;
@@ -309,7 +318,7 @@ li {
 }
 
 .WorksLeft {
-    background-image: url('UITextures/WorksLeft.png');
+    background-image: url('UITextures2/WorksLeft.png');
     background-size: contain;
     position: fixed;
     left: 0px;
@@ -318,7 +327,7 @@ li {
 }
 
 .WorksRight {
-    background-image: url('UITextures/WorksRight.png');
+    background-image: url('UITextures2/WorksRight.png');
     background-size: contain;
     position: fixed;
     right: 0px;
@@ -328,7 +337,7 @@ li {
 }
 
 .WorksTopLeft {
-    background-image: url('UITextures/WorksTopLeft.png');
+    background-image: url('UITextures2/WorksTopLeft.png');
     background-size: 100% 100%;
     position: fixed;
     top: 0px;
@@ -338,7 +347,7 @@ li {
 }
 
 .WorksTopRight {
-    background-image: url('UITextures/WorksTopRight.png');
+    background-image: url('UITextures2/WorksTopRight.png');
     background-size: 100% 100%;
     position: fixed;
     top: 0px;
@@ -348,7 +357,7 @@ li {
 }
 
 .WorksLeftTools {
-    background-image: url('UITextures/WorksLeftTools.png');
+    background-image: url('UITextures2/WorksLeftTools.png');
     background-size: 100% 100%;
     position: fixed;
     top: 69px;
@@ -358,7 +367,7 @@ li {
 }
 
 .WorksBottomLeft {
-    background-image: url('UITextures/WorksBottomLeft.png');
+    background-image: url('UITextures2/WorksBottomLeft.png');
     background-size: 100% 100%;
     position: fixed;
     bottom: 54px;
@@ -368,7 +377,7 @@ li {
 }
 
 .WorksBottomRight {
-    background-image: url('UITextures/WorksBottomRight.png');
+    background-image: url('UITextures2/WorksBottomRight.png');
     background-size: 100% 100%;
     position: fixed;
     bottom: 54px;
@@ -378,7 +387,7 @@ li {
 }
 
 #bottomBar {
-    background-image: url('UITextures/bottomBar.png');
+    background-image: url('UITextures2/bottomBar.png');
     background-size: contain;
     position: fixed;
     bottom: 0px;
@@ -387,7 +396,7 @@ li {
 }
 
 .bottomBarRight {
-    background-image: url('UITextures/bottomBarRight.gif');
+    background-image: url('UITextures2/bottomBarRight.gif');
     background-size: 100% 100%;
     position: fixed;
     bottom: 0px;
@@ -403,7 +412,7 @@ li {
 }
 
 #bottomBarLeft {
-    background-image: url('UITextures/bottomBarLeft.png');
+    background-image: url('UITextures2/bottomBarLeft.png');
     background-size: 100% 100%;
     position: fixed;
     bottom: 0px;
@@ -413,7 +422,7 @@ li {
 }
 
 #bottomBarAbout {
-    background-image: url('UITextures/bottomBarAboutHover.png');
+    background-image: url('UITextures2/bottomBarAboutHover.png');
     background-size: 100% 100%;
     position: fixed;
     bottom: 0px;
@@ -423,7 +432,7 @@ li {
 }
 
 #bottomBarWorks {
-    background-image: url('UITextures/bottomBarWorksHover.png');
+    background-image: url('UITextures2/bottomBarWorksHover.png');
     background-size: 100% 100%;
     position: fixed;
     bottom: 0px;
@@ -433,7 +442,7 @@ li {
 }
 
 #bottomBarCommisions {
-    background-image: url('UITextures/bottomBarCommisionsHover.png');
+    background-image: url('UITextures2/bottomBarCommisionsHover.png');
     background-size: 100% 100%;
     position: fixed;
     bottom: 0px;
@@ -443,7 +452,7 @@ li {
 }
 
 #bottomBarGallery {
-    background-image: url('UITextures/bottomBarGalleryHover.png');
+    background-image: url('UITextures2/bottomBarGalleryHover.png');
     background-size: 100% 100%;
     position: fixed;
     bottom: 0px;
@@ -453,7 +462,7 @@ li {
 }
 
 #StartMenu {
-    background-image: url('UITextures/StartMenu.png');
+    background-image: url('UITextures2/StartMenu.png');
     background-size: 100% 100%;
     position: fixed;
     bottom: 39px;
@@ -463,7 +472,7 @@ li {
 }
 
 #ContactPopup {
-    background-image: url('UITextures/ContactPopup.png');
+    background-image: url('UITextures2/ContactPopup.png');
     background-size: 100% 100%;
     position: fixed;
     bottom: calc(50% - 98px);
@@ -473,7 +482,7 @@ li {
 }
 
 #ContactPopup2 {
-    background-image: url('UITextures/ContactPopup2.png');
+    background-image: url('UITextures2/ContactPopup2.png');
     background-size: 100% 100%;
     position: fixed;
     bottom: calc(50% - 98px);
@@ -484,7 +493,7 @@ li {
 
 
 .ButtonOK {
-    background-image: url('UITextures/ButtonOK.png');
+    background-image: url('UITextures2/ButtonOK.png');
     background-size: 100% 100%;
     position: absolute;
     height: 36px;
@@ -531,14 +540,14 @@ li {
 
 .scalewindow {
     position: fixed;
-    border-image: url('UITextures/ScalableWindowBright.png');
+    border-image: url('UITextures2/ScalableWindowBright.png');
     border-image-slice: 12 28 3 3 fill;
     border-image-width: 36px 84px 9px 9px;
 }
 
 .scalewindowDark {
     position: fixed;
-    border-image: url('UITextures/ScalableWindowDark.png');
+    border-image: url('UITextures2/ScalableWindowDark.png');
     border-image-slice: 12 28 3 3 fill;
     border-image-width: 36px 84px 9px 9px;
 }
@@ -561,7 +570,7 @@ li {
 }
 
 .CommisionThumb {
-    background-image: url('UITextures/CommisionThumb.png');
+    background-image: url('UITextures2/CommisionThumb.png');
     margin: 51px;
     background-size: 100% 100%;
     display: inline-block;
@@ -573,7 +582,7 @@ li {
 }
 
 .CommisionThumb:hover {
-    background-image: url('UITextures/CommisionThumbHover.png');
+    background-image: url('UITextures2/CommisionThumbHover.png');
 }
 
 .CommisionThumb h1 {
@@ -598,14 +607,14 @@ li {
 .TOSButtons {
     background-size: 100% 100%;
     position: absolute;
-    bottom: -87px;
+    bottom: -84px;
     right: 0px;
     width: 453px;
     height: 87px;
 }
 
 .TOSButtons:hover {
-    background-image: url('UITextures/twitchWindowHover.png');
+    background-image: url('UITextures2/twitchWindowHover.png');
 }
 
 #galleryPiecePopout {

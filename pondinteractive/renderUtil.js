@@ -70,16 +70,6 @@ var initializeTexture = function(gl,tex) {
     return Texture;
 }
 
-// var rayPlaneIntersect = function(normal,p0,raystart,raydir,intersect) {
-//     var denom = glMatrix.vec3.dot(denom,normal,raydir);
-//     if (denom > .0000001) {
-//         var p0l0 = glMatrix.vec3.sub(p0l0,p0,raystart);
-//         intersect = glMatrix.vec3.dot(intersect,p0l0,normal);
-//         return (intersect >= 0);
-//     }
-//     return false;
-// }
-
 class RenderObject {
     constructor(model,texture,program,name) {
         this.model = model;

@@ -1,4 +1,11 @@
+var style = 0;
 var buttonsUrl = "url('UITextures/";
+if (getUrlVars().ver == "1") { 
+	var style = 1; 
+	var buttonsUrl = "url('UITextures2/"; 
+	var styleElement = document.getElementById('style');
+	styleElement.setAttribute('href', 'style2.css');
+}
 
 if(window.innerHeight < 650) {
 	document.body.style.zoom = 75 + "%";
@@ -74,17 +81,29 @@ if(window.innerWidth / window.innerHeight < 1){
 	var tos = document.getElementById("commissionTOS");
 	var cont = document.getElementById("CommisionContent");
 
-	comm.style.borderImage = "url('UITextures/twitchWindowSlimm.png')";
-	comm.style.borderImageSlice = "27 27 3 106 fill";
-	comm.style.borderImageWidth = "81px 81px 9px 318px";
+	if (style == 1) {
+		comm.style.borderImage = "url('UITextures2/twitchWindowSlimm.png')";
+		comm.style.borderImageSlice = "27 28 4 106 fill";
+		comm.style.borderImageWidth = "81px 84px 12px 318px";
+	} else {
+		comm.style.borderImage = "url('UITextures/twitchWindowSlimm.png')";
+		comm.style.borderImageSlice = "27 27 3 106 fill";
+		comm.style.borderImageWidth = "81px 81px 9px 318px";
+	}
 	tos.style.display = "none";
 	cont.style.right = "calc(27px + 5%)";
 } else	{
 	var comm = document.getElementById("Commissions");
 
-	comm.style.borderImage = "url('UITextures/twitchWindow.png')";
-	comm.style.borderImageSlice = "66 155 30 107 fill";
-	comm.style.borderImageWidth = "198px 465px 90px 321px";
+	if (style == 1) {
+		comm.style.borderImage = "url('UITextures2/twitchWindow.png')";
+		comm.style.borderImageSlice = "66 155 31 107 fill";
+		comm.style.borderImageWidth = "198px 465px 93px 321px";
+	} else {
+		comm.style.borderImage = "url('UITextures/twitchWindow.png')";
+		comm.style.borderImageSlice = "66 155 30 107 fill";
+		comm.style.borderImageWidth = "198px 465px 90px 321px";
+	}
 }
 
 function dragElement(elmnt) {
@@ -272,6 +291,11 @@ function checkTime(i) {
 }
 
 function setRandomBackground() {
+	if (style == 1) {
+		document.body.style.backgroundImage="url(UITextures2/wallpaper.png)";
+		document.body.style.backgroundColor ="#8afff6";
+		return;
+	};
 	var urls = ["","","","","BGprefab.png","BGpolyguise.png","BGbrick.png"];
 	setBackGround(urls[Math.floor(Math.random() * 7)]);
 }
