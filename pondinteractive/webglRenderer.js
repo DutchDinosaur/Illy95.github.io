@@ -30,7 +30,7 @@ var cameraUniformLocation;
 //KEEP THEESE SORTED
 gameObjects = [
     new GameObject(0,[0,-1,0])
-    ,new GameObject(1,[0,1,0])
+    // ,new GameObject(1,[0,1,0])
 ];
 
 var Initialize = function () {
