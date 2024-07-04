@@ -7,12 +7,12 @@ if (getUrlVars().ver == "1") {
 	styleElement.setAttribute('href', 'Style2.css');
 }
 
-if(window.innerHeight < 650) {
-	document.body.style.zoom = 75 + "%";
-}
-if(window.innerHeight > 1440) {
-	document.body.style.zoom = 125 + "%";
-}
+// if(window.innerHeight < 650) {
+// 	document.body.style.zoom = 75 + "%";
+// }
+// if(window.innerHeight > 1440) {
+// 	document.body.style.zoom = 125 + "%";
+// }
 
 dragElement(document.getElementById("Lemon"));
 dragElement(document.getElementById("About1"));
@@ -83,8 +83,8 @@ if(window.innerWidth / window.innerHeight < 1){
 
 	if (style == 1) {
 		comm.style.borderImage = "url('UITextures2/twitchWindowSlimm.png')";
-		comm.style.borderImageSlice = "27 28 4 106 fill";
-		comm.style.borderImageWidth = "81px 84px 12px 318px";
+		comm.style.borderImageSlice = "26 28 5 106 fill";
+		comm.style.borderImageWidth = "78px 84px 15px 318px";
 	} else {
 		comm.style.borderImage = "url('UITextures/twitchWindowSlimm.png')";
 		comm.style.borderImageSlice = "27 27 3 106 fill";
