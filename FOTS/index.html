@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>POND INTERACTIVE</title>
+    <link rel="icon" type="image/vnd.microsoft.icon" href="/icon.ico">
+    <link rel="stylesheet" type="text/css" href="Style.css">
+
+	<meta name="title" content="Pond Interactive">
+	<meta name="description" content="indie game studio working on a secret unannounced game (website under construction)">
+	<meta name="keywords" content="indie, games, cozy games, roleplaying games, rpg, small studio, lily van schaik">
+	<meta name="robots" content="index, follow">
+	<meta name="language" content="English">
+
+    <meta property="og:image:type" content="image/png" />
+	<meta property="og:image" content="https://dutchdinosaur.github.io/pondinteractive/pits.png" />
+	<meta property="og:image:width" content="256">
+	<meta property="og:image:height" content="256">
+
+</head>
+<body onload="Initialize()">
+
+		<img src="pits.png" style="height:15%; position: fixed;">
+		<div class="container">
+			<div class="square">
+				<div class="content">
+					<img src="fots.png" class="logo">
+					
+					<canvas id="webglCanvas" width="512" height="512">
+						not supported!
+					</canvas>
+					
+					<iframe src="https://www.youtube.com/embed/BUO4Ed4ZSEM?si=TLrTmHXMf1kiAPxT" 
+						title="YouTube video player" 
+						frameborder="0" 
+						allowfullscreen
+						class="video">
+					</iframe>
+
+					
+
+					<p style="text-align: center;">For old times sake is a wholesome roleplaying game about a student historian investigating a forgery. scoot and jump to explore the big open world and speak with the locals to solve the mystery! </p>	
+
+
+					<p style="text-align: center;">wishlist on steam!</p>	
+					<p style="text-align: center;">join our discord!</p>	
+
+
+					<p style="text-align: center;">partially funded by:</p>
+					<img src="fonds.gif" class="logo" style="margin-bottom: 10%;">
+					
+				</div>
+			</div>
+		</div>
+		
+		<script src="renderUtil.js"></script>
+        <script src="gl-matrix-min.js"></script>
+        <script src="webglRenderer.js"></script>
+		<script src="gameLogic.js"></script>
+	</body>
+</html>
